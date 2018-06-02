@@ -1,18 +1,23 @@
 ---
 layout: default
+icon: fa-tag
 ---
 {%- include header.html -%}
-
+{%- assign _tags = page.tags -%}
 <!-- Main -->
 <div id="main">
 	<!-- Post -->
 	<article class="shade-two">
 	  <div class="container">
-			<header>
-				<h2>{{- page.title -}}</h2>
-				<p>{% if page.author %}{{ page.author }}, {% endif %}{{- page.date | date_to_long_string -}}</p>
-			</header>
-	    {{- content | toc -}}
+		  <header>
+			  <h1 class="font-bold">{{- page.title -}}</h1>
+			  {% if _tags %}
+			  {%- for _tag in _tags -%}
+			  <span class="margin-lr-5"><i class="fa fa-tag"></i>{{ _tag }}</span>
+			  {%- endfor -%}
+			  {% endif %}
+		  </header>
+	    {{- content -}}
 	  </div>
 	</article>
 </div>

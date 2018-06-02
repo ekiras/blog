@@ -6,9 +6,12 @@ permalink: /spring-boot/
 toc: true
 ---
 
+* Table of Contents
+{:toc }
+
 ## Spring Boot Setup ##
 
-*  How to run a Spring Boot application using Maven or Gradle build tool.
+*  [How to run a Spring Boot application using Maven or Gradle build tool]({% post_url 2018-06-02-how-to-run-spring-boot-application %})
 *  Spring Boot Single Page Java Application.
 *  Spring Boot Single Page Groovy Application.
 *  Spring Boot Gradle MVC CRUD project using Mysql.
