@@ -1,0 +1,13 @@
+---
+layout: post
+title: Different ways of creating Objects in Java
+date: '2014-09-09T22:20:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+modified_time: '2014-09-18T18:19:57.565+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-5189546450116333787
+blogger_orig_url: http://www.ekiras.com/2014/09/what-are-different-ways-of-creating-objects-in-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Different ways of creating Objects</b></div><ul style="text-align: left;"><li>Using <b>new</b>&nbsp;operator.</li><li>Using <b>Class.forName() </b>and <b>newInstance()</b>.</li><li>Using Factory Methods</li><li>Using <b>Object cloning</b></li><li>Using <b>Object deserialization</b></li></ul><div class="hl-note"><b>Object Creation By Different Methods</b></div><pre class="brush : java">public class ObjectCreation {<br /> <br />  public static void main(String args[])throws Exception{<br /><br />    ObjectCreation objecByNewKeyword = createObjecByNewKeyword();<br />    ObjectCreation objecByClassForName = createObjecByClassForName();<br />    ObjectCreation objecByCloning = (ObjectCreation)createObjecByCloning(); // object to be cloned<br /><br />    objecByNewKeyword.show("new keyword");<br />    objecByClassForName.show("using Class.forName and newInstance");<br />    objecByCloning.show("cloning");<br />    <br />  }<br />  <br /><br />  public static ObjectCreation createObjecByNewKeyword(){<br />   <br />     ObjectCreation obj = new ObjectCreation();<br />     return obj;<br />  } <br /><br /> <br />  public static ObjectCreation createObjecByClassForName() throws ClassNotFoundException, InstantiationException, IllegalAccessException{<br />   <br />     ObjectCreation obj = (ObjectCreation)Class.forName("ObjectCreation").newInstance();<br />     return obj;<br />  }<br /><br /><br />  public static ObjectCreation createObjecByCloning()throws CloneNotSupportedException{<br /><br />     ObjectCreation obj = new ObjectCreation();<br />     ObjectCreation clone = (ObjectCreation)obj.clone();<br />     return clone;<br />  } <br /><br />  public void show(String msg){<br />     System.out.println("I am an Object created by " + msg);<br />  }<br />  <br />}<br /></pre><b><br /></b><b>Output of the above program</b><br /><b>I am an Object created by new keyword</b><br /><b>I am an Object created by using Class.forName and newInstance</b><br /><div><b>I am an Object created by using cloning</b></div></div>

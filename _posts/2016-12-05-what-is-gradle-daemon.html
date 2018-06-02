@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Gradle : What is a Gradle Daemon ?'
+date: '2016-12-05T00:28:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Gradle Daemon
+- Gradle
+modified_time: '2016-12-05T03:08:19.352+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-4471023648764172219
+blogger_orig_url: http://www.ekiras.com/2016/12/what-is-gradle-daemon.html
+---
+
+<div class="markdown"><h2>Points to Remember</h2><ol><li>Gradle runs on JVM and several other dependencies.</li><li>Gradle has to do boootstrap stuff whenever gradle is started.</li><li>This startup process takes time and makes the build slower.</li></ol><p>To overcome these points <code>gradle daemon</code> was introduced.</p><h2>What is a Gradle Daemon ?</h2><p>Gradle daemon is a <code>long lived background background process</code> that can be reused for building gradle projects faster. <code>Gradle wrapper</code> saves the time for starting a new gradle instance every time and saves time required for bootstrapping and initialization.Such bootstrap tasks include</p><ol><li>Initialization of JVM</li><li>Cache Project information</li><li>Cache files , tasks</li><li>Project structures etc</li></ol><p>Gradle daemon is <code>configurable</code> and can be switched on of off using <code>gradle.properties</code> in path <code>&lt;user-home&gt;/.gradle/gradle.properties</code>.</p><p>Also, gradle daemon <code>should be used only for development environments and not for production environmnets.</code> This is beacasue in production environments you want to build your projet independently since it is more reliable.</p><h2>Check the status of Gradle Daemon</h2><p>To check the status of the gradle deamon you can use the command</p><pre><code>gradle --status<br /></code></pre><p>The above command gives the following output. (A Gradle version can only connect to daemons of the same version.)</p><pre><code>   PID STATUS   INFO<br />  3461 IDLE     3.0<br /> 31881 BUSY     3.0<br /><br />Only Daemons for the current Gradle version are displayed.<br /></code></pre><h2>How to stop a Gradle daemon</h2><p>To stop all running gradle daemon processess you can run the following command.</p><pre><code>gradle --stop<br /></code></pre><p>This will stop all the daemon processess that started with the same version of gradle that is used to execute the command.</p><h2>States of a Gradle Daemon</h2><p>A radle daemon can be in the following states.</p><ol><li><code>idle</code> - this is a gradle state that is running but is not doing any execution. This gradle daemon can be used for running new builds.</li><li><code>compatible</code> - This is a gradle daemon that is compatible for running a gradle biuld.</li></ol><p>Gradle build, firsts checks for an idle daemon with compatible configurations, if it exists, then the build is started using this daemon, if no such daemon exists then gradle will start a new gradle daemon for running the build.</p></div>

@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Gradle : How to run a specific gradle task or multiple tasks'
+date: '2016-12-01T00:16:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- GradleTask
+- Gradle
+modified_time: '2016-12-01T00:16:29.810+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-6253564079681929704
+blogger_orig_url: http://www.ekiras.com/2016/12/how-to-run-single-or-multiple-gradle-tasks.html
+---
+
+<div class="markdown"><h2>How to run a specific gradle task</h2><p>When you want to run a particular task only then you can run that task using the following command.</p><pre><code class="language-shell">gradle -q &lt;task-name&gt;<br /></code></pre><p><code>-q</code> option tells gradle that you want to run only the tasks that are provided. In this example we have instructed gradle to run only one task</p><h2>How to run multiple gradle tasks</h2><p>Multilple gradle tasks can be run using the following syntax.</p><pre><code class="language-shell">gradle -q &lt;task-name&gt; &lt;task-name&gt; &lt;task-name&gt;<br /></code></pre><p>In second example we have told gradle to run 3 tasks, they are run in the order they are provided. However if one of the task is dependent on any other task, then that task will execute first. Also <code>A task is run only one time even if it is specified multiple times.</code></p><p>For example if we have the following tasks in <code>build.gradle</code></p><pre><code>task A {<br />    doLast {<br />        println 'Running task A'<br />    }<br /><br />    doFirst{<br />        println(" Pring first")<br />    }<br />}<br /><br />task B(dependsOn: A) {<br />    doLast {<br />        println 'Running task B'<br />    }<br />}<br /><br />task C(dependsOn: [A, B]) {<br />    doLast {<br />        println 'Running task C'<br />    }<br />}<br /><br /></code></pre><p>and we run the tasks using the following command.</p><pre><code>gradle B A C<br /></code></pre><p>Then the gradle tasks will be executed in this manner <code>First A will execute then B and finally C will execute</code>.</p><blockquote><p><strong>READ MORE</strong></p><ul><li><a href="http://www.ekiras.com/p/gradle.html">Introduction to Gradle</a></li><li><a href="http://www.ekiras.com/2016/12/difference-between-dofirst-and-dolast-methods-in-gradle-task.html">Difference between doFirst() and doLast() methods</a></li></ul></blockquote></div>

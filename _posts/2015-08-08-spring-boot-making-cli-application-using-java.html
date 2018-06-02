@@ -1,0 +1,16 @@
+---
+layout: post
+title: Spring Boot Making CLI Application using Java
+date: '2015-08-08T00:03:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- SpringBoot
+- Spring
+modified_time: '2015-08-08T00:04:53.288+05:30'
+thumbnail: http://4.bp.blogspot.com/-YrEY_DjnK64/VcTv4us0nHI/AAAAAAAAAcU/gOf0RwLxJdY/s72-c/CLI1.png
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2572964030833040466
+blogger_orig_url: http://www.ekiras.com/2015/08/spring-boot-making-cli-application-using-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can make the cli application without writing any configurations or xml's that you needed to do in traditional spring framework.<br /><b>Spring boot automatically adds the boiler plate code to the application that may look like this</b><br /><br /><pre class="">// import org.springframework.web.bind.annotation.Controller<br />// other imports ...<br />// @Grab("org.springframework.boot:spring-boot-web-starter:0.5.0")<br />// @EnableAutoConfiguration<br /><br />@RestController<br />@RequestMapping("/")<br />class Hello {<br /><br /> @RequestMapping(value="/hello")<br />  public String index(){<br />    return "&lt;h1&gt;Hello World !! Today's date is " + new Date() + "&lt;/h1&gt;";<br />  }<br /><br />// public static void main(String[] args) {<br />// SpringApplication.run(Example.class, args);<br />// }<br /><br />}</pre><br />The following code is a self sufficient code to run in a servlet container.<br /><br /><h3>Hello.java</h3><pre class="brush:java">import java.util.Date;<br /><br />@RestController<br />@RequestMapping(value="/")<br />class Hello{<br /> <br />  @RequestMapping(value="/hello")<br />  public String index(){<br />    return "&lt;h1&gt;Hello World !! Today's date is " + new Date() + "&lt;/h1&gt;";<br />  }<br /><br />}<br /></pre>Run the above code using the command <br /><br /><pre>spring run Hello.java</pre><br />You will be able to see the result in the browser as shown in the image below <br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-YrEY_DjnK64/VcTv4us0nHI/AAAAAAAAAcU/gOf0RwLxJdY/s1600/CLI1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="345" src="http://4.bp.blogspot.com/-YrEY_DjnK64/VcTv4us0nHI/AAAAAAAAAcU/gOf0RwLxJdY/s640/CLI1.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-fbdtcVNBTPI/VcTvnYRZT7I/AAAAAAAAAcE/oRRfJlYgNjM/s1600/cli-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="184" src="http://1.bp.blogspot.com/-fbdtcVNBTPI/VcTvnYRZT7I/AAAAAAAAAcE/oRRfJlYgNjM/s640/cli-2.png" width="640" /></a></div><br /><br /></div>

@@ -1,0 +1,15 @@
+---
+layout: post
+title: Send JSON object as data in Ajax POST/ GET call
+date: '2015-07-03T00:31:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- JavaScript
+- Ajax
+- Jquery
+modified_time: '2015-07-03T00:31:54.267+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-3143262267027098675
+blogger_orig_url: http://www.ekiras.com/2015/07/send-json-object-as-data-in-ajax-post-get-call.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Send JSON object as data in Ajax call.</h2>Suppose you have &nbsp;a JSON object associated with a variable say <b>json </b>&nbsp;in our case, you can send this json value as data in the ajax call as follows.<br /><br /><pre class="brush:html; highlight:[1,7,8]">var json = [{'id':1,'name':'user1'},{'id':2,'name':'user2'},{'id':3,'name':'user3'},{'id':4,'name':'user4'}]<br /><br />function demo(url){<br />    $.ajax({<br />        method : 'POST',<br />        url : url,<br />        dataType: 'json',<br />        data : { objects :JSON.stringify(json)},<br />        success : function(data){<br />            console.log(data);<br />        },<br />        error : function(error){<br />            alert('OOps Something went wrong, please contact admin');<br />        }<br />    });<br />}<br /></pre><b>JSON.stringify()</b>&nbsp;method will parse the json object and convert it to a string format that can be sent as data in the Ajax call.<br /><br />you can also send other data with the json as follows <br /><pre class="brush:html; highlight:[1,7,8]">var json = [{'id':1,'name':'user1'},{'id':2,'name':'user2'},{'id':3,'name':'user3'},{'id':4,'name':'user4'}]<br /><br />function demo(url){<br />    $.ajax({<br />        method : 'POST',<br />        url : url,<br />        dataType: 'json',<br />        data : { 'objects' :JSON.stringify(json), 'otherData' : 'value'},<br />        success : function(data){<br />            console.log(data);<br />        },<br />        error : function(error){<br />            alert('OOps Something went wrong, please contact admin');<br />        }<br />    });<br />}<br /></pre><br /></div>

@@ -1,0 +1,15 @@
+---
+layout: post
+title: Difference between ServletConfig and ServletContext
+date: '2014-09-19T17:07:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- J2EE
+modified_time: '2014-09-19T17:07:15.776+05:30'
+thumbnail: http://2.bp.blogspot.com/-FHvlpFiPvo4/VBwUYWd4aEI/AAAAAAAAAHs/nO_BqxOu6r4/s72-c/servlet-context-and-servlet-config.png
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-4280404670113387437
+blogger_orig_url: http://www.ekiras.com/2014/09/difference-between-servlet-config-and-servlet-context.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Difference : ServletContext vs ServletConfig</b></div><br /><table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;"><tbody><tr><th width="50%">ServletContext</th><th width="50%">ServletConfig</th></tr><tr><td>Servlet Context is a global configuration for servlets in a an application i.e this is same for all the servlets.&nbsp;</td><td>Servlet Config is a local configuration for each servlet in an application i.e each servlet has its own servlet configuration that may differ from the servlet config of another servlet.</td></tr><tr><td>ServletContext is one per application.</td><td>ServletConfig is one per servlet.</td></tr><tr><td>&nbsp;It is created at the time of deployment of the web application.</td><td>It is initialized when a servlet is initialized.</td></tr><tr><td>&nbsp;Its scope is as long as the application is up and running, it will be destroyed when the application is removed from the server.</td><td>&nbsp;Its scope isand is destroyed when a servlet is destroyed by the servlet container.</td></tr><tr><td>&nbsp;In web.xml it should be declared as &lt;context-param&gt; tag and it should be under &lt;web-app&gt; tag.</td><td>In web.xml it should be declared as &lt;init-param&gt; under &lt;servlet-class&gt; tag.</td></tr><tr><td>ServletContext object will be available even before giving the first request</td><td>We should give request explicitly, in order to create ServletConfig object for the first time</td></tr></tbody></table><div class="hl-note"><b>Example</b></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-FHvlpFiPvo4/VBwUYWd4aEI/AAAAAAAAAHs/nO_BqxOu6r4/s1600/servlet-context-and-servlet-config.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://2.bp.blogspot.com/-FHvlpFiPvo4/VBwUYWd4aEI/AAAAAAAAAHs/nO_BqxOu6r4/s1600/servlet-context-and-servlet-config.png" height="436" width="640" /></a></div><br /></div>

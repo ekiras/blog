@@ -1,0 +1,16 @@
+---
+layout: post
+title: 'JPA : One to Many Mapping using Hibernate Spring Boot'
+date: '2016-01-19T13:42:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- JPA
+- Hibernate
+- SpringBoot
+- Spring
+modified_time: '2016-01-19T13:42:12.306+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-4119508116351340387
+blogger_orig_url: http://www.ekiras.com/2016/01/jpa-one-to-many-mapping-using-hibernate-spring-boot.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="separator" style="clear: both; text-align: center;"><a href="http://resources.ekiras.com/images/jpa/one-to-many.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img img-reponsive" src="http://resources.ekiras.com/images/jpa/one-to-many.png" /></a></div><h2>STEP 1 :: Add the dependencies</h2>You need to add the following dependencies in your <b>build.gradle</b> file.<br /><pre>    <br />    compile('org.springframework.boot:spring-boot-starter-data-jpa')<br />    compile('org.springframework.boot:spring-boot-starter-jdbc')<br />    runtime('mysql:mysql-connector-java')<br /></pre><br /><h2>STEP 2 :: Make Entity classes</h2>You need to create two entity QUESTION and TOPIC.<br /><br />Here the Topic Entity will have an annotation <b>@OneToMany</b> , this indicates the following <br/ ><ul><li>This one topic can have many questions.</li><li>All the questions will be deleted or updated when topic is deleted/updated.</li><li>Its mapping is defined by Entity Question by the mapping of topic variable.</li><li>It will give a list of all question of a topic when it is fetched</li><li>If you do not need questions when topic is fetched then make fetch type as LAZY </li></ul><br /><pre><br /><br />    @OneToMany(cascade = CascadeType.ALL,mappedBy = "topic",fetch = FetchType.EAGER)<br />    private List<Question> questions;<br /><br /></pre><br />Here the Question entity will have the annotation <b>@ManyToOne</b>, this will indicate the following, <ul><li>One question can belong to only one topic.</li><li>When you fetch question, it will not fetch the topic because the fetch mode is LAZY</li><li>It will join make the foreign key column as <b>topic_id</b>. If you want any other name, then you can define using <b>@JoinColumn</b> annotation </li></ul><br /><pre><br />    @ManyToOne(fetch = FetchType.LAZY)<br />    @JoinColumn(name = "topic_id")<br />    private Topic topic;<br /><br /></pre><br /> Full class code is shown below <br /><script src="https://gist.github.com/gitekiras/73027f95efb4e7899e7f.js"></script> <br /></div>

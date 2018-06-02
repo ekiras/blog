@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Hibernate : fetch results using Orderby in Criteria Query'
+date: '2015-03-24T01:15:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Criteria Query
+- Hibernate
+modified_time: '2015-04-20T12:00:37.665+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-1983019216679088599
+blogger_orig_url: http://www.ekiras.com/2015/03/hibernate-fetch-results-using-orderby-in-criteria-query.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Syntax to use OrderBy in Hibernate Criteria Query</h2>The order can be specified using <b>addOrder</b> on a <b>Criteria Object </b><br /><pre>criteria.addOrder(Order.asc("propertyName"))<br />criteria.addOrder(Order.desc("propertyName"))</pre><h2>Order results according to an order in Hibernate&nbsp;</h2>Suppose we have a class  <br /><div class="panel panel-default"><div class="panel-heading">Category.java</div><div class="panel-body"><pre class="brush:java">package com.ekiras.domain;<br /><br />import javax.persistence.Column;<br />import javax.persistence.Entity;<br />import javax.persistence.GeneratedValue;<br />import javax.persistence.GenerationType;<br />import javax.persistence.Id;<br />import javax.persistence.OneToMany;<br />import javax.persistence.Table;<br /><br />@Entity<br />@Table(name="category")<br />public class Category {<br /><br /> public Category(){}<br /> public Category(Long id){<br />  this.id = id;<br /> }<br /> public Category(Long id, String name){<br />  this.id = id;<br />  this.name = name;<br /> }<br /> <br /> @Id<br /> @Column(nullable=false, name="id")<br /> @GeneratedValue(strategy=GenerationType.AUTO)<br /> private Long id;<br /> <br /> @Column(nullable=false, name="name")<br /> private String name;<br /><br />       // Getters and Setters<br /><br />   }<br /></pre></div></div>So if we need to order the results of this class according to a given order we can do it like following <br /><br /><ul style="text-align: left;"><li>Order by propertyName id in ascending order<br /> <pre class="brush:java">sessionFactory.getCurrentSession()<br />              .createCriteria(Catgeory.class)<br />              .addOrder(Order.asc("id"))<br />              .list();</pre></li><li>Order by propertyName name in descending order<br /> <pre class="brush:java">sessionFactory.getCurrentSession()<br />              .createCriteria(Catgeory.class)<br />              .addOrder(Order.desc("name"))<br />              .list();</pre></li><li>Order by propertyName name in random order<br /> <pre class="brush:java">sessionFactory.getCurrentSession()<br />              .createCriteria(Catgeory.class)<br />              criteria.add(Restrictions.sqlRestriction("1=1 order by rand()"));<br />              .list();</pre>The above code will return the list of Category domain objects in a random order. </li></ul><br /><br /></div>

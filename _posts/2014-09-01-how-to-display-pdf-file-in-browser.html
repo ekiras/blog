@@ -1,0 +1,13 @@
+---
+layout: post
+title: How to display a pdf file in browser using java
+date: '2014-09-01T17:22:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- Pdf
+modified_time: '2014-09-01T17:30:27.662+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-1126481172845301220
+blogger_orig_url: http://www.ekiras.com/2014/09/how-to-display-pdf-file-in-browser.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Display PDF in browser using Java from response</b></div><pre class="brush : java">response.setContentType("application/pdf");<br />response.setHeader("Content-Disposition", "inline; filename='" + pdfName + "'");<br />response.setContentLength((int) FileInputStream input = new FileInputStream("File.pdf").length());<br /></pre><br />The above lines of code can be used to send a response to the view( like .jsp) as a pdf. &nbsp;This will open the pdf in the browser and not make the pdf downloadable.<br /><br /><div class="hl-note"><b>Display PDF in browser view page</b></div>To indicate to the browser that the file should be viewed in the browser :<br /><pre class="brush : html">Content-Type : application/pdf<br /><br />Content-Disposition : inline; filename.pdf<br /><br /></pre><br />To have the file downloaded rather than viewed:<br /><pre class="brush : html">Content-Type : application/pdf<br /><br />Content-Disposition : attachment; filename.pdf<br /><br /></pre><br /></div>

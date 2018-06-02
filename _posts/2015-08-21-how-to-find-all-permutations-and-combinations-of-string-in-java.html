@@ -1,0 +1,14 @@
+---
+layout: post
+title: How to find all Permutations and Combinations of a String
+date: '2015-08-21T00:33:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- Java Program
+modified_time: '2015-08-21T00:33:56.628+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-631254640757075200
+blogger_orig_url: http://www.ekiras.com/2015/08/how-to-find-all-permutations-and-combinations-of-string-in-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Algorithm Used</h2>We will be using the following algorithm to find all the permutations of a string<br /><br /><ul><li>Take the first letter as a prefix and find all the permutations of the remaining string.</li><li>Each of the prefix will also be a permutation itself.</li><li>If you want to find all the permutations of string with same length as the original string then skip the prefix's as the combination.</li></ul><br /><pre class="brush:java">public class Permute {<br /><br /> static String codes = "eki";<br /> static int count;<br /> public static void main(String args[]) {<br />  permute("", codes);<br />  System.out.println("&gt;&gt;&gt;&gt;&gt;&gt;&gt;" + count);<br /> }<br /><br /> public static void permute(String prefix, String str) {<br />  System.out.println(prefix);<br />  count++;<br />  int n = str.length();<br />  if (n == 0) {<br />   System.out.println(prefix);<br />  } else {<br />   for (int i = 0; i &lt; n; i++)<br />   permute(prefix + str.charAt(i), str.substring(0, i) + str.substring(i + 1, n));<br />  }<br /><br /> }<br /><br />}</pre>The above code will give the following output <br /><pre class="output">e<br />ek<br />eki<br />eki<br />ei<br />eik<br />eik<br />k<br />ke<br />kei<br />kei<br />ki<br />kie<br />kie<br />i<br />ie<br />iek<br />iek<br />ik<br />ike<br />ike<br />&gt;&gt;&gt;&gt;&gt;&gt;&gt;16</pre></div>

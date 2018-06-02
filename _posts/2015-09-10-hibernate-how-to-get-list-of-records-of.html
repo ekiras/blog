@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Hibernate : How to get List of records of an Entity'
+date: '2015-09-10T03:10:00.004+05:30'
+author: Ekansh Rastogi
+tags:
+- Criteria Query
+- Hibernate
+modified_time: '2015-09-10T03:10:38.366+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-5736412211102612067
+blogger_orig_url: http://www.ekiras.com/2015/09/hibernate-how-to-get-list-of-records-of.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to get List of records in Hibernate</h2><pre class="brush:java;highlight:[1,7,13,21]">    // List all records<br />    public List&lt;User&gt; list(){<br />        return sessionFactory.getCurrentSession()<br />                .createCriteria(User.class).list(); // List all records<br />    }<br /><br />    // List records based on MAX<br />    public List&lt;User&gt; list(Integer max){<br />        return sessionFactory.getCurrentSession().createCriteria(User.class)<br />                .setMaxResults(max).list(); <br />    }<br /><br />    // List records with MAX records and OFFSET<br />    public List&lt;User&gt; list(Integer max, Integer offset){<br />        return sessionFactory.getCurrentSession().createCriteria(User.class)<br />                .setMaxResults(max) <br />                .setFirstResult(offset)<br />                .list();<br />    }<br /><br />    // List records with MAX records and OFFSET and ORDER by id field of User class<br />    public List&lt;User&gt; list(Integer max, Integer offset){<br />        return sessionFactory.getCurrentSession().createCriteria(User.class)<br />                .setMaxResults(max) <br />                .setFirstResult(offset)<br />                .addOrder(Order.asc("id"))<br />                .list();<br />    }<br /></pre>this is body. </div>

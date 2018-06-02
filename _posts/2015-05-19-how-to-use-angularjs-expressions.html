@@ -1,0 +1,13 @@
+---
+layout: post
+title: How to use AngularJs Expressions
+date: '2015-05-19T21:14:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- AngularJs
+modified_time: '2015-05-19T21:21:49.139+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8359027106741106751
+blogger_orig_url: http://www.ekiras.com/2015/05/how-to-use-angularjs-expressions.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><div>You can evaluate angular expressions by the following ways</div><br /><ul style="text-align: left;"><li>using <b>interpolation&nbsp;{{ "{{" }} }}</b></li><li>using <b>ng-bind</b></li></ul><br /><h2>Examples of AngularJs Expressions</h2>Following are the ways you can use the angular expressions.<br /><br /><ul style="text-align: left;"><li>Mathematical calculations&nbsp;</li><li>String operations</li><li>Json operation</li><li>Array operations</li></ul>You may want to see <b>ng-init.</b><br /><br /><pre class="brush:html;highlight:[10,11,13,15,17,19,22,24]">&lt;!DOCTYPE html&gt;<br />&lt;html&gt;<br /><br />  &lt;head&gt;<br />    &lt;link rel="stylesheet" href="style.css"&gt;<br />    &lt;script src="script.js"&gt;&lt;/script&gt;<br />    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"&gt;&lt;/script&gt;<br />  &lt;/head&gt;<br /><br />  &lt;body ng-app="" ng-init="firstName='Ekansh';lastName='Rastogi';json=[{'name':'user1','age':'18'},{'name':'user2','age':'24'}];array=[0,1,2,3,8]"&gt;<br />    &lt;div ng-bind="firstName + ' ' + lastName"&gt;&lt;/div&gt;&lt;hr/&gt;<br />    <br />    String operation -&gt;{{ "{{" }}"Hello" +" " + "World!" }}&lt;hr/&gt;<br />    <br />    Math operation -&gt; {{ "{{" }}2 * 5 }}&lt;hr/&gt;<br />    <br />    String &amp;amp; Math operation -&gt;{{ "{{" }}"10 * 15 * 84  = "  + (10 * 15 * 84)}}&lt;hr/&gt;<br />    <br />    Json Operation -&gt;{{ "{{" }}'name = ' +json[0].name + ' age =' + json[0].age}}&lt;br/&gt;<br />    <br />    {{ "{{" }}'name = ' +json[1].name + ' age =' + json[1].age}}&lt;hr/&gt;<br />    <br />    Array operation -&gt; &lt;span ng-bind="{{ "{{" }}array}}"&gt;&lt;/span&gt;<br />  &lt;/body&gt;<br /><br />&lt;/html&gt;<br /></pre><br />The above code will give you the following output.<br /><br /><iframe allowfullscreen="allowfullscreen" frameborder="0" src="http://embed.plnkr.co/Mq1jJMQqiIur8L1u1tb0?t=code&amp;f=index.html" style="border: 1px solid #999; height: 300px; width: 100%;">  Loading plunk... </iframe></div>

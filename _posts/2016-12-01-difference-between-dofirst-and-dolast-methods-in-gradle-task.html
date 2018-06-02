@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Gradle : Difference between doFirst() and doLast() methods'
+date: '2016-12-01T00:11:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- GradleTask
+- Gradle
+modified_time: '2016-12-01T00:11:05.183+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-5201429664368847937
+blogger_orig_url: http://www.ekiras.com/2016/12/difference-between-dofirst-and-dolast-methods-in-gradle-task.html
+---
+
+<div class="markdown"><h2>Point to Remember</h2><ol><li>doFirst() and doLast() are the methods of <code>org.gradle.api.Task</code> interface.</li><li>Both these methods take a <code>Closure</code> as a parameter.</li><li>When a task is called this closure is called.</li></ol><p>A <code>Gradle task</code> is sequence of <code>Action</code> objects and when a task is run all these actions are called in a sequence by calling <code>Action.execute(T)</code></p><h2>What are doFirst() and doLast() methods in a Gradle task.</h2><h3>doFirst(Closure action)</h3><p>This method will add your closure as an action to the beginning of the action sequence. All the code that is written in this closure is executed first when the task is executed.</p><h3>doLast(Closure action)</h3><p>This method will add your closure as an action to the end of the action sequence. All the code in this closure is executed in last when the task is executed.</p><p>Let's take a look at the following example.</p><pre><code>task A {<br />    doLast {<br />        println("Running task A :: LAST")<br />    }<br /><br />    doFirst{<br />        println("Running task A :: FIRST ")<br />    }<br />}<br /></code></pre><p>When we run this task using command <code>gradle -q A</code> the following is the output of the command.</p><pre><code>Running task A :: FIRST <br />Running task A :: LAST<br /></code></pre><blockquote><p><strong>NOTE</strong></p><p>Any code that is written outside these two methods will be executed every time, even if some other task is run.</p></blockquote><p>For example, if we write our task in the following way and run</p><pre><code>task A {<br />    println(" print statement 1")<br />    doLast {<br />        println("Running task A :: LAST")<br />    }<br />    println(" print statement 2")<br /><br />    doFirst{<br />        println("Running task A :: FIRST ")<br />    }<br />    println(" print statement 3")<br />}<br /></code></pre><p>It will give the following output</p><pre><code> print statement 1<br /> print statement 2<br /> print statement 3<br />Running task A :: FIRST <br />Running task A :: LAST<br /></code></pre></div>

@@ -1,0 +1,17 @@
+---
+layout: post
+title: Create Mysql Database JDBC connection in Java.
+date: '2014-09-05T03:22:00.002+05:30'
+author: Ekansh Rastogi
+tags:
+- Database
+- Java
+- Java Program
+- MySQL
+- JDBC
+modified_time: '2014-11-04T15:46:25.858+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-7896060430402786939
+blogger_orig_url: http://www.ekiras.com/2014/09/create-mysql-database-jdbc-connection-in-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember&nbsp;</b></div><ul style="text-align: left;"><li>Download&nbsp;<a href="http://dev.mysql.com/downloads/connector/j/">Mysql Java Connector</a>&nbsp;by clicking on the link.</li><li>Put the above downloaded jar file in the <b>lib</b>&nbsp;folder of your project.</li></ul><div class="hl-note"><b>Code : Mysql JDBC connection in Java</b></div><pre class="brush : java">import java.sql.Connection;<br />import java.sql.DriverManager;<br /><br /><br />public class JavaMysqlConnection {<br /><br /> <br />    private String host = "localhost:3306"; // For running on localhost<br />    private String db = "databaseName";<br />    private String userName = "userName";<br />    private String password = "password";<br />     <br />    public Connection getConnection() {<br />       try {<br />            Class.forName("com.mysql.jdbc.Driver");<br />            Connection conn =  DriverManager.getConnection("jdbc:mysql://"+ host +"/"+db,userName, password);<br />            return conn;<br />       }catch(Exception e){<br />             e.printStackTrace();<br />       }<br />       return null;<br />    }<br />}<br /><br />   <br /><br />public class Test{<br /><br />      public static void main(String[] argv) {<br />         Connection conn =  new JavaMysqlConnection().getConnection();<br />         if(conn == null)<br />             System.out.println("Connection was not established");<br />         else<br />             System.out.println("Connection is successfully established");<br />     }<br />}<br /></pre><br />This is a very generic code that you can use in both your standalone projects and web based projects. Whenever you need to get a connection to database, you just need to create an object of class JavaMysqlConnection and call its getConnection() method.</div>

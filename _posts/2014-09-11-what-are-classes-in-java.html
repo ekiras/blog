@@ -1,0 +1,13 @@
+---
+layout: post
+title: What are classes in Java
+date: '2014-09-11T16:05:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+modified_time: '2014-09-11T16:05:01.090+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-244359357009033891
+blogger_orig_url: http://www.ekiras.com/2014/09/what-are-classes-in-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>First things that comes in mind are</b></div><ul><li>A class is a blueprint from which objects are created.</li><li>They are wrappers and have everything inside them e.g Functions/Methods/Variables etc.</li><li>They can be public or default but not private or protected.</li><li>Each Class has a name, and may belong to a package.</li><li>A class can have both static and non static methods and variables.</li><li>A class can not be static (however inner classes can be).</li></ul><div class="hl-note"><b>Definition</b></div>A class is the blueprint from which individual objects are created. A class containes<br /><ul style="text-align: left;"><li>A main method marked as public static void and taking an array of String arguments.</li><li>Instance variables that are inside a class but outside all function.</li><li>Local variables that are inside a function. Their scope is limited to the function only.</li><li>Member functions that can be either static, non static or final or final static.</li><li>A package declaration, this is important for grouping same type of classes together.</li></ul><br /><pre class="brush : java">package com.ekiras.demo;<br /><br />public class HelloWorld{<br /><br />  int instanceVarible = 1;<br /><br />  public static void main(String args[]){<br /><br />    System.out.println("HelloWorld");<br />  }<br /><br />  public void method(){<br />    <br />    String localVariable = "Hi";<br />  } <br /><br />}<br /></pre><br />A simple class may look like the one shown above.<br /><br /><div class="hl-note"><b>Access specifiers of a class</b></div>A class can have public or default access specifier. The class can not be private or protected.</div>

@@ -1,0 +1,14 @@
+---
+layout: post
+title: Angularjs RouteParams with ngRoute
+date: '2015-07-28T21:40:00.002+05:30'
+author: Ekansh Rastogi
+tags:
+- AngularJs
+- ngRoute
+modified_time: '2015-07-29T20:35:09.757+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8003043509218087301
+blogger_orig_url: http://www.ekiras.com/2015/07/angularjs-routeparams-with-ngroute.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>You should pass the params separated by <b>"/"</b>.</li><li>You can pass the params to the controller and pass them to the templates or apply logic.</li><li>You need to add $routeParams input to your controller function to get these params.</li></ul><br /><h2>How to pass Params from one state to another in AngularJs using ngRoute.</h2>You need to add the route params along with the url e.g you can send the params as follows <br /><br /><pre> #url/param1/param2</pre><br /><div class="well"><iframe allowfullscren="allowfullscren" frameborder="0" src="http://embed.plnkr.co/TgE7SzhC90o9x53wXm0M/index.html" style="height: 450px; width: 100%;"></iframe></div><br />This is how you can update your <b>$routeProvider</b> to use these route params. <br /> <div class="well"><iframe allowfullscren="allowfullscren" frameborder="0" src="http://embed.plnkr.co/TgE7SzhC90o9x53wXm0M/script.js" style="height: 450px; width: 100%;"></iframe></div>Finally, access the params in the controller and pass them to the template.<br /><div class="well"><iframe allowfullscren="allowfullscren" frameborder="0" src="http://embed.plnkr.co/TgE7SzhC90o9x53wXm0M/template.html" style="height: 100px; width: 100%;"></iframe></div><br/> Putting everything together the code will work as shown in the plunk below. <div class="well"><iframe allowfullscren="allowfullscren" frameborder="0" src="http://embed.plnkr.co/TgE7SzhC90o9x53wXm0M/" style="height: 400px; width: 100%;background:#ffffff"></iframe></div><br/>   </div>

@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'Gradle : Task to add selected files to jar'
+date: '2015-09-16T00:13:00.002+05:30'
+author: Ekansh Rastogi
+tags:
+- GradleTask
+- Gradle
+- SpringBoot
+modified_time: '2015-09-16T00:15:06.359+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8894476375088623754
+blogger_orig_url: http://www.ekiras.com/2015/09/gradle-task-to-add-selected-files-to-jar.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><ul><li>You can create local variable in gradle with the type def, e.g <b>def jarName = "ekiras"</b></li><li>You can print variable with help of <b>println</b>&nbsp;e.g println "jar name is -&gt; <b>$jarName</b></li><li><b><span style="font-weight: normal;">Gradle task declaration syntax is&nbsp;</span><b>task taskName(type: taskType){}</b></b></li></ul><h2>Task to add selected files to jar</h2>We will be writing two tasks for this<br /><br /><ol style="text-align: left;"><li>First task -&nbsp;<b>compileFiles</b>&nbsp;-&gt; this will compile all the files in the project and then save them to the <b>build/classes/</b>&nbsp;folder of the project</li><li>Second Task - <b>makeJar</b>&nbsp;-&gt; this will take all the compile files from the base folder and make a jar of these files in <b>build/lib/</b>&nbsp;folder of the project.</li></ol><br /><pre class="brush:java;highlight:[1,9]">task compileFiles(type: JavaCompile) {<br />    println '&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start compiling'<br />    source = sourceSets.main.java.srcDirs<br />    classpath = sourceSets.main.compileClasspath<br />    destinationDir = sourceSets.main.output.classesDir<br />    println '&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; end compiling '<br />}<br /><br />task makeJar(type: Jar,dependsOn : 'compileFiles') {<br />    println '&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; start making Jar'<br />    baseName = "ekiras"<br />    def baseFolder = "com/ekiras"<br />    def destFolder = "build/classes/main/com/ekiras"<br />    from("$destFolder/folder1"){into("$baseFolder/folder1")}<br />    from("$destFolder/folder2"){into("$baseFolder/folder2")}<br />    from("$destFolder/folder3"){into("$baseFolder/folder3")}<br />    println '&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; end making Jar'<br />}<br /></pre><br />You can run the tasks individually using the following commands.<br /><br /><ul style="text-align: left;"><li>Task 1 - compile all files in project<pre>gradle compileFiles</pre></li><li>Task 2 - copy all compiled files from folders(folder1, folder2, folder3) to jar.<pre>gradle makeJar</pre>This task will run the task <b>compileFiles</b> before executing this task. <b>baseName</b>&nbsp;in the task defines the name of the jar that will be created.&nbsp;</li></ul><br />So the above task <b>makeJar</b> when run will make a jar by name <b>ekiras.jar</b> in the folder <b>build/lib/</b></div>

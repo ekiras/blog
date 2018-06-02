@@ -1,0 +1,15 @@
+---
+layout: post
+title: Exception in thread java.util.ConcurrentModificationException
+date: '2015-08-03T13:16:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- Exceptions
+- Java Program
+modified_time: '2015-08-04T01:36:24.294+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-652555111510587110
+blogger_orig_url: http://www.ekiras.com/2015/08/exception-in-thread-java-util-concurrent-modification-exception.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li><b>ConcurrentModificationException</b>&nbsp;occurs when the you you try to modify the collection you are using or iterating.</li><li>It can be prevented if you create a new object of that collection and do operations on that and then assign it back to the original object.</li></ul><br /><h2>java.util.ConcurrentModificationException</h2>In the following code we will be iterating on the list and trying to remove the null objects from the list.<br /><br /><pre class="brush:java;highlight:[11]">import java.util.*;<br />public class Demo {<br /> public static void main(String args[]) {<br />  // create an array of string objs<br />  String init[] = {<br />   "One", "Two", null, null, "One", "Two", null, "Three", "Four", "Two", null<br />  };<br />  // create two lists<br />  List&lt;String&gt; list = new ArrayList(Arrays.asList(init));<br />  for (String str: list) {<br />   if (str == null) list.remove(str);<br />  }<br />  System.out.println("List value: " + list);<br /> }<br />}</pre><br />The above code will throw the following Exception <br /><pre class="output">Exception in thread "main" java.util.ConcurrentModificationException<br /> at java.util.ArrayList$Itr.checkForComodification(ArrayList.java:859)<br /> at java.util.ArrayList$Itr.next(ArrayList.java:831)<br /> at Demo.main(Demo.java:10)<br /><br /></pre><br />The reason for this is that <b>you are trying to modify the list you are iterating, </b>or on a broader term <b>&nbsp;you are trying to modifying a collection you are using.</b><br /><b><br /></b>So to remove this kind of exception can be removed by taking another local list( or any collection you are using) to do operations and then assign it back to the list( or collection).<br /><br /><pre class="brush:java;highlistL:[11]">import java.util.*;<br />public class Demo {<br /> public static void main(String args[]) {<br />  // create an array of string objs<br />  String init[] = {<br />   "One", "Two", null, null, "One", "Two", null, "Three", "Four", "Two", null<br />  };<br />  // create two lists<br />  List&lt;String&gt; list = new ArrayList(Arrays.asList(init));<br />  List&lt;String&gt; temp = new ArrayList&lt;String&gt;();<br />  for (String str: list) {<br />   if (str != null) temp.add(str);<br />  }<br />  list = temp;<br />  System.out.println("List value: " + list);<br /> }<br />}</pre><br />The above code will give the following output<br /><br /><pre class="output">List value: [One, Two, One, Two, Three, Four, Two]</pre><br /><br /></div>

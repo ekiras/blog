@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'Spring Security : Create a Custom Authentication Provider  '
+date: '2015-03-14T12:57:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- Security
+- Spring Security
+- Grails
+modified_time: '2015-03-14T12:57:19.431+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8793609507429756639
+blogger_orig_url: http://www.ekiras.com/2015/03/spring-security-grails-create-custom-authentication-provider.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>Make sure you have added the Spring Security Core plugin in the <b>BuildConfig.groovy</b></li><li>Create a new class in <b>src</b> folder and register it as a spring bean in <b>resources.groovy</b></li><li>Add the class name in the authentication providers arrays in Config.groovy.</li><li>Custom Authentication Provider must implement&nbsp;<b>AuthenticationProvider </b>interface.</li></ul><br /><h2>Custom Authentication Provider</h2>Here we will create a custom authentication provider for our spring security and will authenticate the user using this authentication provider.<br /><br />We create a class MyAuthenticationProvider which <b>implements</b> the <b>AuthenticationProvider</b> <b>interface</b>. Thus this class must override two methods<br /><br /><ol style="text-align: left;"><li>authenticate ( This will return an Authentication object &nbsp;)</li><li>supports ( This returns if the Authentication Class is supported )</li></ol>The steps of authentication are as follows<br /><br /><ol style="text-align: left;"><li>Whenever an authentication request is done. It first goes to the delegation filter chain.</li><li>The filter then <b>creates</b> an <b>Authentication</b> token <b>and send</b> it <b>to</b> the <b>AuthenticationProvider</b>.&nbsp;</li><ol><li><b>Authentication</b> token <b>contains</b> the <b>principal</b> , <b>credentials and isAuthenticated.</b>&nbsp;</li><li>Principal contains the user information.</li><li>Credentials contains the user credentials i.e. passwords</li><li>isAuthenticated is a boolean flag that tells if the the user is authenticated.</li></ol><li>First the request goes to the <b>supports()</b>&nbsp;method. If the class of the Authentication token matches with the class of the of your custom token then it must return false.&nbsp;</li><ol><li>If you have not created your custom Authentication token then this method must return true.</li><li>By default the &nbsp;Authentication token is&nbsp;UsernamePasswordAuthenticationToken.</li><li>If this method returns true then the request goes to method&nbsp;<b>authenticate().</b>&nbsp;This method actually is responsible for authenticating the user based on any business logic.</li></ol><li>In standard flow, authenticate() method calls the <b>userDetailsService</b>&nbsp;&nbsp;</li></ol><br /><br /></div>

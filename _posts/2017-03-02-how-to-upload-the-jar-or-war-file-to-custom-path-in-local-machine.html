@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Gradle : How to upload the Jar or War file to custom path in local machine'
+date: '2017-03-02T19:14:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- GradleTask
+- Gradle
+modified_time: '2017-03-02T19:14:53.242+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-493164323488367453
+blogger_orig_url: http://www.ekiras.com/2017/03/how-to-upload-the-jar-or-war-file-to-custom-path-in-local-machine.html
+---
+
+<div class="markdown"><h2>Points to Remember</h2>&#10;<ol>&#10;<li>Default location for gradle dependencies is <code>~/.gradle</code> or <code>/home/{user}/.gradle</code>.</li>&#10;<li>We can specify the location from where to gradle should find dependencies and where it should upload the created artifacts.</li>&#10;</ol>&#10;<h2>How to upload an Artifact to a custom location in file system</h2>&#10;<pre class="hljs"><code><span class="hljs-keyword">buildscript</span> {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        maven {&#10;            url uri(<span class="hljs-string">&#34;$buildDir/repo&#34;</span>)&#10;        }&#10;    }&#10;}&#10;&#10;<span class="hljs-keyword">group</span> <span class="hljs-string">'com.ekiras'</span>&#10;version <span class="hljs-string">'1.0-SNAPSHOT'</span>&#10;&#10;apply plugin: <span class="hljs-string">'groovy'</span>&#10;apply plugin: <span class="hljs-string">'maven'</span>&#10;&#10;<span class="hljs-keyword">repositories</span> {&#10;    mavenCentral()&#10;}&#10;&#10;<span class="hljs-keyword">dependencies</span> {&#10;    <span class="hljs-comment">// dependencies</span>&#10;}&#10;uploadArchives {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        mavenDeployer {&#10;            repository(url: uri(<span class="hljs-string">&#34;$buildDir/repo&#34;</span>))&#10;        }&#10;    }&#10;}&#10;</code></pre>&#10;<p>In the above example,</p>&#10;<pre class="hljs"><code>uploadArchives {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        mavenDeployer {&#10;            repository(url: uri(<span class="hljs-string">&#34;$buildDir/repo&#34;</span>))&#10;        }&#10;    }&#10;}&#10;</code></pre>&#10;<p>This tells gradle that it will upload the created artifact (jar or war ) to the directory <code>build/repo</code>. You can specify any location on your machine where you want gradle to upload the artifact.</p>&#10;<pre class="hljs"><code><span class="hljs-keyword">buildscript</span> {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        maven {&#10;            url uri(<span class="hljs-string">&#34;$buildDir/repo&#34;</span>)&#10;        }&#10;    }&#10;}&#10;&#10;</code></pre>&#10;<p>The above code tells gradle that it should look for the given dependencies in this repository/directory we have specified to resolve the specified dependencies. You can also specify the same in <code>repositories { }</code> closure.</p>&#10;</div>

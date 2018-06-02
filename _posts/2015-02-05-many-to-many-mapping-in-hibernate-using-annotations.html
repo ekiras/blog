@@ -1,0 +1,14 @@
+---
+layout: post
+title: Many To Many Mapping in Hibernate Annotation
+date: '2015-02-05T22:43:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Hibernate
+- Relational Mappings
+modified_time: '2015-02-05T23:05:46.956+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8502289305826818783
+blogger_orig_url: http://www.ekiras.com/2015/02/many-to-many-mapping-in-hibernate-using-annotations.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br />There are two ways to create hibernate many to many relational mappings in Hibernate. We will discuss both of them in detail here.<br /><div><ol style="text-align: left;"><li>First one is to use default hibernate mapping to create and manage these relations.</li><li>By creating a new domain that will manage these relations for us.</li></ol><div>Suppose we want to have a simple User and Role mapping where a user can have multiple roles and a role can be assigned to multiple users. Then we can create and manage these relations in the following ways.</div><br /><h2>Strategy 1 : Default Hibernate Mappings</h2>You can use this strategy as applied like <a href="http://ekiras.blogspot.in/2015/02/hibernate-many-to-many-relational-mapping-by-annotation.html" target="_blank">shown in this article</a>. This will make the hibernate to deal with all the mappings and operations like save , update, fetch etc.<br /><br /><div><i class="glyphicon glyphicon-ok"></i><b>Advantage </b> : This will make hibernate responsible for the mapping and operations like save, fetch, update etc.<br /><br /></div><div><i class="glyphicon glyphicon-remove"></i><b>Disadvantage </b> : You will not have control over the mapped relation. You will not be able to query the table it will create for mapping.</div><br /><h2 style="text-align: left;">Strategy 2 : Using Domain to Handle Mappings</h2>This strategy can be applied like <a href="http://ekiras.blogspot.in/2015/02/how-to-create-composite-key-in-hibernate-using-annotation.html" target="_blank">shown in this article</a>&nbsp;. So this will actually help us take control of the mappings and will give more control on how we manage and use this.<br /><br /><div><i class="glyphicon glyphicon-ok"></i><b>Advantage </b> : This approach can be used when you want to take control of the mapping from hibernate to your own hands or when you want to use the mappings with some additional data related to the mappings.<br /><br /></div><div><i class="glyphicon glyphicon-remove"></i><b>Disadvantage </b> : In this approach you will have to make sure that you save the mappings on your own. Hibernate will not fetch or save these mappings on its own.</div><br /></div></div>

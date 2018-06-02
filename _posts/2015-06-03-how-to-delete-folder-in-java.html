@@ -1,0 +1,15 @@
+---
+layout: post
+title: How to delete a Folder in Java
+date: '2015-06-03T04:41:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- Java Program
+- File
+modified_time: '2015-06-03T04:47:19.473+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-6256974432540717227
+blogger_orig_url: http://www.ekiras.com/2015/06/how-to-delete-folder-in-java.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>Before deleting the file you need to check if<br /><br /><ul style="text-align: left;"><li>you have permission to delete file using method <b>canWrite()</b></li><li>file specified exists <b>exists()</b></li></ul><br /><h2>Deleting the file in Java</h2><div class="panel panel-default"><div class="panel-heading">Test.java</div><div class="panel-body"><pre class="brush:java">import java.io.*;<br /><br />class Test{<br /><br />   public static void main(String args[]){<br /><br />     File file = new File("/home/ekansh/test");<br />     if(file.isDirectory()){<br />        if(file.delete())<br />     System.out.println("Success ! Folder deleted.");<br />        else<br />     System.out.println("Failure ! Folder not deleted.");<br />     }else<br /> System.out.println("FOLDER DOES NOT EXIST");<br />      <br />   }<br /><br />}</pre></div></div><div class="output">Success ! Folder deleted.</div></div>

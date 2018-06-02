@@ -1,0 +1,14 @@
+---
+layout: post
+title: How to restore dump of single database from Dump in MYSQL
+date: '2015-04-14T11:44:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Database
+- MySQL
+modified_time: '2015-04-14T11:44:35.785+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-420312296591184170
+blogger_orig_url: http://www.ekiras.com/2015/04/how-to-restore-dump-of-single-database-from-dump-in-mysql.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div style="text-align: left;">Suppose you have a dump of more than one databases in a single dump file, then you can restore one or all the databases.</div><br /><pre class="brush:sql">mysql -u root -p --one-database DBNAME &lt; DUMPFILE.SQL</pre><br />You should take care of a few things when you take the dump.<br /><br /><ul style="text-align: left;"><li>Create a database by that name in mysql if it does not exist.</li><li>Switch to the database you want to restore, this will help restore the database properly.</li><li>You need to be outside mysql environment to run this command.</li></ul><div>For more specific restoration of databases from a dump file you can try <b><a href="http://kedar.nitty-witty.com/blog/mydumpsplitter-extract-tables-from-mysql-dump-shell-script" target="_blank">mydumpsplitter.</a></b>&nbsp;</div></div>

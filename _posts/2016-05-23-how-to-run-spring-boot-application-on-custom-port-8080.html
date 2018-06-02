@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'SpringBoot : How to run Spring boot application to custom port'
+date: '2016-05-23T22:49:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- SpringBoot
+- Spring
+modified_time: '2016-05-23T22:49:10.640+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2754632475654655159
+blogger_orig_url: http://www.ekiras.com/2016/05/how-to-run-spring-boot-application-on-custom-port-8080.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><div style="text-align: left;">Default port for spring boot application is 8080.&nbsp;You can change the port number in the following ways</div><div style="text-align: left;"></div><ul style="text-align: left;"><li>from&nbsp;<b>application.properties</b></li><li><b>command line arguments</b></li></ul><br /><h2>How to run Spring boot application to custom port</h2>In order to run a spring boot application on a custom port you can specify the port in <br /><strong>application.properties.</strong><br /><strong><br /></strong><br /><pre>server.port=8090 <br /></pre><br />If you are using environment specific properties file then you can define <b>server.port</b>&nbsp;property in each of your properties file.<br /><br />You can alternatively set the port from command line arguments like below<br /><br /><pre>gradle -Dserver.port=8090 bootRun</pre><br />This will override any configuration of port given inside the properties file or <b>application.yml</b> file.</div>

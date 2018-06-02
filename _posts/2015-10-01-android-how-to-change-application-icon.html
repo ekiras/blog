@@ -1,0 +1,14 @@
+---
+layout: post
+title: 'Android : How to change application icon'
+date: '2015-10-01T00:24:00.002+05:30'
+author: Ekansh Rastogi
+tags:
+- Android
+modified_time: '2015-10-01T00:27:07.242+05:30'
+thumbnail: http://3.bp.blogspot.com/-mqX--bDLdh0/Vgwu0hTcFAI/AAAAAAAAAeo/cbLMPSSyjtk/s72-c/icon.png
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-787396385706979976
+blogger_orig_url: http://www.ekiras.com/2015/10/android-how-to-change-application-icon.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>Android saves the Application level Settings like App Icon, App Label etc in the <b>AndroidManifest.xml</b> file. <br />Add your icon image as <b>icon.png</b>&nbsp;in the drawable folder.<br /><h2>How to change application icon</h2><div class="separator" style="clear: both; text-align: left;">Your Application structure looks like the following.</div><div class="separator" style="clear: both; text-align: left;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-mqX--bDLdh0/Vgwu0hTcFAI/AAAAAAAAAeo/cbLMPSSyjtk/s1600/icon.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="320" src="http://3.bp.blogspot.com/-mqX--bDLdh0/Vgwu0hTcFAI/AAAAAAAAAeo/cbLMPSSyjtk/s320/icon.png" width="209" /></a></div><br /><br /><ol style="text-align: left;"><li>Add the<b> icon.png </b>folder in the <b>drawable</b>&nbsp;folder</li><li>Open the <b>Application &gt; manifests &gt; AndroidManifests.xml</b>&nbsp;file</li><li>Add <pre>android:icon="@drawable/icon"</pre>in the application root.</li></ol><br />Your AndroidManifests.xml file should look like following <br /><pre class="brush:xml;highlight:[7]">&lt;?xml version="1.0" encoding="utf-8"?&gt;<br />&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"<br />&nbsp;&nbsp;&nbsp;&nbsp;package="com.ekiras.activity" &gt;<br />&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;application<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:allowBackup="true"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:icon="@drawable/icon"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:label="@string/app_name"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;android:theme="@style/AppTheme" &gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Your activities are declared here<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;activity&gt;&lt;/activity&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/application&gt;<br />&nbsp;<br />&lt;/manifest&gt;</pre><div><br />After this you will be able to see the icon image as the application icon.</div><div><br /></div></div>

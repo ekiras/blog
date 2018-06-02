@@ -1,0 +1,18 @@
+---
+layout: post
+title: Test CAS Rest API from Java Code
+date: '2014-12-17T01:08:00.001+05:30'
+author: Ekansh Rastogi
+tags:
+- Java
+- Java Program
+- Security
+- CAS
+- REST
+- Authentication
+modified_time: '2015-11-18T01:43:38.563+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-7118063080589689128
+blogger_orig_url: http://www.ekiras.com/2014/12/test-cas-rest-api-from-java-code.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><ul style="text-align: left;"><li>Make sure that your CAS Server is up and running. <a href="http://ekiras.blogspot.in/2014/12/how-to-configure-cas-rest-api-and-test-reponse.html" target="_blank">How to set up CAS Rest api with JDBC Authentication.</a></li><li>You have created a database and have dummy data in it.</li></ul><h2>Program : Test CAS Rest Api from a Java Code</h2>You can use the following piece of code to test the CAS Rest API.  <br /><br />You need to follow the following points for Authentication a user on CAS<br /><ul><li>You need to make a GET or POST call depending on your CAS server setup.</li><li>If the Username and Password are correct then you will get a TGT (Ticket Granting Token)</li><li">Now we will make a call to the service url of our application to get the Service Ticket.</li><li>On success you will get a Service Ticket</li><li>If you have service the Service Token, &nbsp;then you have successfully authenticated the user.</li><li>Save this service ticket in a cookie or session, since a service ticket can be used only once</li></ul><br /><script src="https://gist.github.com/gitekiras/059ecf02b8f64a913658.js"></script><br />You will get the following type of response if everything is working fine.  <br /><pre class="output">string s = username=admin%40gmail.com&amp;password=igdefault<br />201<br />https://ekansh:8443/cas/v1/tickets/TGT-3-eeSgMb35iv3TkqYzqekyhjZcGyNwKKq2s94reeoRINtdKJBvjx-ekansh<br />Tgt is : TGT-3-eeSgMb35iv3TkqYzqekyhjZcGyNwKKq2s94reeoRINtdKJBvjx-ekansh<br />Service url is : service=http%3A%2F%2Fekansh%3A8090%2F<br />https://ekansh:8443/cas/v1/tickets/TGT-3-eeSgMb35iv3TkqYzqekyhjZcGyNwKKq2s94reeoRINtdKJBvjx-ekansh<br />Response code is:  200<br />200<br />ST-3-Uagfse2pVB7hR5GL09WB-ekansh<br /></pre>If the authentication fails at the server then you will get a response like the following <br /><pre class="output">string s = username=ekansh%40ekiras.com&amp;password=pwd<br />400<br /></pre>TGT - It is the token by the ticket granting token.<br />ST-3-Uagfse2pVB7hR5GL09WB-ekansh -  It is the service token. <br /><br /></div>

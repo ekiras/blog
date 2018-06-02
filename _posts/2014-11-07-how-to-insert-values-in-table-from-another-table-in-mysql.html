@@ -1,0 +1,14 @@
+---
+layout: post
+title: How to insert values in table from another table
+date: '2014-11-07T12:55:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Database
+- MySQL
+modified_time: '2014-11-07T12:55:45.648+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2859038775715600791
+blogger_orig_url: http://www.ekiras.com/2014/11/how-to-insert-values-in-table-from-another-table-in-mysql.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>We can use subqueries in databases like Mysql and avoid multiple queries.</li><li>Syntax - <b>INSERT INTO table1 SELECT * FROM table2;</b></li><li>We do not write <b>VALUES</b>&nbsp;in the query.<b>&nbsp;</b></li></ul><div class="hl-note"><b>Example : Insert Values from one table to another.</b></div>Suppose we have two table person and person_old with columns<br /><ul style="text-align: left;"><li>id int primary key</li><li>name varchar</li><li>age number</li><li>contact varchar</li><li>description text</li></ul>And we want to copy all the details of the table person_old to table person. Then we must write our query as. This will insert all the rows of the person_old table to the new table person.<br /><pre class="brush :sql">insert into person select * from person_old;</pre><br />Also if we want to add only a few columns of the table person_old to the table person.Suppose we want to add only name, age and contact to the table person from table person_old where age is less than 25, then we can query as follows.<br /><pre class="brush :sql">insert into person(name,age,contact) select&nbsp;name,age,contact from person_old  where age &lt; 25;</pre><br /></div>

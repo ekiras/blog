@@ -1,0 +1,15 @@
+---
+layout: post
+title: 'Gradle : How to load and read a file in gradle task'
+date: '2016-12-08T18:20:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- GradleTask
+- File
+- Gradle
+modified_time: '2016-12-09T11:10:45.297+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-1635160257443407517
+blogger_orig_url: http://www.ekiras.com/2016/12/gradle-how-to-load-and-read-file.html
+---
+
+<div class="markdown"><h2>How to read a file in Gradle Task</h2><p>To load a file, you can take following three approaches</p><ol><li>Load file using relative path<pre><code>File file = file('relative/path/file')<br /></code></pre></li><li>Load file using absolute path<pre><code>File file = file('absolute/path/file')<br /></code></pre></li><li>Load a file using <code>File</code> object<pre><code>File file = file(new File('somePath'))<br /></code></pre></li></ol><p>Lets see how these three approaches work</p><pre><code class="language-gradle">task loadFiles &lt;&lt; {<br />   println file('src/main/resources/file1.properties')<br />   println file('/home/ekiras/workspace/tutorials/gradle/src/main/resources/file1.properties')<br />   println file(new File('src/main/resources/file1.properties'))<br /><br />}<br /><br /></code></pre><p>When we run the above task using command <code>gradle -q loadFiles</code> it will give the following output</p><pre><code>/home/ekiras/workspace/tutorials/gradle/src/main/resources/file1.properties<br />/home/ekiras/workspace/tutorials/gradle/src/main/resources/file1.properties<br />/home/ekiras/workspace/tutorials/gradle/src/main/resources/file1.properties<br /></code></pre><h2>How to read a File in gradle task</h2><p>Say, we have a file <code>sample.txt</code> in <code>src/main/resources</code> folder with the following context</p><pre><code>I am some awesome text line 1<br />I am some awesome text line 2<br /></code></pre><p>Lets read this file in a gradle task.</p><pre><code class="language-gradle">task readFile(){<br />    doLast{<br />        File file = file('src/main/resources/sample.txt')<br />        println file.text<br />        println ""<br />        file.readLines().each{<br />            println it<br />        }<br /><br />    }<br />}<br /></code></pre><p>Now when we run the command <code>gradle -q readFile</code> we will get the following output.</p><pre><code>I am some awesome text line 1<br />I am some awesome text line 2<br /><br />I am some awesome text line 1<br />I am some awesome text line 2<br /></code></pre><blockquote><p><strong>Read More</strong></p><ul><li><a href="http://www.ekiras.com/2016/12/gradle-how-to-load-and-read-file.html">How to Get a File using Relative Path</a></li><li><a href="http://www.ekiras.com/2016/12/what-is-file-collection-in-gradle.html">How to Get Multiple Files using FileCollection </a></li><li><a href="http://www.ekiras.com/2016/12/how-to-read-all-files-in-directory-file-tree.html">How to Get all files in a Directory using FileTree</a></li></ul></blockquote></div>

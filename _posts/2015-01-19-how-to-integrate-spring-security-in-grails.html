@@ -1,0 +1,15 @@
+---
+layout: post
+title: How to integrate Spring Security in Grails
+date: '2015-01-19T21:12:00.000+05:30'
+author: Ekansh Rastogi
+tags:
+- Security
+- Spring Security
+- Grails
+modified_time: '2015-01-19T21:15:30.149+05:30'
+blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2632838525724239662
+blogger_orig_url: http://www.ekiras.com/2015/01/how-to-integrate-spring-security-in-grails.html
+---
+
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>Go to the <a href="http://grails.org/plugin/spring-security-core" target="_blank">Grails Spring Security Plugin</a>&nbsp;and add the dependency in the <b>BuildConfig</b>.<br /><h2>Integrate Spring Security in Grails</h2>Add the latest grails spring security plugin in the build config of the project. This will add spring security jars and classes that will be used to configure spring security in the project. <br /><pre class="brush:java">http://grails.org/plugin/spring-security-core</pre>Now run the following command from the terminal. <br /><pre class="brush:java">grails s2-quickstart com.ekiras User Role</pre>Here the syntax of the above command is<br /><b>grails s2-quickstart {package} {user domain} {authority domain}</b><br />The above command will create three Domains in the project User, Role and UserRole. user domain will contain the user info, role domain will contain Authorities and UserRole will contain the user authority mappings.<br />It will also add the following settings to the <b>Config.groovy</b><br /><br /><pre class="brush:java">// Added by the Spring Security Core plugin:<br />grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.ekiras.User'<br />grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.ekiras.UserRole'<br />grails.plugin.springsecurity.authority.className = 'com.ekiras.Role'<br />grails.plugin.springsecurity.controllerAnnotations.staticRules = [<br /> '/':                              ['permitAll'],<br /> '/index':                         ['permitAll'],<br /> '/index.gsp':                     ['permitAll'],<br /> '/assets/**':                     ['permitAll'],<br /> '/**/js/**':                      ['permitAll'],<br /> '/**/css/**':                     ['permitAll'],<br /> '/**/images/**':                  ['permitAll'],<br /> '/**/favicon.ico':                ['permitAll']<br />]</pre>It tells that the userDomain class authority class and user-authority join class. For other settings of the Spring security you can open the file <b>DefaultSecurityConfig.groovy</b>&nbsp;.<br /><br />See the Default Password Encoders and Custom Password Encoders in Grails Spring Security.<br /><br /></div>
