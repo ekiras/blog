@@ -2,5 +2,3 @@ _site
 .sass-cache
 .jekyll-metadata
 .idea
-migrate.rb
-blog-06-03-2018.xml
