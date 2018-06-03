@@ -29,7 +29,7 @@ toc: true
 ## Banner ##
 
 
-## Spring Boot Profiles, Properties and Configurations ##
+## Profiles, Properties and Configurations ##
 *  What are profiles in Spring Boot.
 *  How to set active profile and other properties.
 *  Reading values from Properties File.
