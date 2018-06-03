@@ -12,7 +12,7 @@ toc: true
 ## Spring Boot Setup ##
 
 *  [How to run a Spring Boot application using Maven or Gradle build tool]({% post_url 2018-06-02-how-to-run-spring-boot-application %})
-*  Spring Boot Single Page Java Application.
+*  [Spring Boot Single Page Java Application]({% post_url 2015-08-08-spring-boot-making-cli-application-using-java %})
 *  Spring Boot Single Page Groovy Application.
 *  Spring Boot Gradle MVC CRUD project using Mysql.
 *  Spring Boot Maven MVC CRUD project using Mysql.
