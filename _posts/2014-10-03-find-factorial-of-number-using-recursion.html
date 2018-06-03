@@ -7,7 +7,8 @@ tags:
 - Java Program
 modified_time: '2014-10-03T01:44:56.264+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-5915536828111820216
-blogger_orig_url: http://www.ekiras.com/2014/10/find-factorial-of-number-using-recursion.html
+blogger_orig_url: http://ekiras.blogspot.com/2014/10/find-factorial-of-number-using-recursion.html
+redirect_from: "/2014/10/find-factorial-of-number-using-recursion.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Program : Factorial Using Recursion</b></div><pre class="brush : java">class Factorial{<br /><br />public static void main(String args[]){<br /> int number = Integer.parseInt(args[0]);<br /> System.out.println("Factorial of " + number + " = " + factorial(number));<br />}<br /><br />public static int factorial(int n){<br /><br />  // Check if the number is greater than equal to 0.<br />  // because factorial of a number &lt; 0 is undefined.<br /><br /> if(n == 1)<br />   return 1;<br /><br /> return n * factorial(n-1);<br /><br />}<br /><br />}<br /></pre><pre class="output">Factorial of 5 = 120<br /></pre><br />Here the function factorial for<br /><ul style="text-align: left;"><li>number =1 will return&nbsp;&nbsp;<b>1</b></li><li>number =2&nbsp;will return&nbsp; <b>2 * factorial(1) &nbsp;= 2 * 1 = 2</b></li><li>number =3 will return &nbsp;<b>3 * factorial(2) &nbsp;= 3 * 2 * factorial(1) = &nbsp;3 * 2 * 1 = 6</b></li></ul><br /></div>

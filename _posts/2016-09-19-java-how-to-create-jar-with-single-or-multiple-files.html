@@ -9,7 +9,8 @@ tags:
 - Java 9
 modified_time: '2016-09-19T16:18:49.891+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-7067970418693521380
-blogger_orig_url: http://www.ekiras.com/2016/09/java-how-to-create-jar-with-single-or-multiple-files.html
+blogger_orig_url: http://ekiras.blogspot.com/2016/09/java-how-to-create-jar-with-single-or-multiple-files.html
+redirect_from: "/2016/09/java-how-to-create-jar-with-single-or-multiple-files.html"
 ---
 
 <div class='markdown'><h2>How to create a jar file.</h2><p>We can make a jar file with a single class using the following commands</p><p>Here <filename> can be replaced by the name of the jar file you want.</filename></p><h3>1. Create a jar file with single file</h3><pre><code>jar --create --file=&lt;FileName&gt; &lt;file-1&gt;<br /></code></pre><h3>2. Create a jar file with multiple files</h3><pre><code>jar --create --file=&lt;FileName&gt; &lt;file-1&gt; &lt;file-2&gt;<br /></code></pre><h3>3. Create a jar file with all files in a directory</h3><pre><code>jar --create --file="&lt;FileName&gt; -C /path/to/dir/ ."<br /></code></pre><p>Here <code>-C</code> specifies the directory and <code>.</code> specifies that it need to include all the files in te directory.</p><h2>Some of the shorthands for the above commands</h2><table><thead><tr><th>Option</th><th>Shorthand</th></tr></thead><tbody><tr><td>--create</td><td>-c</td></tr><tr><td>--file</td><td>-f</td></tr><tr><td>--module-path</td><td>-p</td></tr><tr><td>--verbose</td><td>-v</td></tr><tr><td>--list</td><td>-t</td></tr><tr><td>--extract</td><td>-x</td></tr></tbody></table><p><br></p><h3>How to extract a jar file</h3><pre><code>jar -xf &lt;FileName&gt;<br /></code></pre><h3>How to list the contents of a jar file</h3><pre><code>jar -tf &lt;FileName&gt;<br /></code></pre></div>

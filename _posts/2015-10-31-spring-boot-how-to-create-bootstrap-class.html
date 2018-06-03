@@ -9,7 +9,8 @@ tags:
 - Spring
 modified_time: '2015-10-31T04:46:35.482+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8001450810531261802
-blogger_orig_url: http://www.ekiras.com/2015/10/spring-boot-how-to-create-bootstrap-class.html
+blogger_orig_url: http://ekiras.blogspot.com/2015/10/spring-boot-how-to-create-bootstrap-class.html
+redirect_from: "/2015/10/spring-boot-how-to-create-bootstrap-class.html"
 ---
 
 <h2>Points To Remember</h2>In order to create a class that acts like a bootstrap for the application, that class needs to implement the <b>InitializingBean</b> of the package <b>org.springframework.beans.factory.InitializingBean</b><h2>How to create a Bootstrap class in spring boot application</h2> Following is an example of a Bootstrap class. This class will be executed first when the application is coming up and is ready to server requests. Any class that implements <b>InitializingBean</b> will be executed before the application is up and its <b>afterPropertiesSet</b> method will be called.<br/><br/><pre>public class Bootstrap implements InitializingBean</pre><br/><script src="https://gist.github.com/gitekiras/9454842aca076ebb5094.js"></script>

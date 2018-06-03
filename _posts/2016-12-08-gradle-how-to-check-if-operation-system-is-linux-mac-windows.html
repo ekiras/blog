@@ -8,7 +8,8 @@ tags:
 - Gradle
 modified_time: '2016-12-08T01:27:46.197+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8678494046227984552
-blogger_orig_url: http://www.ekiras.com/2016/12/gradle-how-to-check-if-operation-system-is-linux-mac-windows.html
+blogger_orig_url: http://ekiras.blogspot.com/2016/12/gradle-how-to-check-if-operation-system-is-linux-mac-windows.html
+redirect_from: "/2016/12/gradle-how-to-check-if-operation-system-is-linux-mac-windows.html"
 ---
 
 <div class="markdown"><h2>How to check if the operation system is Windows, Linux or Mac Os.</h2><p><code>org.gradle.internal.os.OperatingSystem</code> is an interface in gradle. This interface provides methods to get th einformation about the operating system.</p><p>This interface provides the following method to get the information about the operating system.</p><pre><code class="language-gradle">task osInfo(){<br />    doLast{<br />        println OperatingSystem.current();<br />        println OperatingSystem.current().name;<br />        println OperatingSystem.current().isLinux();<br />        println OperatingSystem.current().isMacOsX();<br />        println OperatingSystem.current().isWindows();<br />    }<br />}<br /><br /></code></pre><p>When we run the task with the command <code>gradle -q osInfo</code> it will give the following information.</p><pre><code>:osInfo<br />Linux 4.4.0-51-generic amd64<br />Linux<br />true<br />false<br />false<br /><br />BUILD SUCCESSFUL<br /><br />Total time: 0.68 secs<br /><br /></code></pre></div>

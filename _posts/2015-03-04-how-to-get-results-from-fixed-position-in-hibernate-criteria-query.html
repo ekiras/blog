@@ -8,7 +8,8 @@ tags:
 - Hibernate
 modified_time: '2015-03-04T16:54:45.692+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-3131211721411533662
-blogger_orig_url: http://www.ekiras.com/2015/03/how-to-get-results-from-fixed-position-in-hibernate-criteria-query.html
+blogger_orig_url: http://ekiras.blogspot.com/2015/03/how-to-get-results-from-fixed-position-in-hibernate-criteria-query.html
+redirect_from: "/2015/03/how-to-get-results-from-fixed-position-in-hibernate-criteria-query.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>Offset may be required to do pagination or get the results after a particular result from the database.</li><li>Using offset you can define the first result to be included in the result set from the database.&nbsp;</li><li>You can use <b>setFirstResult</b>&nbsp;on the <b>CriteriaQuery</b>&nbsp;to set the first result that you want.</li></ul><br /><h2>Using offset to get the results</h2><div class="panel panel-default"><div class="panel-heading">SampleDAO.java</div><div class="panel-body"><pre class="brush:java">@SuppressWarnings("unchecked")<br />public List&lt;Person&gt; getCategories(Integer offset){<br />  return getSession()<br />   .createCriteria(Person.class)<br />   .setFirstResult(offset!=null?offset:0)<br />   .setMaxResults(10)<br />   .list();<br /> }</pre></div></div>This is how you can set the first result you want to fetch from the database. In this example we have set the first result and the maximum number of records that we need to fetch.<br /><br /></div>

@@ -7,7 +7,8 @@ tags:
 - Database
 modified_time: '2014-11-04T23:28:59.489+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2799894201097697102
-blogger_orig_url: http://www.ekiras.com/2014/11/how-to-ignore-foreign-key-constraint-failure-in-database.html
+blogger_orig_url: http://ekiras.blogspot.com/2014/11/how-to-ignore-foreign-key-constraint-failure-in-database.html
+redirect_from: "/2014/11/how-to-ignore-foreign-key-constraint-failure-in-database.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>A foreign key is a key that is a primary key in some another and is used to maintain a relationship with this table.</li><li>Foreign key constraint failure occurs when we are trying to assign a value to a foreign key, that does not exist in the other table of which it is primary key.</li></ul><div class="hl-note"><b>Solution : How to ignore Foreign key constraint failure</b></div>When you need to avoid foreign key constraints, you can do  <br /><pre class="brush : sql">SET FOREIGN_KEY_CHECKS=0;</pre>When you again need to set foreign key constraints on you can, <br /><pre class="brush: sql">SET FOREIGN_KEY_CHECKS=1;</pre><div class="hl-note"><b>Note : This is not recommended</b></div>If you are trying to insert some data to your tables when your constrains are off, you can end up adding raw data or incorrect data to the tables due to which you application may suffer.<br />So it is advised that you use it only when it is required with high priority and where you are sure that you are not messing up with your table relations and mappings. </div>

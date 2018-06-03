@@ -8,7 +8,8 @@ tags:
 - SpringBoot
 modified_time: '2016-01-19T14:47:01.314+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-2030721739385459497
-blogger_orig_url: http://www.ekiras.com/2016/01/how-to-bind-request-data-to-variable-in-springboot.html
+blogger_orig_url: http://ekiras.blogspot.com/2016/01/how-to-bind-request-data-to-variable-in-springboot.html
+redirect_from: "/2016/01/how-to-bind-request-data-to-variable-in-springboot.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>Binding data from URL to a variable</h2> Suppose you want to have bind some data from URL then you can do the following <br /><br /><ul><li>create the <b>@RequestMapping</b> annotation e.g <br />   <ul>     <li>/list/{id}</li>     <li>/{version}/list/{id}</li>   </ul></li><li> bind the Url parameters using <b>@PathVariable</b> annotation e.g <br />   <ul>     <li>@PathVariable("id") Long id </li>     <li>@PathVariable("version") int version,@PathVariable("id") Long id  </li>   </ul> </li></ul><br />Complete code may look like this, <br /><br /><pre><br /><br />    @RequestMapping("list/{id}")<br />    public Object list(@PathVariable("id") Long id ){<br /><br />     // Logic goes here <br /><br />    }<br /></pre><br /><br /><pre><br /><br />    @RequestMapping("/{version}/list/{id}")<br />    public Object list(@PathVariable("version") int version,@PathVariable("id") Long id ){<br /><br />     // Logic goes here <br /><br />    }<br /></pre><br /></div>

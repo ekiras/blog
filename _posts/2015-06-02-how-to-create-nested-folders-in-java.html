@@ -9,7 +9,8 @@ tags:
 - File
 modified_time: '2015-06-02T22:45:21.402+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-6864848464183503859
-blogger_orig_url: http://www.ekiras.com/2015/06/how-to-create-nested-folders-in-java.html
+blogger_orig_url: http://ekiras.blogspot.com/2015/06/how-to-create-nested-folders-in-java.html
+redirect_from: "/2015/06/how-to-create-nested-folders-in-java.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You need to check the following things fro creating the nested folders<br /><br /><ul style="text-align: left;"><li>If it is a directory by method <b>isDirectory()</b></li><li>If it exists by method <b>exists()</b></li><li>You might need to check if you have write permissions to create folder by method&nbsp;<b>canWrite()</b></li></ul><br /><h2>How to create Nested Folders/Directories in Java</h2>This is how yo can create the nested folders in java.<br /><div class="panel panel-default"><div class="panel-heading">CreateNestedFolders.java</div><div class="panel-body"><pre class="brush:java">import java.io.*;<br /><br />class CreateNestedFolders{<br /><br />   public static void main(String args[]){<br /><br />     File file = new File("/home/ekansh/test/1/2/3/abc");<br />     if(!file.canWrite()){ // check if user have write permissions<br />       if(!(file.exists() &amp;&amp; file.isDirectory())){<br />            if(file.mkdirs())<br />          System.out.println("Success ! Folders created.");<br />            else<br />          System.out.println("Failure ! Folders not created.");<br />       }<br />     }else{<br /> System.out.println("PERMISSION DENIED");<br />      }<br />   }<br /><br />}</pre></div></div><div class="output">Success ! Folders created. </div></div>

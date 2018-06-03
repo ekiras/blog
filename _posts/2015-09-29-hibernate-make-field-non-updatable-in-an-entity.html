@@ -8,7 +8,8 @@ tags:
 - Hibernate
 modified_time: '2015-09-29T22:50:57.309+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-1779538158762623245
-blogger_orig_url: http://www.ekiras.com/2015/09/hibernate-make-field-non-updatable-in-an-entity.html
+blogger_orig_url: http://ekiras.blogspot.com/2015/09/hibernate-make-field-non-updatable-in-an-entity.html
+redirect_from: "/2015/09/hibernate-make-field-non-updatable-in-an-entity.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>By default all the fields in the Hibernate Entity are updatable and insertable. To make a field non updatable in hibernate you nee to add the annotation&nbsp;<b>@Column(updatable = false)</b><br /><h2>Make a field Non Updatable in an Hibernate Entity</h2>Suppose you have a User class and you want to make email as a non updatable field, all you need to do is add the&nbsp;<b>@Column(updatable = false)</b>&nbsp;annotation as shown in the example below.<br /><br /><pre class="brush:java;highlight:[8]">@Entity<br />public class User {<br /><br />    @Id<br />    @GeneratedValue(strategy = GenerationType.AUTO)<br />    private Long id;<br /><br />    @Column(name = "email",updatable = false, nullable = false, unique = true)<br />    private String email;<br /><br />    // GETTERS and SETTERS<br />}</pre><br /><div class="alert alert-info">Note : <b>This only puts a hibernate level constraint</b>, however you can still manually go and change the value of email by using db level queries.</div></div>

@@ -9,7 +9,8 @@ tags:
 - File
 modified_time: '2015-11-12T00:12:23.173+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-1347945778136459542
-blogger_orig_url: http://www.ekiras.com/2015/11/how-to-write-file-in-java-using-filewriter.html
+blogger_orig_url: http://ekiras.blogspot.com/2015/11/how-to-write-file-in-java-using-filewriter.html
+redirect_from: "/2015/11/how-to-write-file-in-java-using-filewriter.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>Write a File in Java using FileWriter</h2>You can write a file using FileWriter as shown in the code below.<br /><br /><pre class="brush:java;highlight:[19,20,21]">package com.ekiras.demo;<br /><br />import java.io.File;<br />import java.io.FileWriter;<br />import java.io.IOException;<br />import java.util.Date;<br /><br />class FileDemo {<br /><br /> public static void main(String args[]) {<br />  readFile();<br /> }<br /><br /> public static void readFile() {<br />  System.out.println(" Start :: writing file");<br />  try {<br />   File file = new File("/home/ekansh/myFile.txt");<br />   FileWriter fileWriter = new FileWriter(file);<br />   fileWriter.write("hello, this file is created at :: " + new Date());<br />   fileWriter.flush();<br />   fileWriter.close();<br />   System.out.println(" End :: writing file");<br />  } catch (IOException e) {<br />   e.printStackTrace();<br />  }<br /><br /> }<br />}</pre><br />You can write the data using the <b>write()</b> method and then call the <b>flush()</b> method to force the os to write to the file, finally <b>close()</b> method to close the file writer object, so that it can be garbage collected. </div>

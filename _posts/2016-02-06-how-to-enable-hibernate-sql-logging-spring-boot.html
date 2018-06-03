@@ -10,7 +10,8 @@ tags:
 - SpringBoot
 modified_time: '2016-02-06T15:23:27.269+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8736411520673603453
-blogger_orig_url: http://www.ekiras.com/2016/02/how-to-enable-hibernate-sql-logging-spring-boot.html
+blogger_orig_url: http://ekiras.blogspot.com/2016/02/how-to-enable-hibernate-sql-logging-spring-boot.html
+redirect_from: "/2016/02/how-to-enable-hibernate-sql-logging-spring-boot.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to enable Hibernate SQL Logging in Spring Boot using application.properties</h2>You can enable hibernate sql logging level to Debug. This will print the sql queries fired by hibernate.<br /><br /><pre>logging.level.org.hibernate.SQL=DEBUG</pre><br/>Your complete SQL configuration may look like following <br/><pre><br />spring.jpa.hibernate.ddl-auto=update<br />spring.datasource.url=jdbc:mysql://localhost/ekiras<br />spring.datasource.username=root<br />spring.datasource.password=root<br />spring.datasource.driver-class-name=com.mysql.jdbc.Driver<br />logging.level.org.hibernate.SQL=DEBUG<br /></pre> </div>

@@ -8,7 +8,8 @@ tags:
 - Hibernate
 modified_time: '2014-08-28T21:59:36.687+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-7805711952148857817
-blogger_orig_url: http://www.ekiras.com/2014/08/hibernate-notfound-annotation.html
+blogger_orig_url: http://ekiras.blogspot.com/2014/08/hibernate-notfound-annotation.html
+redirect_from: "/2014/08/hibernate-notfound-annotation.html"
 ---
 
 <div dir="ltr" style="text-align: left;" trbidi="on">Hibernate provides the annotation <b>@NotFound</b>. &nbsp;This annotation can be used in cases where we have relationships between the Entities e.g. ManyToOne or OneToMany or ManyToMany etc.<br /><br /><b>Syntax - @NotFound(action=NotFoundException.IGNORE)</b><br /><br /><div class="hl-note">When we want to access an entity using the relation from another entity, if the value of this entity is not available then the hibernate throws an exception. We &nbsp;can use <b>@NotFound </b>annotation to ignore these exceptions.&nbsp;<b>NotFoundException.IGNORE </b>tells the hibernate to avoid throwing the exception if the record for the entity is not found.<br /><br /></div><pre class="brush : java">@Entity(name="user")<br />@Table(name="user")<br />public class User{<br />}</pre></div>
