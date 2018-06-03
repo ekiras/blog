@@ -6,7 +6,7 @@
 title: Ekiras
 email: ekirastogi@gmail.com
 description: >-
-subtitle: import learning.*
+subtitle: A doze of learning
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
@@ -21,7 +21,7 @@ plugins:
 google_analytics: UA-56017203-1
 
 # The following settings are NECESSARY for the Prologue theme to run:
-theme: jekyll-theme-prologue
+#theme:
 avatar: https://avatars1.githubusercontent.com/u/7701091?s=400&u=d045ff0955b144b73c13f6fc00578380c90cea2e&v=4
 collections: [sections]
 
