@@ -2,14 +2,45 @@
 layout: post
 exclude: true
 title: 'Groovy : What is Identity Operator and  difference between == in Java and
-  Groovy'
+Groovy'
 date: '2017-03-07T14:49:00.000+05:30'
 author: Ekansh Rastogi
-tags: 
+tags:
 modified_time: '2017-03-07T14:49:05.390+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-3174871171104881799
 blogger_orig_url: http://ekiras.blogspot.com/2017/03/what-is-identity-operator-and--difference-between-equals-in-java-and-groovy.html
 redirect_from: "/2017/03/what-is-identity-operator-and--difference-between-equals-in-java-and-groovy.html"
 ---
 
-<div class="markdown"><h2>What is Identity <code>==</code> operator</h2>&#10;<p>In Java, <code>==</code> operator is used for checking the reference of objects. In Groovy, it is used to check if the object are equals, i.e it is the implementation of <code>equals()</code> method in java.</p>&#10;<p><code>==</code> operator in</p>&#10;<ol>&#10;<li>In java, checks the reference of the objects.</li>&#10;<li>In groovy, <code>==</code> is equivalent to <code>.equals()</code> and checks if the two objects are equal</li>&#10;</ol>&#10;<p><code>is</code> operator</p>&#10;<ol>&#10;<li>In java, does not exist</li>&#10;<li>In groovy, checks the reference of the objects which is <code>==</code> in java</li>&#10;</ol>&#10;<p><code>equals()</code> method</p>&#10;<ol>&#10;<li>In java, checks if the two objects are equal</li>&#10;<li>In groovy, checks if the two objects are equal</li>&#10;</ol>&#10;<p>Let's have a look at the following examples</p>&#10;<pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span>{</span>&#10;  String name;&#10;  &#10;  <span class="hljs-keyword">boolean</span> equals(A a){&#10;    <span class="hljs-keyword">this</span>.name == a.name&#10;  }&#10;  &#10;}&#10;&#10;A a1 = <span class="hljs-keyword">new</span> A(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span>)&#10;A a2 = <span class="hljs-keyword">new</span> A(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span>)&#10;&#10;println (a1 == a2) &#10;println (a1.equals(a2)) &#10;</code></pre>&#10;<p>The above output will give the following output.</p>&#10;<div class="output"> <b>Output</b><br><br><p>true<br>&#10;true</p>&#10;</div><br></div>
+<div class="markdown"><h2>What is Identity <code>==</code> operator</h2>&#10;<p>In Java, <code>==</code> operator is
+    used for checking the reference of objects. In Groovy, it is used to check if the object are equals, i.e it is the
+    implementation of <code>equals()</code> method in java.</p>&#10;<p><code>==</code> operator in</p>&#10;
+    <ol>&#10;
+        <li>In java, checks the reference of the objects.</li>
+        &#10;
+        <li>In groovy, <code>==</code> is equivalent to <code>.equals()</code> and checks if the two objects are equal
+        </li>
+        &#10;</ol>
+    &#10;<p><code>is</code> operator</p>&#10;
+    <ol>&#10;
+        <li>In java, does not exist</li>
+        &#10;
+        <li>In groovy, checks the reference of the objects which is <code>==</code> in java</li>
+        &#10;</ol>
+    &#10;<p><code>equals()</code> method</p>&#10;
+    <ol>&#10;
+        <li>In java, checks if the two objects are equal</li>
+        &#10;
+        <li>In groovy, checks if the two objects are equal</li>
+        &#10;</ol>
+    &#10;<p>Let's have a look at the following examples</p>&#10;
+    <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span
+            class="hljs-title">A</span>{</span>&#10;  String name;&#10;  &#10;  <span
+            class="hljs-keyword">boolean</span> equals(A a){&#10;    <span class="hljs-keyword">this</span>.name == a.name&#10;  }&#10;  &#10;}&#10;&#10;A a1 = <span
+            class="hljs-keyword">new</span> A(<span class="hljs-string">name :</span> <span
+            class="hljs-string">'ekiras'</span>)&#10;A a2 = <span class="hljs-keyword">new</span> A(<span
+            class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span>)&#10;&#10;println (a1 == a2) &#10;println (a1.equals(a2)) &#10;</code></pre>
+    &#10;<p>The above output will give the following output.</p>&#10;
+    <div class="output"><b>Output</b><br><br>
+        <p>true<br>&#10;true</p>&#10;</div>
+    <br></div>

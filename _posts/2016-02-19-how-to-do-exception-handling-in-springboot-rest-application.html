@@ -15,4 +15,291 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/02/how-to-do-exception-handlin
 redirect_from: "/2016/02/how-to-do-exception-handling-in-springboot-rest-application.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><div>There are three ways to do exception handling in spring boot application.<br /><br /><ol><li>Global Level using - &nbsp;<b>@ControllerAdvice</b></li><li>Controller Level using -&nbsp;<b>@ExceptionHandler</b>&nbsp;</li><li>Method Level using -&nbsp;<b>try/catch&nbsp;</b>&nbsp;</li></ol><div class="note"><a href="http:/#" target="_blank">Difference between @ExceptionHandler and @ControllerAdvice</a></div></div><h2>How to do Exception Handling in Rest Application</h2><div>To demonstrate Exception Handling we will make three Exceptions.<br /><br /><ul style="text-align: left;"><li>BaseException that will be parent of all the Custom Exceptions.</li><li>CustomException1 that extends Base Exception.</li><li>CustomException2 that extends Base Exception.</li></ul><div>We will create the following methods</div><div><ul style="text-align: left;"><li>ex1() throws BaseException</li><li>ex2()&nbsp;throws&nbsp;CustomException1</li><li>ex3()&nbsp;throws&nbsp;CustomException2</li><li>ex4() throws NullPointerException&nbsp;</li><li>ex5() throws NumberFormatException</li></ul><div>and now we will see how we can handle these exceptions using above mentioned ways.</div></div><br /><h2 style="text-align: left;">Way 1 : Global Exception Handling using @ControllerAdvice</h2></div>Add a class with annotation <b>@ControllerAdvice </b>and&nbsp;<b>@RestController.</b>&nbsp;This will make the class return a Rest Response.<br /><br /><br /><ul style="text-align: left;"><li><b>@ControllerAdvice</b>&nbsp;tells your spring application that this class will do the exception handling for your application.</li><li><b>@RestController</b>&nbsp;will make it a controller and let this class render the response.</li><li>Use&nbsp;<b>@ExceptionHandler</b>&nbsp;annotation to define the class of Exception it will catch. (A Base class will catch all the Inherited and extended classes)</li><li>You can set the response status for exception using&nbsp;<b>@ResponseStatus</b>&nbsp;annotation.</li></ul><br /><h4>HomeController.class</h4><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-j" start="1"><li class="alt"><span class="keyword">package</span>&nbsp;com.ekiras.controller;&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.BaseException;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;com.ekiras.exception.CustomException1;&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.CustomException2;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ExceptionHandler;&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RequestMapping;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RestController;&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class=""><span class="comment">/**</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;*&nbsp;@author&nbsp;ekansh</span>&nbsp;</li><li class=""><span class="comment">&nbsp;*&nbsp;@since&nbsp;19/2/16</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;*/</span>&nbsp;&nbsp;</li><li class=""><span class="annotation">@RestController</span>&nbsp;&nbsp;</li><li class="alt"><span class="annotation">@RequestMapping</span>({<span class="string">""</span>,<span class="string">"/"</span>})&nbsp;&nbsp;</li><li class=""><span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;HomeController&nbsp;{&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex1"</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex1(){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;BaseException(<span class="string">"Base&nbsp;Exception"</span>);&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex2"</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex2(){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;CustomException1();&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex3"</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex3(){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;CustomException2();&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex4"</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex4(){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleException</span>&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;NullPointerException(<span class="string">"null&nbsp;pointer&nbsp;exception"</span>);&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex5"</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex5(){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;controller&nbsp;exception&nbsp;hnadler&nbsp;handler&nbsp;method&nbsp;nfeHandler</span>&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;NumberFormatException(<span class="string">"number&nbsp;format&nbsp;exception"</span>);&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;will&nbsp;handle&nbsp;all&nbsp;the&nbsp;Number&nbsp;Format&nbsp;Exceptions&nbsp;that&nbsp;arise&nbsp;within&nbsp;this&nbsp;controller.</span>&nbsp;</li><li class=""><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span>&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;NumberFormatException.<span class="keyword">class</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;nfeHandler(NumberFormatException&nbsp;e){&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;</li><li class="alt">}&nbsp;&nbsp;</li></ol><textarea class="originalCode" style="display: none;">package com.ekiras.controller;  import com.ekiras.exception.BaseException; import com.ekiras.exception.CustomException1; import com.ekiras.exception.CustomException2; import org.springframework.web.bind.annotation.ExceptionHandler; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author ekansh  * @since 19/2/16  */ @RestController @RequestMapping({"","/"}) public class HomeController {      @RequestMapping("/ex1")     public String ex1(){         // will be catched by global exception handler method handleBaseException         throw new BaseException("Base Exception");     }      @RequestMapping("/ex2")     public String ex2(){         // will be catched by global exception handler method handleBaseException         throw new CustomException1();     }      @RequestMapping("/ex3")     public String ex3(){         // will be catched by global exception handler method handleBaseException         throw new CustomException2();     }      @RequestMapping("/ex4")     public String ex4(){         // will be catched by global exception handler method handleException         throw new NullPointerException("null pointer exception");     }      @RequestMapping("/ex5")     public String ex5(){         // will be catched by controller exception hnadler handler method nfeHandler         throw new NumberFormatException("number format exception");     }      /**      * This method will handle all the Number Format Exceptions that arise within this controller.      *       * */     @ExceptionHandler(value = NumberFormatException.class)     public String nfeHandler(NumberFormatException e){         return e.getMessage();     }  } </textarea></div><br /><h4>GlobalExceptionHandler.class</h4><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-j" start="1"><li class="alt"><span class="keyword">package</span>&nbsp;com.ekiras.handler.exception;&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.BaseException;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;org.springframework.http.HttpStatus;&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ControllerAdvice;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ExceptionHandler;&nbsp;&nbsp;</li><li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ResponseStatus;&nbsp;&nbsp;</li><li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RestController;&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class=""><span class="comment">/**</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;*&nbsp;@author&nbsp;ekansh</span>&nbsp;</li><li class=""><span class="comment">&nbsp;*&nbsp;@since&nbsp;19/2/16</span>&nbsp;</li><li class="alt"><span class="comment">&nbsp;*/</span>&nbsp;&nbsp;</li><li class=""><span class="annotation">@ControllerAdvice</span>&nbsp;&nbsp;</li><li class="alt"><span class="annotation">@RestController</span>&nbsp;&nbsp;</li><li class=""><span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;GlobalExceptionHandler&nbsp;{&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ResponseStatus</span>(HttpStatus.BAD_REQUEST)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;BaseException.<span class="keyword">class</span>)&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;handleBaseException(BaseException&nbsp;e){&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;Exception.<span class="keyword">class</span>)&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;handleException(Exception&nbsp;e){<span class="keyword">return</span>&nbsp;e.getMessage();}&nbsp;&nbsp;</li><li class="">&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;</li><li class="">}&nbsp;&nbsp;</li></ol><textarea class="originalCode" style="display: none;">package com.ekiras.handler.exception;  import com.ekiras.exception.BaseException; import org.springframework.http.HttpStatus; import org.springframework.web.bind.annotation.ControllerAdvice; import org.springframework.web.bind.annotation.ExceptionHandler; import org.springframework.web.bind.annotation.ResponseStatus; import org.springframework.web.bind.annotation.RestController;  /**  * @author ekansh  * @since 19/2/16  */ @ControllerAdvice @RestController public class GlobalExceptionHandler {      @ResponseStatus(HttpStatus.BAD_REQUEST)     @ExceptionHandler(value = BaseException.class)     public String handleBaseException(BaseException e){         return e.getMessage();     }      @ExceptionHandler(value = Exception.class)     public String handleException(Exception e){return e.getMessage();}   } </textarea></div><br />Here,<br /><ul style="text-align: left;"><li><b>handleBaseException(BaseException e) :: </b>&nbsp;will catch all the exceptions for classes BaseException, CustomException1 and CustomException2.</li><li><b>handleException(Exception e) :: </b>&nbsp;will handle all the exceptions that are childs of Exception class.</li></ul><div><br /></div><div class="alert alert-danger"><b>Note :: </b> If <b>BaseException</b> or its child exception is thrown then <b>handleBaseException</b>() will catch this exception and not the <b>handleException</b>() method </div><br /><h2 style="text-align: left;">Way 2 : Controller Level Exception handling using&nbsp;@ExceptionHandler</h2><div><br /></div><div class="dp-highlighter"><div class="bar"><div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#" onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div></div><ol class="dp-j" start="1"><li class="alt"><span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;NumberFormatException.<span class="keyword">class</span>)&nbsp;&nbsp;</li><li class="">&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;nfeHandler(NumberFormatException&nbsp;e){&nbsp;&nbsp;</li><li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;</li><li class="">&nbsp;}&nbsp;&nbsp;</li></ol><textarea class="originalCode" style="display: none;">   @ExceptionHandler(value = NumberFormatException.class)     public String nfeHandler(NumberFormatException e){         return e.getMessage();     }</textarea></div>The above code in the <b>HomeController.java</b>&nbsp;will catch will the&nbsp;<b>NumberFormatException</b>&nbsp;that arise from this controller. This&nbsp;will not handle&nbsp;<b>NumberFormatException</b>&nbsp;that occurs in any other controller.<br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-sFMO6JIXiJI/Vsaw8u6avrI/AAAAAAAAF54/sCyy2ff6lTk/s1600/e1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="113" class="img img-responsive" src="https://1.bp.blogspot.com/-sFMO6JIXiJI/Vsaw8u6avrI/AAAAAAAAF54/sCyy2ff6lTk/s640/e1.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-K9CrmyMsRJ0/Vsaw88ViDTI/AAAAAAAAF5w/qLhWnAMIQ50/s1600/e2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="128" class="img img-responsive" src="https://1.bp.blogspot.com/-K9CrmyMsRJ0/Vsaw88ViDTI/AAAAAAAAF5w/qLhWnAMIQ50/s640/e2.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://4.bp.blogspot.com/-q5J65gd6xlc/Vsaw85lCRQI/AAAAAAAAF50/PPVTp3zN1gQ/s1600/e3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="98" class="img img-responsive" src="https://4.bp.blogspot.com/-q5J65gd6xlc/Vsaw85lCRQI/AAAAAAAAF50/PPVTp3zN1gQ/s640/e3.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://1.bp.blogspot.com/-m2FfhUJiU3M/Vsaw9RX6GRI/AAAAAAAAF58/FfB-5CGVX9w/s1600/e4.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="106" class="img img-responsive" src="https://1.bp.blogspot.com/-m2FfhUJiU3M/Vsaw9RX6GRI/AAAAAAAAF58/FfB-5CGVX9w/s640/e4.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="https://3.bp.blogspot.com/-6VHJSHkRiWU/Vsaw9mbMILI/AAAAAAAAF6A/7Cw4utiEtUg/s1600/e5.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="98" class="img img-responsive" src="https://3.bp.blogspot.com/-6VHJSHkRiWU/Vsaw9mbMILI/AAAAAAAAF6A/7Cw4utiEtUg/s640/e5.png" width="640" /></a></div><br /><br /><br /><div class="download"><b><a href="https://github.com/gitekiras/spring-boot-exception-handling" target="_blank">Download project from GitHub&nbsp;</a></b></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>
+    <div>There are three ways to do exception handling in spring boot application.<br/><br/>
+        <ol>
+            <li>Global Level using - &nbsp;<b>@ControllerAdvice</b></li>
+            <li>Controller Level using -&nbsp;<b>@ExceptionHandler</b>&nbsp;</li>
+            <li>Method Level using -&nbsp;<b>try/catch&nbsp;</b>&nbsp;</li>
+        </ol>
+        <div class="note"><a href="http:/#" target="_blank">Difference between @ExceptionHandler and
+            @ControllerAdvice</a></div>
+    </div>
+    <h2>How to do Exception Handling in Rest Application</h2>
+    <div>To demonstrate Exception Handling we will make three Exceptions.<br/><br/>
+        <ul style="text-align: left;">
+            <li>BaseException that will be parent of all the Custom Exceptions.</li>
+            <li>CustomException1 that extends Base Exception.</li>
+            <li>CustomException2 that extends Base Exception.</li>
+        </ul>
+        <div>We will create the following methods</div>
+        <div>
+            <ul style="text-align: left;">
+                <li>ex1() throws BaseException</li>
+                <li>ex2()&nbsp;throws&nbsp;CustomException1</li>
+                <li>ex3()&nbsp;throws&nbsp;CustomException2</li>
+                <li>ex4() throws NullPointerException&nbsp;</li>
+                <li>ex5() throws NumberFormatException</li>
+            </ul>
+            <div>and now we will see how we can handle these exceptions using above mentioned ways.</div>
+        </div>
+        <br/>
+        <h2 style="text-align: left;">Way 1 : Global Exception Handling using @ControllerAdvice</h2></div>
+    Add a class with annotation <b>@ControllerAdvice </b>and&nbsp;<b>@RestController.</b>&nbsp;This will make the class
+    return a Rest Response.<br/><br/><br/>
+    <ul style="text-align: left;">
+        <li><b>@ControllerAdvice</b>&nbsp;tells your spring application that this class will do the exception handling
+            for your application.
+        </li>
+        <li><b>@RestController</b>&nbsp;will make it a controller and let this class render the response.</li>
+        <li>Use&nbsp;<b>@ExceptionHandler</b>&nbsp;annotation to define the class of Exception it will catch. (A Base
+            class will catch all the Inherited and extended classes)
+        </li>
+        <li>You can set the response status for exception using&nbsp;<b>@ResponseStatus</b>&nbsp;annotation.</li>
+    </ul>
+    <br/><h4>HomeController.class</h4>
+    <div class="dp-highlighter">
+        <div class="bar">
+            <div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                                  onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div>
+        </div>
+        <ol class="dp-j" start="1">
+            <li class="alt"><span class="keyword">package</span>&nbsp;com.ekiras.controller;&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;</li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.BaseException;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;com.ekiras.exception.CustomException1;&nbsp;&nbsp;
+            </li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.CustomException2;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ExceptionHandler;&nbsp;&nbsp;
+            </li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RequestMapping;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RestController;&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class=""><span class="comment">/**</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;*&nbsp;@author&nbsp;ekansh</span>&nbsp;</li>
+            <li class=""><span class="comment">&nbsp;*&nbsp;@since&nbsp;19/2/16</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;*/</span>&nbsp;&nbsp;</li>
+            <li class=""><span class="annotation">@RestController</span>&nbsp;&nbsp;</li>
+            <li class="alt"><span class="annotation">@RequestMapping</span>({<span class="string">""</span>,<span
+                    class="string">"/"</span>})&nbsp;&nbsp;</li>
+            <li class=""><span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;HomeController&nbsp;{&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex1"</span>)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex1(){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;BaseException(<span
+                    class="string">"Base&nbsp;Exception"</span>);&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex2"</span>)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex2(){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;CustomException1();&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex3"</span>)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex3(){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleBaseException</span>&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;CustomException2();&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex4"</span>)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex4(){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;global&nbsp;exception&nbsp;handler&nbsp;method&nbsp;handleException</span>&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;NullPointerException(<span
+                    class="string">"null&nbsp;pointer&nbsp;exception"</span>);&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@RequestMapping</span>(<span class="string">"/ex5"</span>)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;ex5(){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">//&nbsp;will&nbsp;be&nbsp;catched&nbsp;by&nbsp;controller&nbsp;exception&nbsp;hnadler&nbsp;handler&nbsp;method&nbsp;nfeHandler</span>&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+                    class="keyword">throw</span>&nbsp;<span class="keyword">new</span>&nbsp;NumberFormatException(<span
+                    class="string">"number&nbsp;format&nbsp;exception"</span>);&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">/**</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;This&nbsp;method&nbsp;will&nbsp;handle&nbsp;all&nbsp;the&nbsp;Number&nbsp;Format&nbsp;Exceptions&nbsp;that&nbsp;arise&nbsp;within&nbsp;this&nbsp;controller.</span>&nbsp;
+            </li>
+            <li class=""><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;*/</span>&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;NumberFormatException.<span
+                    class="keyword">class</span>)&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;nfeHandler(NumberFormatException&nbsp;e){&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;</li>
+            <li class="alt">}&nbsp;&nbsp;</li>
+        </ol>
+        <textarea class="originalCode" style="display: none;">package com.ekiras.controller;  import com.ekiras.exception.BaseException; import com.ekiras.exception.CustomException1; import com.ekiras.exception.CustomException2; import org.springframework.web.bind.annotation.ExceptionHandler; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController;  /**  * @author ekansh  * @since 19/2/16  */ @RestController @RequestMapping({"","/"}) public class HomeController {      @RequestMapping("/ex1")     public String ex1(){         // will be catched by global exception handler method handleBaseException         throw new BaseException("Base Exception");     }      @RequestMapping("/ex2")     public String ex2(){         // will be catched by global exception handler method handleBaseException         throw new CustomException1();     }      @RequestMapping("/ex3")     public String ex3(){         // will be catched by global exception handler method handleBaseException         throw new CustomException2();     }      @RequestMapping("/ex4")     public String ex4(){         // will be catched by global exception handler method handleException         throw new NullPointerException("null pointer exception");     }      @RequestMapping("/ex5")     public String ex5(){         // will be catched by controller exception hnadler handler method nfeHandler         throw new NumberFormatException("number format exception");     }      /**      * This method will handle all the Number Format Exceptions that arise within this controller.      *       * */     @ExceptionHandler(value = NumberFormatException.class)     public String nfeHandler(NumberFormatException e){         return e.getMessage();     }  } </textarea>
+    </div>
+    <br/><h4>GlobalExceptionHandler.class</h4>
+    <div class="dp-highlighter">
+        <div class="bar">
+            <div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                                  onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div>
+        </div>
+        <ol class="dp-j" start="1">
+            <li class="alt"><span class="keyword">package</span>&nbsp;com.ekiras.handler.exception;&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;</li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;com.ekiras.exception.BaseException;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;org.springframework.http.HttpStatus;&nbsp;&nbsp;</li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ControllerAdvice;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ExceptionHandler;&nbsp;&nbsp;
+            </li>
+            <li class="alt"><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.ResponseStatus;&nbsp;&nbsp;
+            </li>
+            <li class=""><span class="keyword">import</span>&nbsp;org.springframework.web.bind.annotation.RestController;&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class=""><span class="comment">/**</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;*&nbsp;@author&nbsp;ekansh</span>&nbsp;</li>
+            <li class=""><span class="comment">&nbsp;*&nbsp;@since&nbsp;19/2/16</span>&nbsp;</li>
+            <li class="alt"><span class="comment">&nbsp;*/</span>&nbsp;&nbsp;</li>
+            <li class=""><span class="annotation">@ControllerAdvice</span>&nbsp;&nbsp;</li>
+            <li class="alt"><span class="annotation">@RestController</span>&nbsp;&nbsp;</li>
+            <li class=""><span class="keyword">public</span>&nbsp;<span class="keyword">class</span>&nbsp;GlobalExceptionHandler&nbsp;{&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ResponseStatus</span>(HttpStatus.BAD_REQUEST)&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;BaseException.<span
+                    class="keyword">class</span>)&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;handleBaseException(BaseException&nbsp;e){&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;&nbsp;&nbsp;<span class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;Exception.<span
+                    class="keyword">class</span>)&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;handleException(Exception&nbsp;e){<span
+                    class="keyword">return</span>&nbsp;e.getMessage();}&nbsp;&nbsp;</li>
+            <li class="">&nbsp;&nbsp;</li>
+            <li class="alt">&nbsp;&nbsp;</li>
+            <li class="">}&nbsp;&nbsp;</li>
+        </ol>
+        <textarea class="originalCode" style="display: none;">package com.ekiras.handler.exception;  import com.ekiras.exception.BaseException; import org.springframework.http.HttpStatus; import org.springframework.web.bind.annotation.ControllerAdvice; import org.springframework.web.bind.annotation.ExceptionHandler; import org.springframework.web.bind.annotation.ResponseStatus; import org.springframework.web.bind.annotation.RestController;  /**  * @author ekansh  * @since 19/2/16  */ @ControllerAdvice @RestController public class GlobalExceptionHandler {      @ResponseStatus(HttpStatus.BAD_REQUEST)     @ExceptionHandler(value = BaseException.class)     public String handleBaseException(BaseException e){         return e.getMessage();     }      @ExceptionHandler(value = Exception.class)     public String handleException(Exception e){return e.getMessage();}   } </textarea>
+    </div>
+    <br/>Here,<br/>
+    <ul style="text-align: left;">
+        <li><b>handleBaseException(BaseException e) :: </b>&nbsp;will catch all the exceptions for classes
+            BaseException, CustomException1 and CustomException2.
+        </li>
+        <li><b>handleException(Exception e) :: </b>&nbsp;will handle all the exceptions that are childs of Exception
+            class.
+        </li>
+    </ul>
+    <div><br/></div>
+    <div class="alert alert-danger"><b>Note :: </b> If <b>BaseException</b> or its child exception is thrown then <b>handleBaseException</b>()
+        will catch this exception and not the <b>handleException</b>() method
+    </div>
+    <br/>
+    <h2 style="text-align: left;">Way 2 : Controller Level Exception handling using&nbsp;@ExceptionHandler</h2>
+    <div><br/></div>
+    <div class="dp-highlighter">
+        <div class="bar">
+            <div class="tools"><a href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                                  onclick="dp.sh.Toolbar.Command('ViewSource',this);return false;">view plain</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('CopyToClipboard',this);return false;">copy to clipboard</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('PrintSource',this);return false;">print</a><a
+                    href="https://www.blogger.com/blogger.g?blogID=5485242750509374114#"
+                    onclick="dp.sh.Toolbar.Command('About',this);return false;">?</a></div>
+        </div>
+        <ol class="dp-j" start="1">
+            <li class="alt"><span
+                    class="annotation">@ExceptionHandler</span>(value&nbsp;=&nbsp;NumberFormatException.<span
+                    class="keyword">class</span>)&nbsp;&nbsp;</li>
+            <li class="">&nbsp;<span class="keyword">public</span>&nbsp;String&nbsp;nfeHandler(NumberFormatException&nbsp;e){&nbsp;&nbsp;
+            </li>
+            <li class="alt">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span>&nbsp;e.getMessage();&nbsp;&nbsp;
+            </li>
+            <li class="">&nbsp;}&nbsp;&nbsp;</li>
+        </ol>
+        <textarea class="originalCode" style="display: none;">   @ExceptionHandler(value = NumberFormatException.class)     public String nfeHandler(NumberFormatException e){         return e.getMessage();     }</textarea>
+    </div>
+    The above code in the <b>HomeController.java</b>&nbsp;will catch will the&nbsp;<b>NumberFormatException</b>&nbsp;that
+    arise from this controller. This&nbsp;will not handle&nbsp;<b>NumberFormatException</b>&nbsp;that occurs in any
+    other controller.<br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="https://1.bp.blogspot.com/-sFMO6JIXiJI/Vsaw8u6avrI/AAAAAAAAF54/sCyy2ff6lTk/s1600/e1.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="113"
+                                                                              class="img img-responsive"
+                                                                              src="https://1.bp.blogspot.com/-sFMO6JIXiJI/Vsaw8u6avrI/AAAAAAAAF54/sCyy2ff6lTk/s640/e1.png"
+                                                                              width="640"/></a></div>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="https://1.bp.blogspot.com/-K9CrmyMsRJ0/Vsaw88ViDTI/AAAAAAAAF5w/qLhWnAMIQ50/s1600/e2.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="128"
+                                                                              class="img img-responsive"
+                                                                              src="https://1.bp.blogspot.com/-K9CrmyMsRJ0/Vsaw88ViDTI/AAAAAAAAF5w/qLhWnAMIQ50/s640/e2.png"
+                                                                              width="640"/></a></div>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="https://4.bp.blogspot.com/-q5J65gd6xlc/Vsaw85lCRQI/AAAAAAAAF50/PPVTp3zN1gQ/s1600/e3.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="98"
+                                                                              class="img img-responsive"
+                                                                              src="https://4.bp.blogspot.com/-q5J65gd6xlc/Vsaw85lCRQI/AAAAAAAAF50/PPVTp3zN1gQ/s640/e3.png"
+                                                                              width="640"/></a></div>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="https://1.bp.blogspot.com/-m2FfhUJiU3M/Vsaw9RX6GRI/AAAAAAAAF58/FfB-5CGVX9w/s1600/e4.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="106"
+                                                                              class="img img-responsive"
+                                                                              src="https://1.bp.blogspot.com/-m2FfhUJiU3M/Vsaw9RX6GRI/AAAAAAAAF58/FfB-5CGVX9w/s640/e4.png"
+                                                                              width="640"/></a></div>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="https://3.bp.blogspot.com/-6VHJSHkRiWU/Vsaw9mbMILI/AAAAAAAAF6A/7Cw4utiEtUg/s1600/e5.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" height="98"
+                                                                              class="img img-responsive"
+                                                                              src="https://3.bp.blogspot.com/-6VHJSHkRiWU/Vsaw9mbMILI/AAAAAAAAF6A/7Cw4utiEtUg/s640/e5.png"
+                                                                              width="640"/></a></div>
+    <br/><br/><br/>
+    <div class="download"><b><a href="https://github.com/gitekiras/spring-boot-exception-handling" target="_blank">Download
+        project from GitHub&nbsp;</a></b></div>
+</div>

@@ -2,7 +2,7 @@
 layout: post
 exclude: true
 title: 'Angular : Getting started with Angular with Angular CLI, Installation and
-  Hello World Example'
+Hello World Example'
 date: '2017-03-15T17:52:00.000+05:30'
 author: Ekansh Rastogi
 tags:
@@ -14,4 +14,49 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/03/getting-started-with-angula
 redirect_from: "/2017/03/getting-started-with-angular-with-angular-cli-installation-and-hello-world-example.html"
 ---
 
-       <div class="markdown"><h2>Install and Setup Angular</h2>&#10;<p>Before we start, lets install the <code>angular cli</code> with the following command</p>&#10;<pre class="hljs"><code>npm install -g @angular/cli&#10;</code></pre>&#10;<p><code>Angular CLI</code> is a tool that can</p>&#10;<ol>&#10;<li>make a new project,</li>&#10;<li>compile your <code>typescript</code> files,</li>&#10;<li>configure your <code>typescript compiler</code></li>&#10;<li>run your code with live preview,</li>&#10;<li>build and package your project.</li>&#10;</ol>&#10;<div class="note"> <b>Note</b><br><p>Make sure you have latest <code>node</code> and <code>npm</code> installed, at least <code>node version 6.9.x</code> and <code>npm version 3.x.x</code>. To see the versions you can run commands <code>node -v</code> and <code>npm -v</code> for node and npm versions respectively.</p>&#10;</div><br><pre class="warning"> <b>Warning</b><br><p>While installation you might get the following warning</p>&#10;<pre class="hljs"><code>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.0.0 (node_modules/@angular/cli/node_modules/chokidar/node_modules/fsevents):&#10;npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.1: wanted {&#34;os&#34;:&#34;darwin&#34;,&#34;arch&#34;:&#34;any&#34;} (current: {&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;x64&#34;})&#10;&#10;</code></pre>&#10;<p>You can skip them, since they are optional warnings</p>&#10;</pre><br><h2>Making First Angular Project</h2>&#10;<p>To create a new project in angular you can use the <code>angular cli</code> command</p>&#10;<pre class="hljs"><code>ng new &lt;project-name&gt;&#10;</code></pre>&#10;<p>Let's say we want to create a project <code>hello</code> then the command will be <code>ng new hello</code>. This will create a new project inside a folder <code>hello</code> we specified while creating the project.</p>&#10;<p>Now go inside the directory. You can do the following now,</p>&#10;<ol>&#10;<li>Run <code>ng serve</code> for a dev server.</li>&#10;<li>Run <code>ng generate component component-name</code> to generate a new component.</li>&#10;<li>Run <code>ng build</code> to build the project.</li>&#10;<li>Run <code>ng test</code> to execute the unit tests via Karma</li>&#10;<li>Run <code>ng e2e</code> to execute the end-to-end tests via Protractor</li>&#10;</ol>&#10;<p>Now run the commands to see the app working</p>&#10;<pre class="hljs"><code>cd  &lt;project-name&gt;&#10;ng serve&#10;</code></pre>&#10;<p>This will start a local server and start the angular application on this server.</p>&#10;<pre class="hljs"><code>&#10;</code></pre>&#10;</div>
+<div class="markdown"><h2>Install and Setup Angular</h2>&#10;<p>Before we start, lets install the <code>angular
+    cli</code> with the following command</p>&#10;
+    <pre class="hljs"><code>npm install -g @angular/cli&#10;</code></pre>
+    &#10;<p><code>Angular CLI</code> is a tool that can</p>&#10;
+    <ol>&#10;
+        <li>make a new project,</li>
+        &#10;
+        <li>compile your <code>typescript</code> files,</li>
+        &#10;
+        <li>configure your <code>typescript compiler</code></li>
+        &#10;
+        <li>run your code with live preview,</li>
+        &#10;
+        <li>build and package your project.</li>
+        &#10;</ol>
+    &#10;
+    <div class="note"><b>Note</b><br>
+        <p>Make sure you have latest <code>node</code> and <code>npm</code> installed, at least <code>node version
+            6.9.x</code> and <code>npm version 3.x.x</code>. To see the versions you can run commands <code>node
+            -v</code> and <code>npm -v</code> for node and npm versions respectively.</p>&#10;</div>
+    <br>
+    <pre class="warning"> <b>Warning</b><br><p>While installation you might get the following warning</p>&#10;<pre
+            class="hljs"><code>npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@^1.0.0 (node_modules/@angular/cli/node_modules/chokidar/node_modules/fsevents):&#10;npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.1.1: wanted {&#34;os&#34;:&#34;darwin&#34;,&#34;arch&#34;:&#34;any&#34;} (current: {&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;x64&#34;})&#10;&#10;</code></pre>&#10;<p>You can skip them, since they are optional warnings</p>&#10;</pre>
+    <br>
+    <h2>Making First Angular Project</h2>&#10;<p>To create a new project in angular you can use the <code>angular
+        cli</code> command</p>&#10;
+    <pre class="hljs"><code>ng new &lt;project-name&gt;&#10;</code></pre>
+    &#10;<p>Let's say we want to create a project <code>hello</code> then the command will be <code>ng new hello</code>.
+        This will create a new project inside a folder <code>hello</code> we specified while creating the project.</p>
+    &#10;<p>Now go inside the directory. You can do the following now,</p>&#10;
+    <ol>&#10;
+        <li>Run <code>ng serve</code> for a dev server.</li>
+        &#10;
+        <li>Run <code>ng generate component component-name</code> to generate a new component.</li>
+        &#10;
+        <li>Run <code>ng build</code> to build the project.</li>
+        &#10;
+        <li>Run <code>ng test</code> to execute the unit tests via Karma</li>
+        &#10;
+        <li>Run <code>ng e2e</code> to execute the end-to-end tests via Protractor</li>
+        &#10;</ol>
+    &#10;<p>Now run the commands to see the app working</p>&#10;
+    <pre class="hljs"><code>cd  &lt;project-name&gt;&#10;ng serve&#10;</code></pre>
+    &#10;<p>This will start a local server and start the angular application on this server.</p>&#10;
+    <pre class="hljs"><code>&#10;</code></pre>
+    &#10;</div>

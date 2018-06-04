@@ -14,4 +14,278 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/04/test-java-23.html
 redirect_from: "/2015/04/test-java-23.html"
 ---
 
-<div id='test-controller'> <div class='info'>  This test contains 10 questions based on <b>Java</b>.  <br />  Each question answered correctly awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for unattempted answers.</div>  <h3>Select Test Type</h3>  <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>  <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button> </div> <div class='hidden' id='test-container'>  <div id='instructions'>   <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>   <div class='test-timer-container'>    <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>   </div>  </div>  <div id='test-score'></div><div class='container-question'> <div class='question'>Which of these lines of code will give better performance? 1. a | 4 + c >> b & 7; 2. (a | ((( 4 * c ) >> b ) & 7 ))</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>1 will give better performance as it has no parentheses.</td>    <td class='optionB'>2 will give better performance as it has parentheses.</td>   </tr>   <tr>    <td class='optionC'>Both 1 & 2 will give equal performance.</td>    <td class='optionD'>Dependent on the computer system.</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>class box {<br />        int width;<br />        int height;<br />        int length;<br />        int volume;<br />        void finalize() {<br />            volume = width*height*length;<br />            System.out.println(volume);<br />        }<br />        protected void volume() {<br />            volume = width*height*length;<br />            System.out.println(volume);<br />       } <br />    }    <br />    class Output { <br />        public static void main(String args[])<br />        {<br />            box obj = new box();<br />            obj.volume();<br />        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>150</td>    <td class='optionB'>200</td>   </tr>   <tr>    <td class='optionC'>Runtime error </td>    <td class='optionD'>Compilation error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of the following is a valid declaration of an object of class Box? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>Box obj = new Box();</td>    <td class='optionB'>Box obj = new Box;</td>   </tr>   <tr>    <td class='optionC'>obj = new Box();</td>    <td class='optionD'>new Box obj;</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class A {<br />        public int i;<br />        private int j;<br />    }    <br />    class B extends A {<br />        void display() {<br />            super.j = super.i + 1;<br />            System.out.println(super.i + " " + super.j);<br />        }<br />    }    <br />    class inheritance {<br />        public static void main(String args[])<br />        {<br />            B obj = new B();<br />            obj.i=1;<br />            obj.j=2;   <br />            obj.display();     <br />        }<br />   }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>2 2</td>    <td class='optionB'>2 3</td>   </tr>   <tr>    <td class='optionC'>Runtime Error </td>    <td class='optionD'>Compilation Error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>class exception_handling {<br />        public static void main(String args[]) {<br />            try {<br />                int a[] = {1, 2,3 , 4, 5};<br />                for (int i = 0; i < 7; ++i) <br />                    System.out.print(a[i]);<br />            }<br />            catch(ArrayIndexOutOfBoundsException e) {<br />         System.out.print("0");         <br />            }<br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>12345 </td>    <td class='optionB'>123450</td>   </tr>   <tr>    <td class='optionC'>1234500</td>    <td class='optionD'>Compilation Error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the name of the thread in output of this program? <pre class='brush:java'>class multithreaded_programing {<br />        public static void main(String args[]) {<br />            Thread t = Thread.currentThread();<br />            System.out.println(t.isAlive());        <br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>0</td>    <td class='optionB'>1</td>   </tr>   <tr>    <td class='optionC'>true</td>    <td class='optionD'>false</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class operators {<br />        public static void main(String args[])<br />        {<br />            int var1 = 5; <br />            int var2 = 6;<br />            int var3;<br />            var3 = ++ var2 * var1 / var2 + var2;<br />            System.out.print(var2);<br />        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>10</td>    <td class='optionB'>11</td>   </tr>   <tr>    <td class='optionC'>12</td>    <td class='optionD'>56</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the stored in the object obj in following lines of code? box obj; </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>Memory address of allocated memory of object.</td>    <td class='optionB'>NULL</td>   </tr>   <tr>    <td class='optionC'>Any arbitrary pointer</td>    <td class='optionD'>Garbage</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of the following contain error? (A) int x[] = int[10]; (B) int[] y = new int[5]; (C) float d[] = </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>(A)</td>    <td class='optionB'>(B)</td>   </tr>   <tr>    <td class='optionC'>(A) & (C)</td>    <td class='optionD'>(B) & (C)</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these modifiers can be used for a variable so that it can be accessed from any thread or parts of a program? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>transient</td>    <td class='optionB'>volatile</td>   </tr>   <tr>    <td class='optionC'>global</td>    <td class='optionD'>No modifier is needed</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='test-finish'>Finish Test</div></div>
+<div id='test-controller'>
+    <div class='info'> This test contains 10 questions based on <b>Java</b>. <br/> Each question answered correctly
+        awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for
+        unattempted answers.
+    </div>
+    <h3>Select Test Type</h3>
+    <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>
+    <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button>
+</div>
+<div class='hidden' id='test-container'>
+    <div id='instructions'>
+        <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>
+        <div class='test-timer-container'>
+            <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>
+        </div>
+    </div>
+    <div id='test-score'></div>
+    <div class='container-question'>
+        <div class='question'>Which of these lines of code will give better performance? 1. a | 4 + c >> b & 7; 2. (a |
+            ((( 4 * c ) >> b ) & 7 ))
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>1 will give better performance as it has no parentheses.</td>
+                <td class='optionB'>2 will give better performance as it has parentheses.</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Both 1 & 2 will give equal performance.</td>
+                <td class='optionD'>Dependent on the computer system.</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>class box {<br/>        int width;<br/>        int height;<br/>        int length;<br/>        int volume;<br/>        void finalize() {<br/>            volume = width*height*length;<br/>            System.out.println(volume);<br/>        }<br/>        protected void volume() {<br/>            volume = width*height*length;<br/>            System.out.println(volume);<br/>       } <br/>    }    <br/>    class Output { <br/>        public static void main(String args[])<br/>        {<br/>            box obj = new box();<br/>            obj.volume();<br/>        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>150</td>
+                <td class='optionB'>200</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Runtime error</td>
+                <td class='optionD'>Compilation error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of the following is a valid declaration of an object of class Box?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>Box obj = new Box();</td>
+                <td class='optionB'>Box obj = new Box;</td>
+            </tr>
+            <tr>
+                <td class='optionC'>obj = new Box();</td>
+                <td class='optionD'>new Box obj;</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class A {<br/>        public int i;<br/>        private int j;<br/>    }    <br/>    class B extends A {<br/>        void display() {<br/>            super.j = super.i + 1;<br/>            System.out.println(super.i + " " + super.j);<br/>        }<br/>    }    <br/>    class inheritance {<br/>        public static void main(String args[])<br/>        {<br/>            B obj = new B();<br/>            obj.i=1;<br/>            obj.j=2;   <br/>            obj.display();     <br/>        }<br/>   }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>2 2</td>
+                <td class='optionB'>2 3</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Runtime Error</td>
+                <td class='optionD'>Compilation Error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>class exception_handling {<br/>        public static void main(String args[]) {<br/>            try {<br/>                int a[] = {1, 2,3 , 4, 5};<br/>                for (int i = 0; i < 7; ++i) <br/>                    System.out.print(a[i]);<br/>            }<br/>            catch(ArrayIndexOutOfBoundsException e) {<br/>         System.out.print("0");         <br/>            }<br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>12345</td>
+                <td class='optionB'>123450</td>
+            </tr>
+            <tr>
+                <td class='optionC'>1234500</td>
+                <td class='optionD'>Compilation Error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the name of the thread in output of this program?
+            <pre class='brush:java'>class multithreaded_programing {<br/>        public static void main(String args[]) {<br/>            Thread t = Thread.currentThread();<br/>            System.out.println(t.isAlive());        <br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>0</td>
+                <td class='optionB'>1</td>
+            </tr>
+            <tr>
+                <td class='optionC'>true</td>
+                <td class='optionD'>false</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class operators {<br/>        public static void main(String args[])<br/>        {<br/>            int var1 = 5; <br/>            int var2 = 6;<br/>            int var3;<br/>            var3 = ++ var2 * var1 / var2 + var2;<br/>            System.out.print(var2);<br/>        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>10</td>
+                <td class='optionB'>11</td>
+            </tr>
+            <tr>
+                <td class='optionC'>12</td>
+                <td class='optionD'>56</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the stored in the object obj in following lines of code? box obj;</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>Memory address of allocated memory of object.</td>
+                <td class='optionB'>NULL</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Any arbitrary pointer</td>
+                <td class='optionD'>Garbage</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of the following contain error? (A) int x[] = int[10]; (B) int[] y = new int[5]; (C)
+            float d[] =
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>(A)</td>
+                <td class='optionB'>(B)</td>
+            </tr>
+            <tr>
+                <td class='optionC'>(A) & (C)</td>
+                <td class='optionD'>(B) & (C)</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these modifiers can be used for a variable so that it can be accessed from any
+            thread or parts of a program?
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>transient</td>
+                <td class='optionB'>volatile</td>
+            </tr>
+            <tr>
+                <td class='optionC'>global</td>
+                <td class='optionD'>No modifier is needed</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='test-finish'>Finish Test</div>
+</div>

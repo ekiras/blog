@@ -13,4 +13,32 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/11/oojs-create-object-in-javas
 redirect_from: "/2015/11/oojs-create-object-in-javascript.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>You can create objects of a function in javascript.</li><li>Function can have both private and public methods.</li><li>Functions can inherit other functions</li></ul><br /><h2>Create an Object in Javascript</h2>Let us create a User object in javascript. <br /><br /><pre class="brush:js;">var User = function() {<br />    _self = this;<br />    var _name;<br />    _self.getName = function() {<br />        return _name;<br />    }<br />    _self.setName = function(name) {<br />        _name = name;<br />    }<br />    _self.toString = function() {<br />        return "Person{name::" + _name + "}";<br />    }<br />}<br /></pre><br />Here User is a function <br /><br /><ul style="text-align: left;"><li>name is a private variable and will not be accessible outside the User function.</li><li>_self is used to save the <b>this</b>&nbsp;reference, this is done so that it does not mix with the <b>this</b>&nbsp;of the inner functions.</li><li><b>getName, setName and toString</b> are the public functions that can be called from an object of User function.</li></ul><br /><pre class="output">typeof User<br />"function"</pre><br />Now let us create two Objects of the User function. <br /><br /><pre>var user1 = new User();<br />var user2 = new User();</pre><br />Both user1 and user2 are the objects of the User function, and they are not equal to each other, i.e they are two different objects. <br /><br /><pre class="output">typeof user1<br />"object"<br /><br />typeof user2<br />"object"<br /><br />user1 == user2<br />false<br /><br />user1 === user2<br />false</pre><br />Now let us call the functions on the user objects. <br /><br /><pre class="output">user1.getName()<br />undefined<br /><br />user1.setName("ekiras");<br />undefined<br /><br />user1.getName();<br />"ekiras"<br /><br />user1.toString();<br />"Person{name::ekiras}"</pre></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>You can create objects of a function in javascript.</li>
+        <li>Function can have both private and public methods.</li>
+        <li>Functions can inherit other functions</li>
+    </ul>
+    <br/>
+    <h2>Create an Object in Javascript</h2>Let us create a User object in javascript. <br/><br/>
+    <pre class="brush:js;">var User = function() {<br/>    _self = this;<br/>    var _name;<br/>    _self.getName = function() {<br/>        return _name;<br/>    }<br/>    _self.setName = function(name) {<br/>        _name = name;<br/>    }<br/>    _self.toString = function() {<br/>        return "Person{name::" + _name + "}";<br/>    }<br/>}<br/></pre>
+    <br/>Here User is a function <br/><br/>
+    <ul style="text-align: left;">
+        <li>name is a private variable and will not be accessible outside the User function.</li>
+        <li>_self is used to save the <b>this</b>&nbsp;reference, this is done so that it does not mix with the
+            <b>this</b>&nbsp;of the inner functions.
+        </li>
+        <li><b>getName, setName and toString</b> are the public functions that can be called from an object of User
+            function.
+        </li>
+    </ul>
+    <br/>
+    <pre class="output">typeof User<br/>"function"</pre>
+    <br/>Now let us create two Objects of the User function. <br/><br/>
+    <pre>var user1 = new User();<br/>var user2 = new User();</pre>
+    <br/>Both user1 and user2 are the objects of the User function, and they are not equal to each other, i.e they are
+    two different objects. <br/><br/>
+    <pre class="output">typeof user1<br/>"object"<br/><br/>typeof user2<br/>"object"<br/><br/>user1 == user2<br/>false<br/><br/>user1 === user2<br/>false</pre>
+    <br/>Now let us call the functions on the user objects. <br/><br/>
+    <pre class="output">user1.getName()<br/>undefined<br/><br/>user1.setName("ekiras");<br/>undefined<br/><br/>user1.getName();<br/>"ekiras"<br/><br/>user1.toString();<br/>"Person{name::ekiras}"</pre>
+</div>

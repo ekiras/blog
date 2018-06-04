@@ -13,4 +13,18 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/11/how-to-set-active-profile-i
 redirect_from: "/2015/11/how-to-set-active-profile-in-spring-boot-application.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>There are two ways to set the spring profiles<br /><br /><ul style="text-align: left;"><li>Using OS environment variables</li><li>Using -D arguments</li></ul><br /><div class="alert alert-info"><a href="http://www.ekiras.com/2016/06/springboot-what-are-profiles-in-spring.html" target="_blank">Must Read :: What are profiles in Spring boot.</a></div><h2>How to set active profile in spring boot application</h2>If you want to set Operating System Environment variables for your application the you can do as follows <br /><br /><pre>export SPRING_PROFILES_ACTIVE=development<br />export SERVER_PORT=8090<br />gradle bootRun<br />java -jar build/libs/demo-1.0.0.jar</pre><br />If you want to specify it each time while running jar then you can do as follows <br /><br /><pre>java -jar -Dspring.profiles.active=development build/libs/dem-1.0.0.jar<br />java -jar -Dserver.port=8090 build/libs/demo-1.0.0.jar<br /></pre></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>There are two ways to set the spring
+    profiles<br/><br/>
+    <ul style="text-align: left;">
+        <li>Using OS environment variables</li>
+        <li>Using -D arguments</li>
+    </ul>
+    <br/>
+    <div class="alert alert-info"><a href="http://www.ekiras.com/2016/06/springboot-what-are-profiles-in-spring.html"
+                                     target="_blank">Must Read :: What are profiles in Spring boot.</a></div>
+    <h2>How to set active profile in spring boot application</h2>If you want to set Operating System Environment
+    variables for your application the you can do as follows <br/><br/>
+    <pre>export SPRING_PROFILES_ACTIVE=development<br/>export SERVER_PORT=8090<br/>gradle bootRun<br/>java -jar build/libs/demo-1.0.0.jar</pre>
+    <br/>If you want to specify it each time while running jar then you can do as follows <br/><br/>
+    <pre>java -jar -Dspring.profiles.active=development build/libs/dem-1.0.0.jar<br/>java -jar -Dserver.port=8090 build/libs/demo-1.0.0.jar<br/></pre>
+</div>

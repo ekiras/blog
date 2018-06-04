@@ -12,4 +12,35 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/overriding-equals-method-of
 redirect_from: "/2014/09/overriding-equals-method-of-object.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on">Default <b>equals()</b> method of the <b>java.lang.Object</b> class <b>compares the memory location</b> of the objects and <b>returns true if</b> the two reference variables are pointing to the same memory location. i.e. <b>they are the same objects.</b><br /><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>equals() method is the method of Object class.</li><li>It compares the memory location of the two objects.</li><li>equals() method in java is <b>Reflexive.</b>&nbsp;i.e, object must be equal to itself.</li><li>equals() method in java is&nbsp;<b>Symmetric.&nbsp;</b>&nbsp;i.e, if a.equals(b) then b.equals(a) must be true.</li><li>equals() method in java is&nbsp;<b>Transitive.&nbsp;</b>&nbsp;i.e, &nbsp;if&nbsp;a.equals(b) and b.equals(c) the&nbsp;a.equals(c) must be true.</li><li>equals() method in java is&nbsp;<b>Consistent.&nbsp;</b>&nbsp;i.e, if two objects are same in java then they must remain same all time until any property of any object is changed.</li><li><b>If two object are same then their hashCode() will be same, but if the two hashCodes are same then they may or may not be same.</b></li></ul><div class="hl-note"><b>Steps to override equals method in Java</b></div><ol style="text-align: left;"><li><b>this</b> check, if the object is same as this, then return true.</li><li><b>null </b>check, if the object is null return false.</li><li><b>instanceOf() </b>check, if both the object are an instance of same class.</li></ol><div class="hl-note"><b>Example of overriding equals()</b></div>Following example show how to override the equals() method.<br /><pre class="brush : java">public class TestClass{<br /><br />    String name;   <br /><br />    public TestClass(String name){<br />        this.name = name;<br />    } <br /><br /><br />    public static void main (String args[]){<br /> <br />       TestClass t1 = new TestClass("Demo Object");<br />       TestClass t2 = new TestClass("Demo Object");<br />       System.out.println(t1.equals(t2));<br />    }<br /><br /><br />    @Override <br />    public boolean equals(Object obj){<br />      if(obj == this)<br />          return true;<br />      if(obj == null)<br />          return false;<br />      if(!(obj instanceof TestClass) )<br />          return false;<br />      TestClass test = (TestClass)obj;<br />      return name.equals(test.name);<br /><br />    }<br /><br />}<br /></pre>The above program will give the <b>output : true. </b>&nbsp;However if we would have not overriden the equals() method, in that case the same program would have given the output as false.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">Default <b>equals()</b> method of the <b>java.lang.Object</b> class
+    <b>compares the memory location</b> of the objects and <b>returns true if</b> the two reference variables are
+    pointing to the same memory location. i.e. <b>they are the same objects.</b><br/>
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>equals() method is the method of Object class.</li>
+        <li>It compares the memory location of the two objects.</li>
+        <li>equals() method in java is <b>Reflexive.</b>&nbsp;i.e, object must be equal to itself.</li>
+        <li>equals() method in java is&nbsp;<b>Symmetric.&nbsp;</b>&nbsp;i.e, if a.equals(b) then b.equals(a) must be
+            true.
+        </li>
+        <li>equals() method in java is&nbsp;<b>Transitive.&nbsp;</b>&nbsp;i.e, &nbsp;if&nbsp;a.equals(b) and b.equals(c)
+            the&nbsp;a.equals(c) must be true.
+        </li>
+        <li>equals() method in java is&nbsp;<b>Consistent.&nbsp;</b>&nbsp;i.e, if two objects are same in java then they
+            must remain same all time until any property of any object is changed.
+        </li>
+        <li><b>If two object are same then their hashCode() will be same, but if the two hashCodes are same then they
+            may or may not be same.</b></li>
+    </ul>
+    <div class="hl-note"><b>Steps to override equals method in Java</b></div>
+    <ol style="text-align: left;">
+        <li><b>this</b> check, if the object is same as this, then return true.</li>
+        <li><b>null </b>check, if the object is null return false.</li>
+        <li><b>instanceOf() </b>check, if both the object are an instance of same class.</li>
+    </ol>
+    <div class="hl-note"><b>Example of overriding equals()</b></div>
+    Following example show how to override the equals() method.<br/>
+    <pre class="brush : java">public class TestClass{<br/><br/>    String name;   <br/><br/>    public TestClass(String name){<br/>        this.name = name;<br/>    } <br/><br/><br/>    public static void main (String args[]){<br/> <br/>       TestClass t1 = new TestClass("Demo Object");<br/>       TestClass t2 = new TestClass("Demo Object");<br/>       System.out.println(t1.equals(t2));<br/>    }<br/><br/><br/>    @Override <br/>    public boolean equals(Object obj){<br/>      if(obj == this)<br/>          return true;<br/>      if(obj == null)<br/>          return false;<br/>      if(!(obj instanceof TestClass) )<br/>          return false;<br/>      TestClass test = (TestClass)obj;<br/>      return name.equals(test.name);<br/><br/>    }<br/><br/>}<br/></pre>
+    The above program will give the <b>output : true. </b>&nbsp;However if we would have not overriden the equals()
+    method, in that case the same program would have given the output as false.
+</div>

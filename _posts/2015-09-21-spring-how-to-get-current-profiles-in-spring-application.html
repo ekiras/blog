@@ -15,4 +15,29 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/09/spring-how-to-get-current-p
 redirect_from: "/2015/09/spring-how-to-get-current-profiles-in-spring-application.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can use the <b><a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/Environment.html" target="_blank">Environment</a> interface</b>&nbsp;in package <b>org.springframework.core.env</b> to get the current profiles in spring application.<br /><br />You can make use of the following methods to get the information about the profiles.<br /><br /><ul style="text-align: left;"><li><b>acceptsProfiles(String ...profiles)</b>&nbsp;- returns if the profiles given in input is active.</li><li><b>getActiveProfiles()</b>&nbsp;- Gives a list of profiles explicitly made active for this enviornment.</li><li><b>getDefaultProfiles()</b>&nbsp;- gives a set of profiles to be active by default if no active profile is set explicitly.</li></ul><a href="http:/#" target="_blank">See how to set and configure profiles in spring.</a><br /><a href="http:/#" target="_blank"><br /></a><a href="http://www.ekiras.com/2016/06/springboot-what-are-profiles-in-spring.html" target="_blank">Must Read :: What are profiles in Spring boot.</a><br /><h2>How to get Active Profiles in an Environment</h2>All you need to do is<br /><br /><ul style="text-align: left;"><li><b>autowire</b>&nbsp;the Environmnet bean.</li><li>call the getActiveProfiles method of the bean.</li></ul><pre class="brush:java;highlight:[5,10,13,14,15];">package com.ekiras.config;<br /><br />import org.springframework.stereotype.Component;<br />import org.springframework.beans.factory.annotation.Autowired;<br />import org.springframework.core.env.Environment;<br /><br />@Component<br />class Test {<br /><br />  @Autowired private Environment environment;<br /><br />  public void test(){<br />     for(String profile : environment.getActiveProfiles()){<br />            System.out.println("&gt;&gt;&gt;&gt;&gt;&gt;"+profile);<br />        }<br />  }<br /><br />}</pre>When the above method is called it will give the following output.<br /><pre class="output">&gt;&gt;&gt;&gt;&gt;&gt;dev</pre><div><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can use the <b><a
+        href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/core/env/Environment.html"
+        target="_blank">Environment</a> interface</b>&nbsp;in package <b>org.springframework.core.env</b> to get the
+    current profiles in spring application.<br/><br/>You can make use of the following methods to get the information
+    about the profiles.<br/><br/>
+    <ul style="text-align: left;">
+        <li><b>acceptsProfiles(String ...profiles)</b>&nbsp;- returns if the profiles given in input is active.</li>
+        <li><b>getActiveProfiles()</b>&nbsp;- Gives a list of profiles explicitly made active for this enviornment.</li>
+        <li><b>getDefaultProfiles()</b>&nbsp;- gives a set of profiles to be active by default if no active profile is
+            set explicitly.
+        </li>
+    </ul>
+    <a href="http:/#" target="_blank">See how to set and configure profiles in spring.</a><br/><a href="http:/#"
+                                                                                                  target="_blank"><br/></a><a
+            href="http://www.ekiras.com/2016/06/springboot-what-are-profiles-in-spring.html" target="_blank">Must Read
+        :: What are profiles in Spring boot.</a><br/>
+    <h2>How to get Active Profiles in an Environment</h2>All you need to do is<br/><br/>
+    <ul style="text-align: left;">
+        <li><b>autowire</b>&nbsp;the Environmnet bean.</li>
+        <li>call the getActiveProfiles method of the bean.</li>
+    </ul>
+    <pre class="brush:java;highlight:[5,10,13,14,15];">package com.ekiras.config;<br/><br/>import org.springframework.stereotype.Component;<br/>import org.springframework.beans.factory.annotation.Autowired;<br/>import org.springframework.core.env.Environment;<br/><br/>@Component<br/>class Test {<br/><br/>  @Autowired private Environment environment;<br/><br/>  public void test(){<br/>     for(String profile : environment.getActiveProfiles()){<br/>            System.out.println("&gt;&gt;&gt;&gt;&gt;&gt;"+profile);<br/>        }<br/>  }<br/><br/>}</pre>
+    When the above method is called it will give the following output.<br/>
+    <pre class="output">&gt;&gt;&gt;&gt;&gt;&gt;dev</pre>
+    <div><br/></div>
+</div>

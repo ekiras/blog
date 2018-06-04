@@ -12,4 +12,18 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/02/how-to-disable-application-
 redirect_from: "/2016/02/how-to-disable-application-banner-in-spring-boot.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to disable the Application Banner&nbsp;</h2>You can disable the application banner using the following ways <br /><ul><li>You can diable by adding following in <b>application.properties</b> file <br /><br /><pre>spring.main.web_environment=false<br />spring.main.banner_mode=off<br /></pre></li><li>You can disable the same by adding the following code to your main Application class.<br /><br /><pre>    public static void main(String[] args) {<br />        new SpringApplicationBuilder()<br />                .showBanner(false)<br />                .sources(Application.class)<br />                .run(args);<br />    }<br /></pre></li></ul>By following any of the above steps you can disable the banner in the spring boot application.<br /><br /><div class="alert alert-info"><b>Note :: </b><a href="http://www.ekiras.com/2016/02/adding-custom-banner-in-springboot-application.html" target="_blank"> How to add Custom Banner in Spring Boot Application.</a></div><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to disable the Application Banner&nbsp;</h2>You can disable
+    the application banner using the following ways <br/>
+    <ul>
+        <li>You can diable by adding following in <b>application.properties</b> file <br/><br/>
+            <pre>spring.main.web_environment=false<br/>spring.main.banner_mode=off<br/></pre>
+        </li>
+        <li>You can disable the same by adding the following code to your main Application class.<br/><br/>
+            <pre>    public static void main(String[] args) {<br/>        new SpringApplicationBuilder()<br/>                .showBanner(false)<br/>                .sources(Application.class)<br/>                .run(args);<br/>    }<br/></pre>
+        </li>
+    </ul>
+    By following any of the above steps you can disable the banner in the spring boot application.<br/><br/>
+    <div class="alert alert-info"><b>Note :: </b><a
+            href="http://www.ekiras.com/2016/02/adding-custom-banner-in-springboot-application.html" target="_blank">
+        How to add Custom Banner in Spring Boot Application.</a></div>
+    <br/></div>

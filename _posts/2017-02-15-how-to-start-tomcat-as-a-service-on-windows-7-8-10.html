@@ -13,4 +13,24 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/02/how-to-start-tomcat-as-a-se
 redirect_from: "/2017/02/how-to-start-tomcat-as-a-service-on-windows-7-8-10.html"
 ---
 
-<div class="markdown"><h2>Step 1 : Download and Extract tomcat</h2>&#10;<p><a href="http://tomcat.apache.org/index.html">Download tomcat</a> from the link in <code>.zip</code> format. Once download is complete extract the tomcat in the location you want, preferably <code>C:\Tomcat\</code>.<br>&#10;<img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-1.png" alt="Tomcat extract"></p>&#10;<h2>Step 2 : Install Tomcat as a Service</h2>&#10;<p>Go to the tomcat directory <code>C:\Tomcat\bin</code>. in the address bar write <code>cmd</code>. This will open the command prompt window.<br>&#10;<img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-2.png" alt="Tomcat extract"></p>&#10;<p>Now in the command prompt window type the command</p>&#10;<pre class="hljs"><code>service.bat install &lt;Service -Name&gt;&#10;</code></pre>&#10;<p>Here <code>&lt;Service-Name&gt;</code> can be any name that you want to assign to your Service.</p>&#10;<p><img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-3.png" alt="Tomcat extract"></p>&#10;<p>When you run this command you will see the following output.</p>&#10;<p><img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-4.png" alt="Tomcat extract"></p>&#10;<h2>Check the installed Service</h2>&#10;<p>Now, lets see if the service is created or not. For this open <code>Services</code> . It will give the following screen.</p>&#10;<p><img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-5.png" alt="Tomcat extract"></p>&#10;<h2>Configure Service to Run at Startup</h2>&#10;<p>We can make the service to run on windows startup, for this, open the Service setting by double click on the service. It will open the following screen</p>&#10;<p><img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-6.png" alt="Tomcat extract"></p>&#10;<p>From the dropdown <code>Startup type</code> select <code>Automatic</code> . This will start the service when <code>Windows</code> starts/boots.</p>&#10;</div>
+<div class="markdown"><h2>Step 1 : Download and Extract tomcat</h2>&#10;<p><a
+        href="http://tomcat.apache.org/index.html">Download tomcat</a> from the link in <code>.zip</code> format. Once
+    download is complete extract the tomcat in the location you want, preferably <code>C:\Tomcat\</code>.<br>&#10;<img
+            src="http://resources.ekiras.com/images/tomcat/tomcat-ws-1.png" alt="Tomcat extract"></p>&#10;<h2>Step 2 :
+    Install Tomcat as a Service</h2>&#10;<p>Go to the tomcat directory <code>C:\Tomcat\bin</code>. in the address bar
+    write <code>cmd</code>. This will open the command prompt window.<br>&#10;<img
+            src="http://resources.ekiras.com/images/tomcat/tomcat-ws-2.png" alt="Tomcat extract"></p>&#10;<p>Now in the
+    command prompt window type the command</p>&#10;
+    <pre class="hljs"><code>service.bat install &lt;Service -Name&gt;&#10;</code></pre>
+    &#10;<p>Here <code>&lt;Service-Name&gt;</code> can be any name that you want to assign to your Service.</p>&#10;<p>
+        <img src="http://resources.ekiras.com/images/tomcat/tomcat-ws-3.png" alt="Tomcat extract"></p>&#10;<p>When you
+        run this command you will see the following output.</p>&#10;<p><img
+            src="http://resources.ekiras.com/images/tomcat/tomcat-ws-4.png" alt="Tomcat extract"></p>&#10;<h2>Check the
+        installed Service</h2>&#10;<p>Now, lets see if the service is created or not. For this open
+        <code>Services</code> . It will give the following screen.</p>&#10;<p><img
+            src="http://resources.ekiras.com/images/tomcat/tomcat-ws-5.png" alt="Tomcat extract"></p>&#10;<h2>Configure
+        Service to Run at Startup</h2>&#10;<p>We can make the service to run on windows startup, for this, open the
+        Service setting by double click on the service. It will open the following screen</p>&#10;<p><img
+            src="http://resources.ekiras.com/images/tomcat/tomcat-ws-6.png" alt="Tomcat extract"></p>&#10;<p>From the
+        dropdown <code>Startup type</code> select <code>Automatic</code> . This will start the service when <code>Windows</code>
+        starts/boots.</p>&#10;</div>

@@ -13,4 +13,16 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/10/java-how-to-check-if-field-
 redirect_from: "/2015/10/java-how-to-check-if-field-of-class-is-final-by-reflection.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>You can use <b>Reflection</b>&nbsp;to check if the field of a class is final or not.</li><li>You need to get the modifiers of the field to check if the field is final</li></ul><br /><h2>How to check if the field of a class is final by Reflection</h2>The following is the only way to check if the field is final or not <br /><br /><pre>field.getModifiers()&amp; Modifier.FINAL) == Modifier.FINAL </pre><br />Following program shows how to get the final fields from a class.<br /><br /><pre class="brush:java;highlight:[11]">package com.ekiras.demo;<br /><br />import java.lang.reflect.Field;<br />import java.lang.reflect.Modifier;<br /><br />public class Test {<br /> <br /> public static void main(String args[]){<br />  Field[] fields = Person.class.getDeclaredFields();<br />  for(Field field : fields){<br />   if((field.getModifiers()&amp; Modifier.FINAL) == Modifier.FINAL ){<br />    System.out.println("final field :: " + field.getName());<br />   }<br />  } <br /> } <br />}<br /><br />class Person{<br /> public static final int someConstant = 2;<br /> private String name;<br /> private String email;<br /> <br /> public String getName() {<br />  return name;<br /> }<br /> public void setName(String name) {<br />  this.name = name;<br /> }<br /> public String getEmail() {<br />  return email;<br /> }<br /> public void setEmail(String email) {<br />  this.email = email;<br /> }<br /> <br /> <br /> <br /> <br />}<br /></pre><div><br /></div><br /><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>You can use <b>Reflection</b>&nbsp;to check if the field of a class is final or not.</li>
+        <li>You need to get the modifiers of the field to check if the field is final</li>
+    </ul>
+    <br/>
+    <h2>How to check if the field of a class is final by Reflection</h2>The following is the only way to check if the
+    field is final or not <br/><br/>
+    <pre>field.getModifiers()&amp; Modifier.FINAL) == Modifier.FINAL </pre>
+    <br/>Following program shows how to get the final fields from a class.<br/><br/>
+    <pre class="brush:java;highlight:[11]">package com.ekiras.demo;<br/><br/>import java.lang.reflect.Field;<br/>import java.lang.reflect.Modifier;<br/><br/>public class Test {<br/> <br/> public static void main(String args[]){<br/>  Field[] fields = Person.class.getDeclaredFields();<br/>  for(Field field : fields){<br/>   if((field.getModifiers()&amp; Modifier.FINAL) == Modifier.FINAL ){<br/>    System.out.println("final field :: " + field.getName());<br/>   }<br/>  } <br/> } <br/>}<br/><br/>class Person{<br/> public static final int someConstant = 2;<br/> private String name;<br/> private String email;<br/> <br/> public String getName() {<br/>  return name;<br/> }<br/> public void setName(String name) {<br/>  this.name = name;<br/> }<br/> public String getEmail() {<br/>  return email;<br/> }<br/> public void setEmail(String email) {<br/>  this.email = email;<br/> }<br/> <br/> <br/> <br/> <br/>}<br/></pre>
+    <div><br/></div>
+    <br/><br/></div>

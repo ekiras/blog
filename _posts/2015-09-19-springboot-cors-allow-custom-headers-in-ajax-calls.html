@@ -15,4 +15,14 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/09/springboot-cors-allow-custo
 redirect_from: "/2015/09/springboot-cors-allow-custom-headers-in-ajax-calls.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>Add the comma separated Headers (standard and Custom headers)<br /><h2>CORs Allow Custom Headers in Ajax calls</h2><pre class="brush:js;"><br />$.ajax({<br />  method : 'POST',<br />  url    : 'url',<br />  headers: {'Custom-Header-1':'h1','Custom-Header-2':'h2'},<br />  success: function(data){},<br />  error  : function(error){}<br /><br />});<br /></pre><pre class="brush:java;highlight:[]9" style="text-align: left;">@Component<br />public class CorsFilter implements Filter {<br /><br />    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {<br />        HttpServletResponse response = (HttpServletResponse) res;<br />        response.setHeader("Access-Control-Allow-Origin", "*");<br />        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");<br />        response.setHeader("Access-Control-Max-Age", "3600");<br />        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Custom-Header-1 , Custom-Header-2, X-Auth-Token");<br />        chain.doFilter(req, res);<br />    }<br /><br />    public void init(FilterConfig filterConfig) {}<br /><br />    public void destroy() {}<br /><br />}<br /><br /></pre><br /><ul><li>Add the above filter in your spring boot application.</li><li>Add the comma separated headers at line 9 (highlighted)</li></ul></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>Add the comma separated Headers
+    (standard and Custom headers)<br/>
+    <h2>CORs Allow Custom Headers in Ajax calls</h2>
+    <pre class="brush:js;"><br/>$.ajax({<br/>  method : 'POST',<br/>  url    : 'url',<br/>  headers: {'Custom-Header-1':'h1','Custom-Header-2':'h2'},<br/>  success: function(data){},<br/>  error  : function(error){}<br/><br/>});<br/></pre>
+    <pre class="brush:java;highlight:[]9" style="text-align: left;">@Component<br/>public class CorsFilter implements Filter {<br/><br/>    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {<br/>        HttpServletResponse response = (HttpServletResponse) res;<br/>        response.setHeader("Access-Control-Allow-Origin", "*");<br/>        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");<br/>        response.setHeader("Access-Control-Max-Age", "3600");<br/>        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Custom-Header-1 , Custom-Header-2, X-Auth-Token");<br/>        chain.doFilter(req, res);<br/>    }<br/><br/>    public void init(FilterConfig filterConfig) {}<br/><br/>    public void destroy() {}<br/><br/>}<br/><br/></pre>
+    <br/>
+    <ul>
+        <li>Add the above filter in your spring boot application.</li>
+        <li>Add the comma separated headers at line 9 (highlighted)</li>
+    </ul>
+</div>

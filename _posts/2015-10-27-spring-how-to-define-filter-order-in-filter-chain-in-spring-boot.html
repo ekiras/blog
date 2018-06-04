@@ -14,4 +14,17 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/10/spring-how-to-define-filter
 redirect_from: "/2015/10/spring-how-to-define-filter-order-in-filter-chain-in-spring-boot.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>From Spring boot version you can define the order of your filters by defining order for your filters using <b>@Order</b> annotation. <br />You can use @Order annotation as follows to make a filter to be first in the filter chain.<br /><br /><pre>@Order(1)</pre><h2>How to define Filter order in Filter Chain in Spring Boot</h2>Following is the example where we have registered two filters  <br /><br /><ul style="text-align: left;"><li><b>Security Filter</b> -  To block unauthorized requests</li><li><b>Tracking Filter</b> - To log each request coming to the server</li></ul><br /><script src="https://gist.github.com/gitekiras/f127fd6c8a2b4a223b2c.js"></script> <pre class="output">###### security filter<br />###### tracking filter</pre></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>From Spring boot version you can define
+    the order of your filters by defining order for your filters using <b>@Order</b> annotation. <br/>You can use @Order
+    annotation as follows to make a filter to be first in the filter chain.<br/><br/>
+    <pre>@Order(1)</pre>
+    <h2>How to define Filter order in Filter Chain in Spring Boot</h2>Following is the example where we have registered
+    two filters <br/><br/>
+    <ul style="text-align: left;">
+        <li><b>Security Filter</b> - To block unauthorized requests</li>
+        <li><b>Tracking Filter</b> - To log each request coming to the server</li>
+    </ul>
+    <br/>
+    <script src="https://gist.github.com/gitekiras/f127fd6c8a2b4a223b2c.js"></script>
+    <pre class="output">###### security filter<br/>###### tracking filter</pre>
+</div>

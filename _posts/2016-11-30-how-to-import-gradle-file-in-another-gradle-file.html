@@ -13,4 +13,21 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/11/how-to-import-gradle-file-i
 redirect_from: "/2016/11/how-to-import-gradle-file-in-another-gradle-file.html"
 ---
 
-<div class='markdown'><h2>How to Import Gradle file in another gradle file.</h2><p>To import a gradle file in a gradle file you can use the following command in <code>.gradle</code>.</p><p>We have a gradle file <code>build.gradle</code> and we are including two other gradle files <code>tasks.gradle</code> and <code>test.gradle</code>.</p><pre><code>apply from : 'tasks.gradle'<br />apply from : 'https://ekiras.github.io/temp/test.gradle'<br /></code></pre><p>Here, in line 1, we have imported <code>tasks.gradle</code> which lies in the same directory as <code>build.gradle</code> and in line 2 we have imported a <code>test.gradle</code> from a remote server. (Git hub pages in this case, it can be an s3 url or your server file url)</p><h2>Test Imported gradle file task</h2><p><code>build.gradle</code> has the following content</p><pre><code>group 'com.ekiras'<br />version '1.0-SNAPSHOT'<br /><br />apply plugin: 'java'<br />apply from : 'tasks.gradle'<br />apply from : 'https://ekiras.github.io/temp/test.gradle'<br /><br />sourceCompatibility = 1.8<br /><br />repositories {<br />    mavenCentral()<br />}<br /><br />dependencies {<br />    testCompile group: 'junit', name: 'junit', version: '4.11'<br />}<br /><br /></code></pre><p><code>tasks.gradle</code> has the following contents</p><pre><code>task hello{<br />    println "Hello World"<br />}<br /></code></pre><p>We can now run the task <code>hello</code> with the following command</p><pre><code>gradle -q hello<br /></code></pre><p>It will give the following output.</p><pre class="output">Hello World<br /></pre></div>
+<div class='markdown'><h2>How to Import Gradle file in another gradle file.</h2>
+    <p>To import a gradle file in a gradle file you can use the following command in <code>.gradle</code>.</p>
+    <p>We have a gradle file <code>build.gradle</code> and we are including two other gradle files
+        <code>tasks.gradle</code> and <code>test.gradle</code>.</p>
+    <pre><code>apply from : 'tasks.gradle'<br/>apply from : 'https://ekiras.github.io/temp/test.gradle'<br/></code></pre>
+    <p>Here, in line 1, we have imported <code>tasks.gradle</code> which lies in the same directory as <code>build.gradle</code>
+        and in line 2 we have imported a <code>test.gradle</code> from a remote server. (Git hub pages in this case, it
+        can be an s3 url or your server file url)</p>
+    <h2>Test Imported gradle file task</h2>
+    <p><code>build.gradle</code> has the following content</p>
+    <pre><code>group 'com.ekiras'<br/>version '1.0-SNAPSHOT'<br/><br/>apply plugin: 'java'<br/>apply from : 'tasks.gradle'<br/>apply from : 'https://ekiras.github.io/temp/test.gradle'<br/><br/>sourceCompatibility = 1.8<br/><br/>repositories {<br/>    mavenCentral()<br/>}<br/><br/>dependencies {<br/>    testCompile group: 'junit', name: 'junit', version: '4.11'<br/>}<br/><br/></code></pre>
+    <p><code>tasks.gradle</code> has the following contents</p>
+    <pre><code>task hello{<br/>    println "Hello World"<br/>}<br/></code></pre>
+    <p>We can now run the task <code>hello</code> with the following command</p>
+    <pre><code>gradle -q hello<br/></code></pre>
+    <p>It will give the following output.</p>
+    <pre class="output">Hello World<br/></pre>
+</div>

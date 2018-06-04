@@ -14,4 +14,59 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/10/how-to-generate-ssh-key-in-
 redirect_from: "/2016/10/how-to-generate-ssh-key-in-windows-for-git.html"
 ---
 
-<div class='markdown'><h2>Points to Remember</h2><ol><li>Download and install <strong>Puttygen</strong> to generate the SSH key to be used in GIT.</li><li>Save the Private Key in a safe location and do not miss it.</li></ol><h2>STEP 1 : Open Puttygen to generate Key</h2><p>Puttygen is a opensource plugin of Putty and is used to create Public/Private keys for WinSCP.</p><p>When you open the puttygen you will see the following screen as shown in image below</p><p><img src="http://resources.ekiras.com/images/git/windows/1.png" alt="Open Puttygen"></p><p>Now Select the following</p><ol><li>Select SSH-2 RSA (Type of key to generate tabs)</li><li>1024 (Number of bits to use to generate key)</li><li>Click Generate button to generate the key.</li></ol><h2>STEP 2 : Generating Key</h2><p>After you click the generate button you will see the following screen</p><p><img src="http://resources.ekiras.com/images/git/windows/2.png" alt="Open Puttygen"><strong>Keep clicking on the empty space provided until progress bar reaches the end</strong> This is used to create randomness in the key. Once the progress bar reaches the end, it will show the generated key.</p><h2>STEP 3 : Save Public &amp; Private Keys</h2><p>Once your key is generated you will see the public key in the text box at the top as shown in the image below.</p><p><img src="http://resources.ekiras.com/images/git/windows/3.png" alt="Open Puttygen"></p><p>The screen shows the following things.</p><ol><li>Public key at top.</li><li>Key fingerprint used to create the key.</li><li>Key Phrase. You can add a password to your generated key. If you add password to the key then you have to enter the password/key phrase everytime you do ssh. This is extra security to the key however you can keep it empty, if you are sure nobody can copy the key from your system.</li></ol><p>Click on <strong>Save private Key</strong> &amp; <strong>Save public Key</strong> to save the keys.</p><blockquote><p>Save the private key in a safe directory or location. If you miss this private key you will not be able to use ssh.</p><p>Private key is saved in the <strong>.ppk</strong> format on windows. Do not change the extension of the file</p></blockquote><h2>STEP 4 : Load Private Key to Puttygen</h2><p>You can load the saved private key in Step 3 to view the public key. You will see the following screen when you click on <strong>Load</strong><img src="http://resources.ekiras.com/images/git/windows/4.png" alt="Open Puttygen"></p><p>Just select the saved private key and you will be able to see the public key.</p><h2>STEP 5 : Use Public Key</h2><p>Right click on the public key textbox<br><img src="http://resources.ekiras.com/images/git/windows/5.png" alt="Open Puttygen"></p><p>Click on Select All to select the the public key and then copy the Public Key for the nect step.<br><img src="http://resources.ekiras.com/images/git/windows/6.png" alt="Open Puttygen"></p><h2>Step 6 : Adding Public key in GIT for SSH</h2><p>Open your Github account and go to profile settings, then click on SSH and GPG keys tab.<br><img src="http://resources.ekiras.com/images/git/windows/7.png" alt="Open Puttygen"></p><p>Click on the New SSH Key button as shown in the image below<br><img src="http://resources.ekiras.com/images/git/windows/8.png" alt="Open Puttygen"></p><p>Add the Key title in the title box and public key generated in previous steps in the space with label key and finally save by clicking on <strong>Add SSH key</strong> button in green.<br><img src="http://resources.ekiras.com/images/git/windows/9.png" alt="Open Puttygen"></p></div>
+<div class='markdown'><h2>Points to Remember</h2>
+    <ol>
+        <li>Download and install <strong>Puttygen</strong> to generate the SSH key to be used in GIT.</li>
+        <li>Save the Private Key in a safe location and do not miss it.</li>
+    </ol>
+    <h2>STEP 1 : Open Puttygen to generate Key</h2>
+    <p>Puttygen is a opensource plugin of Putty and is used to create Public/Private keys for WinSCP.</p>
+    <p>When you open the puttygen you will see the following screen as shown in image below</p>
+    <p><img src="http://resources.ekiras.com/images/git/windows/1.png" alt="Open Puttygen"></p>
+    <p>Now Select the following</p>
+    <ol>
+        <li>Select SSH-2 RSA (Type of key to generate tabs)</li>
+        <li>1024 (Number of bits to use to generate key)</li>
+        <li>Click Generate button to generate the key.</li>
+    </ol>
+    <h2>STEP 2 : Generating Key</h2>
+    <p>After you click the generate button you will see the following screen</p>
+    <p><img src="http://resources.ekiras.com/images/git/windows/2.png" alt="Open Puttygen"><strong>Keep clicking on the
+        empty space provided until progress bar reaches the end</strong> This is used to create randomness in the key.
+        Once the progress bar reaches the end, it will show the generated key.</p>
+    <h2>STEP 3 : Save Public &amp; Private Keys</h2>
+    <p>Once your key is generated you will see the public key in the text box at the top as shown in the image
+        below.</p>
+    <p><img src="http://resources.ekiras.com/images/git/windows/3.png" alt="Open Puttygen"></p>
+    <p>The screen shows the following things.</p>
+    <ol>
+        <li>Public key at top.</li>
+        <li>Key fingerprint used to create the key.</li>
+        <li>Key Phrase. You can add a password to your generated key. If you add password to the key then you have to
+            enter the password/key phrase everytime you do ssh. This is extra security to the key however you can keep
+            it empty, if you are sure nobody can copy the key from your system.
+        </li>
+    </ol>
+    <p>Click on <strong>Save private Key</strong> &amp; <strong>Save public Key</strong> to save the keys.</p>
+    <blockquote><p>Save the private key in a safe directory or location. If you miss this private key you will not be
+        able to use ssh.</p>
+        <p>Private key is saved in the <strong>.ppk</strong> format on windows. Do not change the extension of the file
+        </p></blockquote>
+    <h2>STEP 4 : Load Private Key to Puttygen</h2>
+    <p>You can load the saved private key in Step 3 to view the public key. You will see the following screen when you
+        click on <strong>Load</strong><img src="http://resources.ekiras.com/images/git/windows/4.png"
+                                           alt="Open Puttygen"></p>
+    <p>Just select the saved private key and you will be able to see the public key.</p>
+    <h2>STEP 5 : Use Public Key</h2>
+    <p>Right click on the public key textbox<br><img src="http://resources.ekiras.com/images/git/windows/5.png"
+                                                     alt="Open Puttygen"></p>
+    <p>Click on Select All to select the the public key and then copy the Public Key for the nect step.<br><img
+            src="http://resources.ekiras.com/images/git/windows/6.png" alt="Open Puttygen"></p>
+    <h2>Step 6 : Adding Public key in GIT for SSH</h2>
+    <p>Open your Github account and go to profile settings, then click on SSH and GPG keys tab.<br><img
+            src="http://resources.ekiras.com/images/git/windows/7.png" alt="Open Puttygen"></p>
+    <p>Click on the New SSH Key button as shown in the image below<br><img
+            src="http://resources.ekiras.com/images/git/windows/8.png" alt="Open Puttygen"></p>
+    <p>Add the Key title in the title box and public key generated in previous steps in the space with label key and
+        finally save by clicking on <strong>Add SSH key</strong> button in green.<br><img
+                src="http://resources.ekiras.com/images/git/windows/9.png" alt="Open Puttygen"></p></div>

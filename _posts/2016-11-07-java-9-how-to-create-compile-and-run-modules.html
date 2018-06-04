@@ -14,4 +14,93 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/11/java-9-how-to-create-compil
 redirect_from: "/2016/11/java-9-how-to-create-compile-and-run-modules.html"
 ---
 
-<div class='markdown'><h2>What is a Module in Java 9 ?</h2><p>Java Modules are a part of <a href="http://www.ekiras.com/2016/11/java-9-what-is-project-jigsaw.html">Project Jigsaw</a>.</p><p>A module is a <strong>named, self-describing collection of code and data</strong>. Its code is <strong>organized as a set of packages</strong> containing types, i.e., Java classes and interfaces; its data includes resources and other kinds of static information.</p><h2>What are the Type of Modules in Java 9 ?</h2><p>There are two types of Java Modules</p><ol><li><strong>Java Standard Modules</strong>, they start with string <code>java.</code></li><li><strong>Java Non-Standard Modules</strong>, they start with string <code>jdk.</code></li></ol><h2>Creating a Custom Module.</h2><p>We can make the following types of modules</p><ol><li>Module that is independent of all other modules.</li><li>Module that requires other modules as dependencies.</li><li>Module that exports itself for use by other packages.</li><li>Module that imports some modules and exports some packages for other modules to use.</li></ol><blockquote><p><strong>Note</strong><br>When we are exporting the packages in modules, only the publically expoted modules are available to use by other modules.(We will get to this later in the post.)</p></blockquote><p>A simple module that does not imports or exports any module may look as follows.</p><pre><code class="language-java">module com.ekiras { }<br /></code></pre><h2>Creating an Independent Module</h2><h4>In this example we will be creating a simple module that will pring Hello World.</h4><p>We will create two file for this example</p><pre><code>src/com.ekiras/com/ekiras/Main.java<br />src/com.ekiras/module-info.java<br /></code></pre><p>Here, we will add the following code to the files.</p><p><strong>module-info.java</strong></p><hr><pre><code class="language-java">module com.ekiras{<br /><br />}<br /></code></pre><p>This module definition means that</p><ol><li>This module does not require any module to build itself.</li><li>This module does not exports any thing for other modules to use.</li></ol><p><strong>Main.java</strong></p><hr><pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras;<br /><br /><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span></span>{<br />  <br />  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String args[])</span></span>{<br />   System.out.println(<span class="hljs-string">"Hello World by Ekiras"</span>);<br />  }<br /><br />}<br /></code></pre><p>We will compile our code outside the src directory in mods folder (It can be any directory, if you specify any other directory just replace your directory name with mods for the rest of the post.)</p><p>Your directory structure should look as follows</p><pre><code>|-path/<br />   |-mods/<br />     |-com.ekiras/<br />   |-src/<br />     |-com.ekiras/<br />       |-com/<br />         |-ekiras/<br />            |-Main.java<br />       |-module-info.java<br /></code></pre><p>Now, we will compile our module with the following command,</p><pre><code class="language-java">javac -d mods/com.ekiras/ src/com.ekiras/module-info.java src/com.ekiras/com/ekiras/Main.java <br /></code></pre><p>Make sure you run this command from <strong>path/</strong> and not anywhere inside this directory(or else you can change this command as required).</p><p>This will generate the following classes in <strong>mods/com.ekiras/</strong> folder.</p><pre><code>|-path<br />   |-com.ekiras/<br />     |-module-info.class<br />     |-com/<br />       |-ekiras/<br />         |-Main.class<br /></code></pre><p>Now, lets run this our first module with the following command</p><pre><code class="language-java">java --module-path mods -m com.ekiras/com.ekiras.Main<br /></code></pre><div class="output">Hello World by Ekiras</div><blockquote><p><strong>Note</strong></p><p><strong>--modue-path</strong> : This refers to the path where module has been compiled. It is mandatory. Since we are running this from path "path/" we have given mods as the path. If we were running this from path  "path/mods/", then our path would have been <code>--module-path .</code></p><p><strong>-m or --module</strong> : This refers to the module that we are going to run. Its param is <code>module.name/package.MainClass</code>.</p></blockquote><h2>How to Package a module</h2><p>Now we will be packaging our module to a Jar file. To create a jar file we will use the <code>jar</code> tool of java. We can create a jar file with the following command.</p><pre><code class="language-java">jar --create --file libs/com.ekiras.jar --module-version=<span class="hljs-number">1.0</span> --main-<span class="hljs-class"><span class="hljs-keyword">class</span></span>=com.ekiras.Main -C mods/com.ekiras .<br /></code></pre><h2>Check the Jar Module Description</h2><pre><code>jar --print-module-descriptor --file=libs/com.ekiras.jar<br /></code></pre><p>This will result in the following output</p><pre class="output">com.ekiras@1.0<br />  requires mandated java.base<br />  contains com.ekiras<br />  main-class com.ekiras.Main<br /></pre><p>The above output states the following</p><ol><li>modulename is com.ekiras</li><li>version is 1.0</li><li>it requires the mandatory <code>java.base module</code>, since all modules are build on this module as a base.</li><li>main class of the module is <code>com.ekiras.Main</code></li></ol><h2>Run the jar file</h2><p>Now, we can run the jar file with the following command</p><pre><code>java -p libs -m com.ekiras<br /></code></pre><p>This will result in the following output, also in this case we do not have to specify the Main class.</p><div class="output">Hello World by Ekiras</div><div class="download"><a href="https://github.com/ekiras/java-9/tree/master/modules/independent-module">Download from GITHUB</a></div></div>
+<div class='markdown'><h2>What is a Module in Java 9 ?</h2>
+    <p>Java Modules are a part of <a href="http://www.ekiras.com/2016/11/java-9-what-is-project-jigsaw.html">Project
+        Jigsaw</a>.</p>
+    <p>A module is a <strong>named, self-describing collection of code and data</strong>. Its code is <strong>organized
+        as a set of packages</strong> containing types, i.e., Java classes and interfaces; its data includes resources
+        and other kinds of static information.</p>
+    <h2>What are the Type of Modules in Java 9 ?</h2>
+    <p>There are two types of Java Modules</p>
+    <ol>
+        <li><strong>Java Standard Modules</strong>, they start with string <code>java.</code></li>
+        <li><strong>Java Non-Standard Modules</strong>, they start with string <code>jdk.</code></li>
+    </ol>
+    <h2>Creating a Custom Module.</h2>
+    <p>We can make the following types of modules</p>
+    <ol>
+        <li>Module that is independent of all other modules.</li>
+        <li>Module that requires other modules as dependencies.</li>
+        <li>Module that exports itself for use by other packages.</li>
+        <li>Module that imports some modules and exports some packages for other modules to use.</li>
+    </ol>
+    <blockquote><p><strong>Note</strong><br>When we are exporting the packages in modules, only the publically expoted
+        modules are available to use by other modules.(We will get to this later in the post.)</p></blockquote>
+    <p>A simple module that does not imports or exports any module may look as follows.</p>
+    <pre><code class="language-java">module com.ekiras { }<br/></code></pre>
+    <h2>Creating an Independent Module</h2><h4>In this example we will be creating a simple module that will pring Hello
+        World.</h4>
+    <p>We will create two file for this example</p>
+    <pre><code>src/com.ekiras/com/ekiras/Main.java<br/>src/com.ekiras/module-info.java<br/></code></pre>
+    <p>Here, we will add the following code to the files.</p>
+    <p><strong>module-info.java</strong></p>
+    <hr>
+    <pre><code class="language-java">module com.ekiras{<br/><br/>}<br/></code></pre>
+    <p>This module definition means that</p>
+    <ol>
+        <li>This module does not require any module to build itself.</li>
+        <li>This module does not exports any thing for other modules to use.</li>
+    </ol>
+    <p><strong>Main.java</strong></p>
+    <hr>
+    <pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras;<br/><br/><span
+            class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Main</span></span>{<br/>  <br/>  <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span
+            class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span
+            class="hljs-title">main</span><span class="hljs-params">(String args[])</span></span>{<br/>   System.out.println(<span
+            class="hljs-string">"Hello World by Ekiras"</span>);<br/>  }<br/><br/>}<br/></code></pre>
+    <p>We will compile our code outside the src directory in mods folder (It can be any directory, if you specify any
+        other directory just replace your directory name with mods for the rest of the post.)</p>
+    <p>Your directory structure should look as follows</p>
+    <pre><code>|-path/<br/>   |-mods/<br/>     |-com.ekiras/<br/>   |-src/<br/>     |-com.ekiras/<br/>       |-com/<br/>         |-ekiras/<br/>            |-Main.java<br/>       |-module-info.java<br/></code></pre>
+    <p>Now, we will compile our module with the following command,</p>
+    <pre><code class="language-java">javac -d mods/com.ekiras/ src/com.ekiras/module-info.java src/com.ekiras/com/ekiras/Main.java <br/></code></pre>
+    <p>Make sure you run this command from <strong>path/</strong> and not anywhere inside this directory(or else you can
+        change this command as required).</p>
+    <p>This will generate the following classes in <strong>mods/com.ekiras/</strong> folder.</p>
+    <pre><code>|-path<br/>   |-com.ekiras/<br/>     |-module-info.class<br/>     |-com/<br/>       |-ekiras/<br/>         |-Main.class<br/></code></pre>
+    <p>Now, lets run this our first module with the following command</p>
+    <pre><code class="language-java">java --module-path mods -m com.ekiras/com.ekiras.Main<br/></code></pre>
+    <div class="output">Hello World by Ekiras</div>
+    <blockquote><p><strong>Note</strong></p>
+        <p><strong>--modue-path</strong> : This refers to the path where module has been compiled. It is mandatory.
+            Since we are running this from path "path/" we have given mods as the path. If we were running this from
+            path "path/mods/", then our path would have been <code>--module-path .</code></p>
+        <p><strong>-m or --module</strong> : This refers to the module that we are going to run. Its param is <code>module.name/package.MainClass</code>.
+        </p></blockquote>
+    <h2>How to Package a module</h2>
+    <p>Now we will be packaging our module to a Jar file. To create a jar file we will use the <code>jar</code> tool of
+        java. We can create a jar file with the following command.</p>
+    <pre><code class="language-java">jar --create --file libs/com.ekiras.jar --module-version=<span class="hljs-number">1.0</span> --main-<span
+            class="hljs-class"><span class="hljs-keyword">class</span></span>=com.ekiras.Main -C mods/com.ekiras .<br/></code></pre>
+    <h2>Check the Jar Module Description</h2>
+    <pre><code>jar --print-module-descriptor --file=libs/com.ekiras.jar<br/></code></pre>
+    <p>This will result in the following output</p>
+    <pre class="output">com.ekiras@1.0<br/>  requires mandated java.base<br/>  contains com.ekiras<br/>  main-class com.ekiras.Main<br/></pre>
+    <p>The above output states the following</p>
+    <ol>
+        <li>modulename is com.ekiras</li>
+        <li>version is 1.0</li>
+        <li>it requires the mandatory <code>java.base module</code>, since all modules are build on this module as a
+            base.
+        </li>
+        <li>main class of the module is <code>com.ekiras.Main</code></li>
+    </ol>
+    <h2>Run the jar file</h2>
+    <p>Now, we can run the jar file with the following command</p>
+    <pre><code>java -p libs -m com.ekiras<br/></code></pre>
+    <p>This will result in the following output, also in this case we do not have to specify the Main class.</p>
+    <div class="output">Hello World by Ekiras</div>
+    <div class="download"><a href="https://github.com/ekiras/java-9/tree/master/modules/independent-module">Download
+        from GITHUB</a></div>
+</div>

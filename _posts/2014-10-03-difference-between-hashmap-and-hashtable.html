@@ -4,11 +4,62 @@ exclude: true
 title: Difference Between HashMap and HashTable
 date: '2014-10-03T18:24:00.000+05:30'
 author: Ekansh Rastogi
-tags: 
+tags:
 modified_time: '2014-10-03T18:24:04.294+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-8667587362251340249
 blogger_orig_url: http://ekiras.blogspot.com/2014/10/difference-between-hashmap-and-hashtable.html
 redirect_from: "/2014/10/difference-between-hashmap-and-hashtable.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>HashTable have the legacy code and were introduced before HashMaps.</li><li>There is nothing in a HashTable that a HashMap cannot do except multithreading.</li><li>ConcurrentHashMap is a replacement for HashTable, it a synchronized HashMap.</li></ul><div class="hl-note"><b>Differences : HashMap and HashTable&nbsp;</b></div><table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;"><tbody><tr><th width="50%">HashMap</th><th width="50%">HashTable</th></tr><tr><td>They implement Map Interface.</td><td>It extends Dictionary(obsolete from jdk 1.7) class and implements Map interface</td></tr><tr><td>They are a part of Collections API</td><td>They are not a part of Collections API</td></tr><tr><td>They allow a single null key and any number of null values.</td><td>They do not allow null values to be added.</td></tr><tr><td>They are not synchronized or thread-safe</td><td>They are synchronized or thread-safe</td></tr><tr><td>They use Iterator to iterate over objects</td><td>They use Enumeration to iterate over objects</td></tr><tr><td>They are faster and uses less memory</td><td>They are comparatively slower.</td></tr></tbody></table><div class="hl-note"><b>Similarities : HashMap and HashTable&nbsp;</b></div><ul style="text-align: left;"><li>Both of them implements Map interface.</li><li>Both HashMap and Hashtable works on the Principle of Hashing.</li><li>Both HashMap and HashTable do not guarantee that the order of the map will remain constant over time.</li></ul><div>I recommend not to use HashTable and use HashMap since HashMap is much faster than the HashTables and it allows you to do everything that a HashTable allows you to do. In case you are in need of using a Map in a multithreaded environment than you should go for ConcurrentHashMap. A ConcurrentHashMap provides all the functions of a HAshMap and it is also thread safe or simple multithreaded.</div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>HashTable have the legacy code and were introduced before HashMaps.</li>
+        <li>There is nothing in a HashTable that a HashMap cannot do except multithreading.</li>
+        <li>ConcurrentHashMap is a replacement for HashTable, it a synchronized HashMap.</li>
+    </ul>
+    <div class="hl-note"><b>Differences : HashMap and HashTable&nbsp;</b></div>
+    <table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;">
+        <tbody>
+        <tr>
+            <th width="50%">HashMap</th>
+            <th width="50%">HashTable</th>
+        </tr>
+        <tr>
+            <td>They implement Map Interface.</td>
+            <td>It extends Dictionary(obsolete from jdk 1.7) class and implements Map interface</td>
+        </tr>
+        <tr>
+            <td>They are a part of Collections API</td>
+            <td>They are not a part of Collections API</td>
+        </tr>
+        <tr>
+            <td>They allow a single null key and any number of null values.</td>
+            <td>They do not allow null values to be added.</td>
+        </tr>
+        <tr>
+            <td>They are not synchronized or thread-safe</td>
+            <td>They are synchronized or thread-safe</td>
+        </tr>
+        <tr>
+            <td>They use Iterator to iterate over objects</td>
+            <td>They use Enumeration to iterate over objects</td>
+        </tr>
+        <tr>
+            <td>They are faster and uses less memory</td>
+            <td>They are comparatively slower.</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="hl-note"><b>Similarities : HashMap and HashTable&nbsp;</b></div>
+    <ul style="text-align: left;">
+        <li>Both of them implements Map interface.</li>
+        <li>Both HashMap and Hashtable works on the Principle of Hashing.</li>
+        <li>Both HashMap and HashTable do not guarantee that the order of the map will remain constant over time.</li>
+    </ul>
+    <div>I recommend not to use HashTable and use HashMap since HashMap is much faster than the HashTables and it allows
+        you to do everything that a HashTable allows you to do. In case you are in need of using a Map in a
+        multithreaded environment than you should go for ConcurrentHashMap. A ConcurrentHashMap provides all the
+        functions of a HAshMap and it is also thread safe or simple multithreaded.
+    </div>
+</div>

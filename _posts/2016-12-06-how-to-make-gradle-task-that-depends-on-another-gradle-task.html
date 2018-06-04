@@ -13,4 +13,44 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/12/how-to-make-gradle-task-tha
 redirect_from: "/2016/12/how-to-make-gradle-task-that-depends-on-another-gradle-task.html"
 ---
 
-<div class="markdown"><h2>How to write a Gradle Task</h2><p>A gradle task can be written in the following two ways</p><pre><code class="language-gradle">task hello(){<br />  doLast(){<br />    println "Hello World"<br />  }<br />}<br /></code></pre><p>Or you can write a task as follows</p><pre><code>task hello &lt;&lt; {<br />   println "Hello World"<br /><br />}<br /><br /></code></pre><p>Here in example 2, <code>&lt;&lt; operator is simply an alias for doLast.</code></p><h2>Write a Gradle Task that depends on another Gadle Task</h2><p>Lets take an example of the following gradle file.</p><h3>build.gradle</h3><pre><code>task openFile(){<br />    doLast{<br />        println "Open file"<br />    }<br />}<br /><br />task readFile(dependsOn : 'openFile'){<br />    doLast{<br />        println "Read File"<br />    }<br />}<br /><br />task closeFile(dependsOn : ['openFile','readFile']){<br />    doLast{<br />        println "Close File"<br />    }<br />}<br /></code></pre><p>Here in this example, we have three tasks</p><ol><li><code>openFile</code> - that will open a file</li><li><code>readFile</code> - that will read a file</li><li><code>closeFile</code> - that will close a file.</li></ol><p>Now, for able to read from a file, we should first open a file, so <code>readFile depends on openFile</code>, also a file will be closed after reading a file so <code>closeFile task depends on both openFile and readFile</code></p><p>Now if we run the tasks, it will give the following outputs</p><pre><code class="language-bash">&gt; gradle -q openFile or gradle -q oF<br />&gt; Open file<br /><br />&gt; gradle -q <span class="hljs-built_in">read</span>File or gradle -q cF<br />&gt; Open file<br />&gt; Read File<br /><br />gradle -q closeFile or gradle -q cF<br />&gt; Open file<br />&gt; Read File<br />&gt; Close File<br /></code></pre><p>A gradle task is loaded in a lazy manner that means you can define a task anywhere in the build file. <code>The task dependency is looked in execution phase and not in configuration phase.</code></p><p>Let's check it by the following example</p><pre><code class="language-gradle"><br />// Task B does not exists here but will be resolved at runtime.<br />task A(dependsOn : 'B'){ <br />  doLast(){<br />    println "A"<br />  }<br />}<br /><br />task B(){<br />  doLast(){<br />    println "B"<br />  }<br />}<br /><br /><br /></code></pre><blockquote><p><strong>Also Read</strong></p><ul><li><a href="www.ekiras.com/p/gradle.html">Introduction to Gradle</a></li><li><a href="http://www.ekiras.com/2016/12/what-is-gradle-task-alias-short-forms.html">Gradle task Short hand notations</a></li><li><a href="http://www.ekiras.com/2016/12/how-to-run-single-or-multiple-gradle-tasks.html">How to run a specific gradle task or multiple tasks</a></li><li><a href="http://www.ekiras.com/2016/12/difference-between-dofirst-and-dolast-methods-in-gradle-task.html">Difference between doFirst() and doLast() methods</a></li><li><a href="http://www.ekiras.com/2016/12/what-is-gradle-daemon.html">What is a Gradle Daemon</a></li></ul></blockquote></div>
+<div class="markdown"><h2>How to write a Gradle Task</h2>
+    <p>A gradle task can be written in the following two ways</p>
+    <pre><code
+            class="language-gradle">task hello(){<br/>  doLast(){<br/>    println "Hello World"<br/>  }<br/>}<br/></code></pre>
+    <p>Or you can write a task as follows</p>
+    <pre><code>task hello &lt;&lt; {<br/>   println "Hello World"<br/><br/>}<br/><br/></code></pre>
+    <p>Here in example 2, <code>&lt;&lt; operator is simply an alias for doLast.</code></p>
+    <h2>Write a Gradle Task that depends on another Gadle Task</h2>
+    <p>Lets take an example of the following gradle file.</p>
+    <h3>build.gradle</h3>
+    <pre><code>task openFile(){<br/>    doLast{<br/>        println "Open file"<br/>    }<br/>}<br/><br/>task readFile(dependsOn : 'openFile'){<br/>    doLast{<br/>        println "Read File"<br/>    }<br/>}<br/><br/>task closeFile(dependsOn : ['openFile','readFile']){<br/>    doLast{<br/>        println "Close File"<br/>    }<br/>}<br/></code></pre>
+    <p>Here in this example, we have three tasks</p>
+    <ol>
+        <li><code>openFile</code> - that will open a file</li>
+        <li><code>readFile</code> - that will read a file</li>
+        <li><code>closeFile</code> - that will close a file.</li>
+    </ol>
+    <p>Now, for able to read from a file, we should first open a file, so <code>readFile depends on openFile</code>,
+        also a file will be closed after reading a file so <code>closeFile task depends on both openFile and
+            readFile</code></p>
+    <p>Now if we run the tasks, it will give the following outputs</p>
+    <pre><code class="language-bash">&gt; gradle -q openFile or gradle -q oF<br/>&gt; Open file<br/><br/>&gt; gradle -q <span
+            class="hljs-built_in">read</span>File or gradle -q cF<br/>&gt; Open file<br/>&gt; Read File<br/><br/>gradle -q closeFile or gradle -q cF<br/>&gt; Open file<br/>&gt; Read File<br/>&gt; Close File<br/></code></pre>
+    <p>A gradle task is loaded in a lazy manner that means you can define a task anywhere in the build file. <code>The
+        task dependency is looked in execution phase and not in configuration phase.</code></p>
+    <p>Let's check it by the following example</p>
+    <pre><code class="language-gradle"><br/>// Task B does not exists here but will be resolved at runtime.<br/>task A(dependsOn : 'B'){ <br/>  doLast(){<br/>    println "A"<br/>  }<br/>}<br/><br/>task B(){<br/>  doLast(){<br/>    println "B"<br/>  }<br/>}<br/><br/><br/></code></pre>
+    <blockquote><p><strong>Also Read</strong></p>
+        <ul>
+            <li><a href="www.ekiras.com/p/gradle.html">Introduction to Gradle</a></li>
+            <li><a href="http://www.ekiras.com/2016/12/what-is-gradle-task-alias-short-forms.html">Gradle task Short
+                hand notations</a></li>
+            <li><a href="http://www.ekiras.com/2016/12/how-to-run-single-or-multiple-gradle-tasks.html">How to run a
+                specific gradle task or multiple tasks</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/12/difference-between-dofirst-and-dolast-methods-in-gradle-task.html">Difference
+                    between doFirst() and doLast() methods</a></li>
+            <li><a href="http://www.ekiras.com/2016/12/what-is-gradle-daemon.html">What is a Gradle Daemon</a></li>
+        </ul>
+    </blockquote>
+</div>

@@ -14,4 +14,52 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/11/how-to-list-all-processes-r
 redirect_from: "/2016/11/how-to-list-all-processes-running-on-the-os.html"
 ---
 
-<div class='markdown'><h2>Points to Remember</h2><ol><li>Java 9 introduced the new <code>Process Api</code> in <code>java.lang</code> package.</li><li><code>ProcessHandle</code> interface can be used to perform operations with processes like start, destroy, list processes.</li></ol><blockquote><p><strong>Read More</strong></p><ul><li><a href="www.ekiras.com/p/java9.html">Java 9 Feature</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">List all processes running on the OS</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">Get the information of the current process</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-start-new-process-and-get-process-id-in-java.html">Start a new Process and get its Process Id</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-get-process-information-from-process-id-in-java.html">How to get Process Information from Process Id</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-destroy-terminate-running-process-in-java.html">Destroy a running process</a></li></ul></blockquote><h2>List all Processes running on the OS.</h2><p>To get all the processes running on the OS you can use the static method <code>allProcesses()</code> of the <code>ProcessHandle</code>, this will return a <code>Stream&lt;ProcessHandle&gt;</code> stream of process handles which can be used to get information about each process. The below example shows how we can list all the running processes.</p><pre><code class="language-java"><span class="hljs-keyword">import</span> java.lang.ProcessHandle;<br /><span class="hljs-keyword">import</span> java.util.stream.Stream;<br /><br /><span class="hljs-javadoc">/**<br /> *<span class="hljs-javadoctag"> @author</span> ekiras<br /> */</span><br /><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ListAllProcesses</span> </span>{<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>{<br />        allProcesses();<br />    }<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">allProcesses</span><span class="hljs-params">()</span> </span>{<br />        System.out.println(<span class="hljs-string">"Process list:"</span>);<br />        Stream&lt;ProcessHandle&gt; processStream = ProcessHandle.allProcesses();<br />        processStream.forEach(e -&gt; printProcessInfo(e));<br />    }<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printProcessInfo</span><span class="hljs-params">(ProcessHandle processHandle)</span></span>{<br />        System.out.println(<span class="hljs-string">"---------------------------------------------------------"</span>);<br />        System.out.println(<span class="hljs-string">" Process Id :: "</span> + processHandle.getPid());<br />        System.out.println(<span class="hljs-string">" Process isAlive() :: "</span> + processHandle.isAlive());<br />        System.out.println(<span class="hljs-string">" Process children :: "</span> + processHandle.children().count());<br />        System.out.println(<span class="hljs-string">" Process supportsNormalTermination() :: "</span> + processHandle.supportsNormalTermination());<br />        System.out.println(<span class="hljs-string">" Process Info :: "</span> + processHandle.info().toString());<br /><br />    }<br /><br />}<br /></code></pre><p>The above code will produce the following output on console.</p><pre class="output">Process list:<br />---------------------------------------------------------<br /> Process Id :: 1<br /> Process isAlive() :: true<br /> Process children :: 0<br /> Process supportsNormalTermination() :: true<br /> Process Info :: [user: Optional[root], cmd: /bin/bash, startTime: Optional[2016-11-14T05:24:57.150Z], totalTime: Optional[PT0.02S]]<br />---------------------------------------------------------<br /> Process Id :: 15<br /> Process isAlive() :: true<br /> Process children :: 1<br /> Process supportsNormalTermination() :: true<br /> Process Info :: [user: Optional[root], cmd: /bin/bash, startTime: Optional[2016-11-14T05:25:06.670Z], totalTime: Optional[PT0.08S]]<br />---------------------------------------------------------<br /> Process Id :: 449<br /> Process isAlive() :: true<br /> Process children :: 0<br /> Process supportsNormalTermination() :: true<br /> Process Info :: [user: Optional[root], cmd: /opt/jdk-9/bin/java, args: [ListAllProcesses], startTime: Optional[2016-11-14T07:38:41.240Z], totalTime: Optional[PT0.35S]]<br /></pre></div>
+<div class='markdown'><h2>Points to Remember</h2>
+    <ol>
+        <li>Java 9 introduced the new <code>Process Api</code> in <code>java.lang</code> package.</li>
+        <li><code>ProcessHandle</code> interface can be used to perform operations with processes like start, destroy,
+            list processes.
+        </li>
+    </ol>
+    <blockquote><p><strong>Read More</strong></p>
+        <ul>
+            <li><a href="www.ekiras.com/p/java9.html">Java 9 Feature</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">List all
+                processes running on the OS</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">Get the
+                information of the current process</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-start-new-process-and-get-process-id-in-java.html">Start a
+                new Process and get its Process Id</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-get-process-information-from-process-id-in-java.html">How
+                to get Process Information from Process Id</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-destroy-terminate-running-process-in-java.html">Destroy a
+                running process</a></li>
+        </ul>
+    </blockquote>
+    <h2>List all Processes running on the OS.</h2>
+    <p>To get all the processes running on the OS you can use the static method <code>allProcesses()</code> of the
+        <code>ProcessHandle</code>, this will return a <code>Stream&lt;ProcessHandle&gt;</code> stream of process
+        handles which can be used to get information about each process. The below example shows how we can list all the
+        running processes.</p>
+    <pre><code class="language-java"><span class="hljs-keyword">import</span> java.lang.ProcessHandle;<br/><span
+            class="hljs-keyword">import</span> java.util.stream.Stream;<br/><br/><span
+            class="hljs-javadoc">/**<br/> *<span class="hljs-javadoctag"> @author</span> ekiras<br/> */</span><br/><span
+            class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span
+            class="hljs-title">ListAllProcesses</span> </span>{<br/><br/>    <span class="hljs-function"><span
+            class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span
+            class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span></span>{<br/>        allProcesses();<br/>    }<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span
+            class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">allProcesses</span><span
+            class="hljs-params">()</span> </span>{<br/>        System.out.println(<span class="hljs-string">"Process list:"</span>);<br/>        Stream&lt;ProcessHandle&gt; processStream = ProcessHandle.allProcesses();<br/>        processStream.forEach(e -&gt; printProcessInfo(e));<br/>    }<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span
+            class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printProcessInfo</span><span
+            class="hljs-params">(ProcessHandle processHandle)</span></span>{<br/>        System.out.println(<span
+            class="hljs-string">"---------------------------------------------------------"</span>);<br/>        System.out.println(<span
+            class="hljs-string">" Process Id :: "</span> + processHandle.getPid());<br/>        System.out.println(<span
+            class="hljs-string">" Process isAlive() :: "</span> + processHandle.isAlive());<br/>        System.out.println(<span
+            class="hljs-string">" Process children :: "</span> + processHandle.children().count());<br/>        System.out.println(<span
+            class="hljs-string">" Process supportsNormalTermination() :: "</span> + processHandle.supportsNormalTermination());<br/>        System.out.println(<span
+            class="hljs-string">" Process Info :: "</span> + processHandle.info().toString());<br/><br/>    }<br/><br/>}<br/></code></pre>
+    <p>The above code will produce the following output on console.</p>
+    <pre class="output">Process list:<br/>---------------------------------------------------------<br/> Process Id :: 1<br/> Process isAlive() :: true<br/> Process children :: 0<br/> Process supportsNormalTermination() :: true<br/> Process Info :: [user: Optional[root], cmd: /bin/bash, startTime: Optional[2016-11-14T05:24:57.150Z], totalTime: Optional[PT0.02S]]<br/>---------------------------------------------------------<br/> Process Id :: 15<br/> Process isAlive() :: true<br/> Process children :: 1<br/> Process supportsNormalTermination() :: true<br/> Process Info :: [user: Optional[root], cmd: /bin/bash, startTime: Optional[2016-11-14T05:25:06.670Z], totalTime: Optional[PT0.08S]]<br/>---------------------------------------------------------<br/> Process Id :: 449<br/> Process isAlive() :: true<br/> Process children :: 0<br/> Process supportsNormalTermination() :: true<br/> Process Info :: [user: Optional[root], cmd: /opt/jdk-9/bin/java, args: [ListAllProcesses], startTime: Optional[2016-11-14T07:38:41.240Z], totalTime: Optional[PT0.35S]]<br/></pre>
+</div>

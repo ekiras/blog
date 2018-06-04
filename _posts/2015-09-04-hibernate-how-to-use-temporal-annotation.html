@@ -14,4 +14,52 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/09/hibernate-how-to-use-tempor
 redirect_from: "/2015/09/hibernate-how-to-use-temporal-annotation.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>@Temporal annotation must be used with the persistent fields or properties of type<br /><br /><ul style="text-align: left;"><li>java.util.Date&nbsp;</li><li>java.util.Calendar</li></ul><br /><h2>How to use @Temporal annotation</h2>@Temporal Annotation is defined as following<br /><br /><pre class="brush:java">@Target({ METHOD, FIELD })<br />@Retention(RUNTIME)<br />public @interface Temporal {<br /> /**<br />  * The type used in mapping &lt;code&gt;java.util.Date&lt;/code&gt; or &lt;code&gt;java.util.Calendar&lt;/code&gt;.<br />  */<br /> TemporalType value();<br />}<br /></pre><br />So the TemporalType is an Enum and looks like following  <br /><pre class="brush:java">public enum TemporalType {<br /> DATE,<br /> TIME,<br /> TIMESTAMP<br />}</pre>So <b>@Temporal</b> annotation can take three values <b>DATE, TIME and TIMESTAMP</b>. And it will create the following database ddl type. <br /><br /><div class="table-responsive"><table class="table table-bordered table-stripped"> <tbody><tr class="active"><th>TemporalType</th><th>Database DDL Type</th></tr><tr><td>DATE</td><td>date</td></tr><tr><td>TIMESTAMP</td><td>datetime</td></tr><tr><td>TIME</td><td>time</td></tr></tbody></table></div><br />If we the following class as Hibernate Entity <br /><br /><pre class="brush:java">package com.ekiras.domian;<br /><br />import javax.persistence.*;<br />import java.util.Date;<br /><br />@Entity<br />public class User {<br /><br />    @Id<br />    @SequenceGenerator(name = "test")<br />    @GeneratedValue(strategy = GenerationType.AUTO, generator = "test")<br />    private Long id;<br /><br />    @Temporal(value = TemporalType.DATE)<br />    private Date dateCreated1;<br /><br />    @Temporal(value = TemporalType.TIMESTAMP)<br />    private Date dateCreated2;<br /><br /><br />    @Temporal(value = TemporalType.TIME)<br />    private Date dateCreated3;<br /><br />    // GETTERS and SETTERS<br />}<br /><br /></pre>It will create the output as shown in the image below.  <br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-7luNmikYgag/Velo3mXpskI/AAAAAAAAAeQ/Bn2EZIQ-8Z8/s1600/bh13.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="198" src="http://4.bp.blogspot.com/-7luNmikYgag/Velo3mXpskI/AAAAAAAAAeQ/Bn2EZIQ-8Z8/s640/bh13.png" width="640" /></a></div><br />If we try to add @Temporal annotation to any other field other than of type Date and Calender we will get the following exception<br /><br /><pre class="output">Caused by: org.hibernate.AnnotationException: @Temporal should only be set on a java.util.Date or java.util.Calendar property: com.ekiras.domian.User.name<br /> at org.hibernate.cfg.annotations.SimpleValueBinder.setType(SimpleValueBinder.java:182)<br /> at org.hibernate.cfg.annotations.PropertyBinder.makePropertyAndValue(Propertyjava:195)<br /> at org.hibernate.cfg.annotations.PropertyBinder.makePropertyValueAndBind(PropertyBinder.java:216)<br /> at org.hibernate.cfg.AnnotationBinder.processElementAnnotations(AnnotationBinder.java:2241)<br /> at org.hibernate.cfg.AnnotationBinder.processIdPropertiesIfNotAlready(AnnotationBinder.java:963)<br /> at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:796)<br /> at org.hibernate.cfg.Configuration$MetadataSourceQueue.processAnnotatedClassesQueue(Configuration.java:3845)<br /> at org.hibernate.cfg.Configuration$MetadataSourceQueue.processMetadata(Configuration.java:3799)<br /> at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1412)<br /> at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1846)<br /> at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:857)<br /> ... 23 more<br /></pre><div><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>@Temporal annotation must be used with
+    the persistent fields or properties of type<br/><br/>
+    <ul style="text-align: left;">
+        <li>java.util.Date&nbsp;</li>
+        <li>java.util.Calendar</li>
+    </ul>
+    <br/>
+    <h2>How to use @Temporal annotation</h2>@Temporal Annotation is defined as following<br/><br/>
+    <pre class="brush:java">@Target({ METHOD, FIELD })<br/>@Retention(RUNTIME)<br/>public @interface Temporal {<br/> /**<br/>  * The type used in mapping &lt;code&gt;java.util.Date&lt;/code&gt; or &lt;code&gt;java.util.Calendar&lt;/code&gt;.<br/>  */<br/> TemporalType value();<br/>}<br/></pre>
+    <br/>So the TemporalType is an Enum and looks like following <br/>
+    <pre class="brush:java">public enum TemporalType {<br/> DATE,<br/> TIME,<br/> TIMESTAMP<br/>}</pre>
+    So <b>@Temporal</b> annotation can take three values <b>DATE, TIME and TIMESTAMP</b>. And it will create the
+    following database ddl type. <br/><br/>
+    <div class="table-responsive">
+        <table class="table table-bordered table-stripped">
+            <tbody>
+            <tr class="active">
+                <th>TemporalType</th>
+                <th>Database DDL Type</th>
+            </tr>
+            <tr>
+                <td>DATE</td>
+                <td>date</td>
+            </tr>
+            <tr>
+                <td>TIMESTAMP</td>
+                <td>datetime</td>
+            </tr>
+            <tr>
+                <td>TIME</td>
+                <td>time</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <br/>If we the following class as Hibernate Entity <br/><br/>
+    <pre class="brush:java">package com.ekiras.domian;<br/><br/>import javax.persistence.*;<br/>import java.util.Date;<br/><br/>@Entity<br/>public class User {<br/><br/>    @Id<br/>    @SequenceGenerator(name = "test")<br/>    @GeneratedValue(strategy = GenerationType.AUTO, generator = "test")<br/>    private Long id;<br/><br/>    @Temporal(value = TemporalType.DATE)<br/>    private Date dateCreated1;<br/><br/>    @Temporal(value = TemporalType.TIMESTAMP)<br/>    private Date dateCreated2;<br/><br/><br/>    @Temporal(value = TemporalType.TIME)<br/>    private Date dateCreated3;<br/><br/>    // GETTERS and SETTERS<br/>}<br/><br/></pre>
+    It will create the output as shown in the image below. <br/><br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="http://4.bp.blogspot.com/-7luNmikYgag/Velo3mXpskI/AAAAAAAAAeQ/Bn2EZIQ-8Z8/s1600/bh13.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                              height="198"
+                                                                              src="http://4.bp.blogspot.com/-7luNmikYgag/Velo3mXpskI/AAAAAAAAAeQ/Bn2EZIQ-8Z8/s640/bh13.png"
+                                                                              width="640"/></a></div>
+    <br/>If we try to add @Temporal annotation to any other field other than of type Date and Calender we will get the
+    following exception<br/><br/>
+    <pre class="output">Caused by: org.hibernate.AnnotationException: @Temporal should only be set on a java.util.Date or java.util.Calendar property: com.ekiras.domian.User.name<br/> at org.hibernate.cfg.annotations.SimpleValueBinder.setType(SimpleValueBinder.java:182)<br/> at org.hibernate.cfg.annotations.PropertyBinder.makePropertyAndValue(Propertyjava:195)<br/> at org.hibernate.cfg.annotations.PropertyBinder.makePropertyValueAndBind(PropertyBinder.java:216)<br/> at org.hibernate.cfg.AnnotationBinder.processElementAnnotations(AnnotationBinder.java:2241)<br/> at org.hibernate.cfg.AnnotationBinder.processIdPropertiesIfNotAlready(AnnotationBinder.java:963)<br/> at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:796)<br/> at org.hibernate.cfg.Configuration$MetadataSourceQueue.processAnnotatedClassesQueue(Configuration.java:3845)<br/> at org.hibernate.cfg.Configuration$MetadataSourceQueue.processMetadata(Configuration.java:3799)<br/> at org.hibernate.cfg.Configuration.secondPassCompile(Configuration.java:1412)<br/> at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1846)<br/> at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl$4.perform(EntityManagerFactoryBuilderImpl.java:857)<br/> ... 23 more<br/></pre>
+    <div><br/></div>
+</div>

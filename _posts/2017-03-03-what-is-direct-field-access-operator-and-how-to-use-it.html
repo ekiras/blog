@@ -4,11 +4,42 @@ exclude: true
 title: 'Groovy : What is Direct field access operator and how to use it'
 date: '2017-03-03T17:35:00.000+05:30'
 author: Ekansh Rastogi
-tags: 
+tags:
 modified_time: '2017-03-03T17:40:38.172+05:30'
 blogger_id: tag:blogger.com,1999:blog-5485242750509374114.post-4173418649155962805
 blogger_orig_url: http://ekiras.blogspot.com/2017/03/what-is-direct-field-access-operator-and-how-to-use-it.html
 redirect_from: "/2017/03/what-is-direct-field-access-operator-and-how-to-use-it.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="markdown"><h2>Direct field access operator</h2>In groovy when we access the property of any object as <code>object.property</code> then groovy under the hood calls the getter method of the property even if we have not specified it. The default getter and setter methods return the property and set the property respectively.<br />Let's have a look at the example.<br /><pre class="hljs"><code>​<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> {</span>  <br />  String name<br />  String email<br />  <br />  String getName(){<br />    <span class="hljs-keyword">return</span> <span class="hljs-string">"Name is $name"</span><br />  }<br />  <br />}<br /><br />User u = <span class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span> , <span class="hljs-string">email :</span> <span class="hljs-string">'ekansh@ekiras.com'</span>)<br /><br />println u.name<br /></code></pre>When you execute the above code you will get the output <code>Name is ekiras</code>.<br /><div class="note"><b>Note</b><br />What happens under the hood is <code>u.name will internally call the getter method</code> of instance variable <code>name</code>.<br />Here calling <code>u.getName()' is equivalent to calling u.name</code></div><br />Also, all the classes and their instance variables are by default <code>public</code> in nature. So you can access the instance variable without calling the getter method byb using the <code>Direct Field Access Operator</code><br />Syntax of Direct Field Access operator is as below<br /><pre class="hljs"><code>&lt;object&gt;.@&lt;property&gt;<br /></code></pre>So we can use this operator as shown below<br /><pre class="hljs"><code>​<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> {</span>  <br />  String name<br />  String email<br />  <br />  String getName(){<br />    <span class="hljs-keyword">return</span> <span class="hljs-string">"Name is $name"</span><br />  }<br />  <br />}<br /><br />User u = <span class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span> , <span class="hljs-string">email :</span> <span class="hljs-string">'ekansh@ekiras.com'</span>)<br />println u.name  <span class="hljs-comment">// 1</span><br />println u.<span class="hljs-meta">@name</span>  <span class="hljs-comment">// 2</span><br /></code></pre>The above code will give the following output<br /><div class="output"><b>Output</b><br /><br />Name is ekiras<br />ekiras</div><br />The  <code>1</code>st print statement prints <code>Name is ekiras</code> because it calls the getter method of the property name while <code>2</code>nd statement calls the property directly.</div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="markdown"><h2>Direct field access operator</h2>In groovy when we access the property of any object as
+        <code>object.property</code> then groovy under the hood calls the getter method of the property even if we have
+        not specified it. The default getter and setter methods return the property and set the property
+        respectively.<br/>Let's have a look at the example.<br/>
+        <pre class="hljs"><code>​<span class="hljs-class"><span class="hljs-keyword">class</span> <span
+                class="hljs-title">User</span> {</span>  <br/>  String name<br/>  String email<br/>  <br/>  String getName(){<br/>    <span
+                class="hljs-keyword">return</span> <span class="hljs-string">"Name is $name"</span><br/>  }<br/>  <br/>}<br/><br/>User u = <span
+                class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span> , <span
+                class="hljs-string">email :</span> <span class="hljs-string">'ekansh@ekiras.com'</span>)<br/><br/>println u.name<br/></code></pre>
+        When you execute the above code you will get the output <code>Name is ekiras</code>.<br/>
+        <div class="note"><b>Note</b><br/>What happens under the hood is <code>u.name will internally call the getter
+            method</code> of instance variable <code>name</code>.<br/>Here calling <code>u.getName()' is equivalent to
+            calling u.name</code></div>
+        <br/>Also, all the classes and their instance variables are by default <code>public</code> in nature. So you can
+        access the instance variable without calling the getter method byb using the <code>Direct Field Access
+            Operator</code><br/>Syntax of Direct Field Access operator is as below<br/>
+        <pre class="hljs"><code>&lt;object&gt;.@&lt;property&gt;<br/></code></pre>
+        So we can use this operator as shown below<br/>
+        <pre class="hljs"><code>​<span class="hljs-class"><span class="hljs-keyword">class</span> <span
+                class="hljs-title">User</span> {</span>  <br/>  String name<br/>  String email<br/>  <br/>  String getName(){<br/>    <span
+                class="hljs-keyword">return</span> <span class="hljs-string">"Name is $name"</span><br/>  }<br/>  <br/>}<br/><br/>User u = <span
+                class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">'ekiras'</span> , <span
+                class="hljs-string">email :</span> <span class="hljs-string">'ekansh@ekiras.com'</span>)<br/>println u.name  <span
+                class="hljs-comment">// 1</span><br/>println u.<span class="hljs-meta">@name</span>  <span
+                class="hljs-comment">// 2</span><br/></code></pre>
+        The above code will give the following output<br/>
+        <div class="output"><b>Output</b><br/><br/>Name is ekiras<br/>ekiras</div>
+        <br/>The <code>1</code>st print statement prints <code>Name is ekiras</code> because it calls the getter method
+        of the property name while <code>2</code>nd statement calls the property directly.
+    </div>
+</div>

@@ -16,4 +16,80 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/11/getting-started-with-spring
 redirect_from: "/2015/11/getting-started-with-spring-security-in-spring-boot-application.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>Add dependency of spring security</li><li>Add custom username password in application.properties</li><li>A unique password is generated each time application is started if no authentication process is specified.</li><li>You can configure your own authentication &nbsp;providers, managers, filters, entry points, tokens etc as required.</li></ul><br /><h2>Getting started with Spring Security and Spring Boot</h2>In order to apply Spring Security to a Spring Boot application, firstly you need to add the dependency in the application as follows<br /><br /><div><ul style="text-align: left;"><li>In Maven you can do it as follows.<pre>&lt;dependencies&gt;<br />    &lt;dependency&gt;<br />        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;<br />        &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;<br />        &lt;version&gt;4.0.3.RELEASE&lt;/version&gt;<br />    &lt;/dependency&gt;<br />&lt;/dependencies&gt;</pre></li><li>In Gradle you can do it as follows.<pre>dependencies {<br />    compile 'org.springframework.security:spring-security-web:4.0.3.RELEASE'<br />}</pre></li></ul><div>Your initial project may look like as shown in the image<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-YQ_eGe6YMEc/VkyumTXJmNI/AAAAAAAADKY/BazUxhSwaPI/s1600/ss-1.1.png" imageanchor="1" style="margin-bottom: 1em; margin-left: 1em;"><img border="0" class="img-responsive" height="400" src="http://2.bp.blogspot.com/-YQ_eGe6YMEc/VkyumTXJmNI/AAAAAAAADKY/BazUxhSwaPI/s400/ss-1.1.png" width="218" /></a></div><br /></div></div>Create a controller <b>HomeController</b> as in out case and just add a <b>/home</b>&nbsp;mapping for the application.<br /><br /><pre class="brush:java">package com.ekiras.controller;<br /><br />import org.springframework.web.bind.annotation.RequestMapping;<br />import org.springframework.web.bind.annotation.RestController;<br /><br />/**<br /> * Created by ekansh on 18/11/15.<br /> */<br />@RestController<br />@RequestMapping(value = "/")<br />public class HomeController {<br /><br />    @RequestMapping(value = "home")<br />    public String home(){<br />        return "Hello World";<br />    }<br />}<br /></pre><br />Now, just run the application using command <br /><br /><pre>gradle run</pre><br />Now open the application in browser, you will get a popup to enter the user name and password. This is the default security provided by spring security.<br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-wC3Gbxni-V0/VkzWLEvWEJI/AAAAAAAADKs/cpvS4LoLlq0/s1600/ss-1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="473" src="http://1.bp.blogspot.com/-wC3Gbxni-V0/VkzWLEvWEJI/AAAAAAAADKs/cpvS4LoLlq0/s640/ss-1.png" width="640" /></a></div><br />You can login using the default<br /><br /><ul style="text-align: left;"><li><b>username - user</b></li><li><b>password - generated at application startup as shown in image below</b></li></ul><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://2.bp.blogspot.com/-fWlsnoUM61U/VkzWNDqXGzI/AAAAAAAADK0/zBLXzvLWfWE/s1600/ss-2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="76" src="http://2.bp.blogspot.com/-fWlsnoUM61U/VkzWNDqXGzI/AAAAAAAADK0/zBLXzvLWfWE/s640/ss-2.png" width="640" /></a></div><br /><div class="alert alert-info flat"><b>Note : </b> A unique password is generated each time the application is started.</div><br />You can also create a custom username and password by specifying it in the <b>application.properties</b> as follows<br /><br /><pre>security.user.name=ekansh<br />security.user.password=password</pre><br />Now you can login with the credentials<br /><br /><ul style="text-align: left;"><li><b>username - ekansh</b></li><li><b>password - password</b></li></ul><div class="separator" style="clear: both; text-align: center;"></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-eQpE0nhPRKg/VkzZAMGBKKI/AAAAAAAADLI/ndnAfeSIUf8/s1600/ss-2.1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img class="img-responsive" border="0" height="216" src="http://1.bp.blogspot.com/-eQpE0nhPRKg/VkzZAMGBKKI/AAAAAAAADLI/ndnAfeSIUf8/s400/ss-2.1.png" width="400" /></a></div><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>Add dependency of spring security</li>
+        <li>Add custom username password in application.properties</li>
+        <li>A unique password is generated each time application is started if no authentication process is specified.
+        </li>
+        <li>You can configure your own authentication &nbsp;providers, managers, filters, entry points, tokens etc as
+            required.
+        </li>
+    </ul>
+    <br/>
+    <h2>Getting started with Spring Security and Spring Boot</h2>In order to apply Spring Security to a Spring Boot
+    application, firstly you need to add the dependency in the application as follows<br/><br/>
+    <div>
+        <ul style="text-align: left;">
+            <li>In Maven you can do it as follows.
+                <pre>&lt;dependencies&gt;<br/>    &lt;dependency&gt;<br/>        &lt;groupId&gt;org.springframework.security&lt;/groupId&gt;<br/>        &lt;artifactId&gt;spring-security-web&lt;/artifactId&gt;<br/>        &lt;version&gt;4.0.3.RELEASE&lt;/version&gt;<br/>    &lt;/dependency&gt;<br/>&lt;/dependencies&gt;</pre>
+            </li>
+            <li>In Gradle you can do it as follows.
+                <pre>dependencies {<br/>    compile 'org.springframework.security:spring-security-web:4.0.3.RELEASE'<br/>}</pre>
+            </li>
+        </ul>
+        <div>Your initial project may look like as shown in the image<br/>
+            <div class="separator" style="clear: both; text-align: center;"><a
+                    href="http://2.bp.blogspot.com/-YQ_eGe6YMEc/VkyumTXJmNI/AAAAAAAADKY/BazUxhSwaPI/s1600/ss-1.1.png"
+                    imageanchor="1" style="margin-bottom: 1em; margin-left: 1em;"><img border="0" class="img-responsive"
+                                                                                       height="400"
+                                                                                       src="http://2.bp.blogspot.com/-YQ_eGe6YMEc/VkyumTXJmNI/AAAAAAAADKY/BazUxhSwaPI/s400/ss-1.1.png"
+                                                                                       width="218"/></a></div>
+            <br/></div>
+    </div>
+    Create a controller <b>HomeController</b> as in out case and just add a <b>/home</b>&nbsp;mapping for the
+    application.<br/><br/>
+    <pre class="brush:java">package com.ekiras.controller;<br/><br/>import org.springframework.web.bind.annotation.RequestMapping;<br/>import org.springframework.web.bind.annotation.RestController;<br/><br/>/**<br/> * Created by ekansh on 18/11/15.<br/> */<br/>@RestController<br/>@RequestMapping(value = "/")<br/>public class HomeController {<br/><br/>    @RequestMapping(value = "home")<br/>    public String home(){<br/>        return "Hello World";<br/>    }<br/>}<br/></pre>
+    <br/>Now, just run the application using command <br/><br/>
+    <pre>gradle run</pre>
+    <br/>Now open the application in browser, you will get a popup to enter the user name and password. This is the
+    default security provided by spring security.<br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="http://1.bp.blogspot.com/-wC3Gbxni-V0/VkzWLEvWEJI/AAAAAAAADKs/cpvS4LoLlq0/s1600/ss-1.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                              height="473"
+                                                                              src="http://1.bp.blogspot.com/-wC3Gbxni-V0/VkzWLEvWEJI/AAAAAAAADKs/cpvS4LoLlq0/s640/ss-1.png"
+                                                                              width="640"/></a></div>
+    <br/>You can login using the default<br/><br/>
+    <ul style="text-align: left;">
+        <li><b>username - user</b></li>
+        <li><b>password - generated at application startup as shown in image below</b></li>
+    </ul>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="http://2.bp.blogspot.com/-fWlsnoUM61U/VkzWNDqXGzI/AAAAAAAADK0/zBLXzvLWfWE/s1600/ss-2.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                              height="76"
+                                                                              src="http://2.bp.blogspot.com/-fWlsnoUM61U/VkzWNDqXGzI/AAAAAAAADK0/zBLXzvLWfWE/s640/ss-2.png"
+                                                                              width="640"/></a></div>
+    <br/>
+    <div class="alert alert-info flat"><b>Note : </b> A unique password is generated each time the application is
+        started.
+    </div>
+    <br/>You can also create a custom username and password by specifying it in the <b>application.properties</b> as
+    follows<br/><br/>
+    <pre>security.user.name=ekansh<br/>security.user.password=password</pre>
+    <br/>Now you can login with the credentials<br/><br/>
+    <ul style="text-align: left;">
+        <li><b>username - ekansh</b></li>
+        <li><b>password - password</b></li>
+    </ul>
+    <div class="separator" style="clear: both; text-align: center;"></div>
+    <br/>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="http://1.bp.blogspot.com/-eQpE0nhPRKg/VkzZAMGBKKI/AAAAAAAADLI/ndnAfeSIUf8/s1600/ss-2.1.png"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img class="img-responsive" border="0"
+                                                                              height="216"
+                                                                              src="http://1.bp.blogspot.com/-eQpE0nhPRKg/VkzZAMGBKKI/AAAAAAAADLI/ndnAfeSIUf8/s400/ss-2.1.png"
+                                                                              width="400"/></a></div>
+    <br/></div>

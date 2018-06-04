@@ -12,4 +12,16 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/02/how-to-create-custom-404-er
 redirect_from: "/2015/02/how-to-create-custom-404-error-page-in-web-xml.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can define your custom error pages in <b>web.xml.</b>&nbsp;This is the best way to define custom 404 and other error pages.<br /><h2>Configure Custom error pages</h2>Many times we want to create custom error pages in our web applications like for a 404 error, resource not found, 500 internal server error and other errors that we see commonly. So we may want to redirect such errors to a better looking custom error page.<br /><br />If you want to redirect to custom error pages in a web application you can add these custom error pages in web.xml like following.<br /><br /><div class="panel panel-default"><div class="panel-heading">web.xml</div><div class="panel-body"><pre class="brush:xml"> &lt;error-page&gt;<br />  &lt;error-code&gt;400&lt;/error-code&gt;<br />  &lt;location&gt;/error/400.html&lt;/location&gt;<br /> &lt;/error-page&gt;<br /> <br /> &lt;error-page&gt;<br />  &lt;error-code&gt;404&lt;/error-code&gt;<br />  &lt;location&gt;/error/404.html&lt;/location&gt;<br /> &lt;/error-page&gt;<br /> <br /> &lt;error-page&gt;<br />  &lt;error-code&gt;500&lt;/error-code&gt;<br />  &lt;location&gt;/error/500.html&lt;/location&gt;<br /> &lt;/error-page&gt;<br /> <br /> &lt;error-page&gt;<br />  &lt;error-code&gt;503&lt;/error-code&gt;<br />  &lt;location&gt;/error/503.html&lt;/location&gt;<br /> &lt;/error-page&gt;<br /> </pre></div></div>You can define your error page location in the &lt;location&gt; tag.<br /><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can define your custom error pages
+    in <b>web.xml.</b>&nbsp;This is the best way to define custom 404 and other error pages.<br/>
+    <h2>Configure Custom error pages</h2>Many times we want to create custom error pages in our web applications like
+    for a 404 error, resource not found, 500 internal server error and other errors that we see commonly. So we may want
+    to redirect such errors to a better looking custom error page.<br/><br/>If you want to redirect to custom error
+    pages in a web application you can add these custom error pages in web.xml like following.<br/><br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">web.xml</div>
+        <div class="panel-body">
+            <pre class="brush:xml"> &lt;error-page&gt;<br/>  &lt;error-code&gt;400&lt;/error-code&gt;<br/>  &lt;location&gt;/error/400.html&lt;/location&gt;<br/> &lt;/error-page&gt;<br/> <br/> &lt;error-page&gt;<br/>  &lt;error-code&gt;404&lt;/error-code&gt;<br/>  &lt;location&gt;/error/404.html&lt;/location&gt;<br/> &lt;/error-page&gt;<br/> <br/> &lt;error-page&gt;<br/>  &lt;error-code&gt;500&lt;/error-code&gt;<br/>  &lt;location&gt;/error/500.html&lt;/location&gt;<br/> &lt;/error-page&gt;<br/> <br/> &lt;error-page&gt;<br/>  &lt;error-code&gt;503&lt;/error-code&gt;<br/>  &lt;location&gt;/error/503.html&lt;/location&gt;<br/> &lt;/error-page&gt;<br/> </pre>
+        </div>
+    </div>
+    You can define your error page location in the &lt;location&gt; tag.<br/><br/></div>

@@ -14,4 +14,23 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/01/how-to-read-custom-header-f
 redirect_from: "/2016/01/how-to-read-custom-header-from-spring-boot-controller.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to read Headers in Spring Boot Controller</h2><div class="alert alert-info"><a href="http://www.ekiras.com/2015/10/springboot-no-access-control-allow-origin-ajax-call.html" target="_blank">How to Allow Custom Headers in Spring Boot&nbsp;</a></div><br />Suppose we have a controller and want to bind the Headers to a variable, then we can do the following  <br /><br /><pre> <br />    @RequestHeader(value = "Accept-Language", defaultValue = "en") String locale<br /><br /></pre><br />This will bind the Header <b>Accept-Language</b>, to the variable locale. <br /><ul><li><b>value=""</b> It defines the name of the header to bind to the variable </li><li><b>required= boolean</b> It tells if this is mandatory header or not. default value is true </li><li><b>defaultValue ="" </b> It can be used to give a default value if the header is not present.</li></ul>Similarly you can bind Custom Headers like shown below <br /><br /><pre>     // String<br />    @RequestHeader(value = "X-My-String-Header", defaultValue = "Hello World") String h1<br />     // Long<br />    @RequestHeader(value = "X-My-Long-Header", defaultValue = 212) Long h2<br /><br /></pre><br /><div class="alert alert-danger">Do not use "<b>_</b>" underscore in header key or values, because they get neglected while http calls.</div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to read Headers in Spring Boot Controller</h2>
+    <div class="alert alert-info"><a
+            href="http://www.ekiras.com/2015/10/springboot-no-access-control-allow-origin-ajax-call.html"
+            target="_blank">How to Allow Custom Headers in Spring Boot&nbsp;</a></div>
+    <br/>Suppose we have a controller and want to bind the Headers to a variable, then we can do the following
+    <br/><br/>
+    <pre> <br/>    @RequestHeader(value = "Accept-Language", defaultValue = "en") String locale<br/><br/></pre>
+    <br/>This will bind the Header <b>Accept-Language</b>, to the variable locale. <br/>
+    <ul>
+        <li><b>value=""</b> It defines the name of the header to bind to the variable</li>
+        <li><b>required= boolean</b> It tells if this is mandatory header or not. default value is true</li>
+        <li><b>defaultValue ="" </b> It can be used to give a default value if the header is not present.</li>
+    </ul>
+    Similarly you can bind Custom Headers like shown below <br/><br/>
+    <pre>     // String<br/>    @RequestHeader(value = "X-My-String-Header", defaultValue = "Hello World") String h1<br/>     // Long<br/>    @RequestHeader(value = "X-My-Long-Header", defaultValue = 212) Long h2<br/><br/></pre>
+    <br/>
+    <div class="alert alert-danger">Do not use "<b>_</b>" underscore in header key or values, because they get neglected
+        while http calls.
+    </div>
+</div>

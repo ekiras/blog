@@ -14,4 +14,84 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/04/implement-role-hierarchy-in
 redirect_from: "/2016/04/implement-role-hierarchy-in-spring-security-and-spring-boot.html"
 ---
 
-<div class='markdown'><h2>Implement Role Hierarchy with In-Memory Authentication</h2><p>In order to configure role hierarchy, you need to</p><ol><li>make a bean <code>RoleHierarchy</code></li><li>define a <code>expressionhandler</code> to read role hierarchy</li></ol><pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.ss.config;<br /><br /><span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br /><span class="hljs-keyword">import</span> org.springframework.security.access.expression.SecurityExpressionHandler;<br /><span class="hljs-keyword">import</span> org.springframework.security.access.hierarchicalroles.RoleHierarchy;<br /><span class="hljs-keyword">import</span> org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;<br /><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;<br /><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;<br /><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;<br /><span class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;<br /><span class="hljs-keyword">import</span> org.springframework.security.web.FilterInvocation;<br /><span class="hljs-keyword">import</span> org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;<br /><br /><span class="hljs-javadoc">/**<br /> *<span class="hljs-javadoctag"> @author</span> ekiras<br /> */</span><br /><span class="hljs-annotation">@EnableWebSecurity</span><br /><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SpringSecurityConfigurer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">WebSecurityConfigurerAdapter</span></span>{<br /><br />    <span class="hljs-function"><span class="hljs-keyword">private</span> SecurityExpressionHandler&lt;filterinvocation&gt; <span class="hljs-title">webExpressionHandler</span><span class="hljs-params">()</span> </span>{<br />        DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = <span class="hljs-keyword">new</span> DefaultWebSecurityExpressionHandler();<br />        defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy());<br />        <span class="hljs-keyword">return</span> defaultWebSecurityExpressionHandler;<br />    }<br /><br />    <span class="hljs-annotation">@Bean</span><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> RoleHierarchy <span class="hljs-title">roleHierarchy</span><span class="hljs-params">()</span></span>{<br />        RoleHierarchyImpl roleHierarchy = <span class="hljs-keyword">new</span> RoleHierarchyImpl();<br />        roleHierarchy.setHierarchy(<span class="hljs-string">"ADMIN &gt; USER"</span>);<br />        <span class="hljs-keyword">return</span> roleHierarchy;<br />    }<br /><br />    <span class="hljs-annotation">@Override</span><br />    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span class="hljs-keyword">throws</span> Exception </span>{<br />        auth.inMemoryAuthentication()<br />                .withUser(<span class="hljs-string">"ekansh"</span>)<br />                .password(<span class="hljs-string">"password"</span>)<br />                .authorities(<span class="hljs-string">"USER"</span>, <span class="hljs-string">"ROLE"</span>);<br />        auth.inMemoryAuthentication()<br />                .withUser(<span class="hljs-string">"admin"</span>)<br />                .password(<span class="hljs-string">"admin"</span>)<br />                .authorities(<span class="hljs-string">"ADMIN"</span>);<br />    }<br /><br />    <span class="hljs-annotation">@Override</span><br />    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span class="hljs-keyword">throws</span> Exception </span>{<br />        http<br />            .authorizeRequests()<br />                .expressionHandler(webExpressionHandler())<br />                .antMatchers(<span class="hljs-string">"/admin/**"</span>).hasAuthority(<span class="hljs-string">"ADMIN"</span>)<br />                .antMatchers(<span class="hljs-string">"/user/**"</span>).hasAuthority(<span class="hljs-string">"USER"</span>)<br />                .anyRequest().authenticated()<br />            .and()<br />            .formLogin()<br />            .and()<br />            .logout()<br />        ;<br />    }<br />    <br />}<br /><br /></code></pre><p>In the example above, we have made a role hierarchy where</p><ol><li>ADMIN can access MODERATOR and USER roles,</li><li>MODERATOR can access USER roles.</li><li>USER can neither access MODERATOR nor ADMIN roles.</li></ol><pre><code class="language-java">    <span class="hljs-annotation">@Bean</span><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> RoleHierarchy <span class="hljs-title">roleHierarchy</span><span class="hljs-params">()</span></span>{<br />        RoleHierarchyImpl roleHierarchy = <span class="hljs-keyword">new</span> RoleHierarchyImpl();<br />        roleHierarchy.setHierarchy(<span class="hljs-string">"ADMIN &gt; MODERATOR &gt; USER"</span>);<br />        <span class="hljs-keyword">return</span> roleHierarchy;<br />    }<br /></code></pre><p>This is an easy way to configure and manage roles and role permissions for making security groups.</p><blockquote><p><strong>Also Read</strong></p><ul><li><a href="http://www.ekiras.com/2016/04/how-to-configure-spring-security-with-spring-boot.html">Configure Spring Security with Spring boot</a></li><li><a href="http://www.ekiras.com/2016/04/configure-spring-security-with-jdbc-mysql-query-for-authentication.html">Configure JDBC Authetication using MYSQL Query</a></li><li><a href="http://www.ekiras.com/2016/04/authenticate-user-with-custom-user-details-service-in-spring-security.html">Authenticate User with Custom UserDetailsService</a></li><li><a href="http://www.ekiras.com/2016/04/implement-role-hierarchy-in-spring-security-and-spring-boot.html">Implement Role Hierarchy with In-Memory Authentication</a></li><li><a href="http://www.ekiras.com/2016/04/how-to-list-user-authorities-in-spring-security.html">How to list the User Authorities in Controller,Filter and Services</a></li><li><a href="http://www.ekiras.com/2016/04/how-to-disable-session-creation-stateless-rest-spring-security.html">Disable Session Creation for Stateless Authentication</a></li></ul></blockquote><hr><pre class="download">    <a href="https://github.com/ekiras/spring-boot-spring-security-rest/tree/roleHierarchy">Download from Github</a><br /></pre></div>
+<div class='markdown'><h2>Implement Role Hierarchy with In-Memory Authentication</h2>
+    <p>In order to configure role hierarchy, you need to</p>
+    <ol>
+        <li>make a bean <code>RoleHierarchy</code></li>
+        <li>define a <code>expressionhandler</code> to read role hierarchy</li>
+    </ol>
+    <pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.ss.config;<br/><br/><span
+            class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.access.expression.SecurityExpressionHandler;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.access.hierarchicalroles.RoleHierarchy;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.web.FilterInvocation;<br/><span
+            class="hljs-keyword">import</span> org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;<br/><br/><span
+            class="hljs-javadoc">/**<br/> *<span class="hljs-javadoctag"> @author</span> ekiras<br/> */</span><br/><span
+            class="hljs-annotation">@EnableWebSecurity</span><br/><span class="hljs-keyword">public</span> <span
+            class="hljs-class"><span class="hljs-keyword">class</span> <span
+            class="hljs-title">SpringSecurityConfigurer</span> <span class="hljs-keyword">extends</span> <span
+            class="hljs-title">WebSecurityConfigurerAdapter</span></span>{<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">private</span> SecurityExpressionHandler&lt;filterinvocation&gt; <span
+            class="hljs-title">webExpressionHandler</span><span class="hljs-params">()</span> </span>{<br/>        DefaultWebSecurityExpressionHandler defaultWebSecurityExpressionHandler = <span
+            class="hljs-keyword">new</span> DefaultWebSecurityExpressionHandler();<br/>        defaultWebSecurityExpressionHandler.setRoleHierarchy(roleHierarchy());<br/>        <span
+            class="hljs-keyword">return</span> defaultWebSecurityExpressionHandler;<br/>    }<br/><br/>    <span
+            class="hljs-annotation">@Bean</span><br/>    <span class="hljs-function"><span
+            class="hljs-keyword">public</span> RoleHierarchy <span class="hljs-title">roleHierarchy</span><span
+            class="hljs-params">()</span></span>{<br/>        RoleHierarchyImpl roleHierarchy = <span
+            class="hljs-keyword">new</span> RoleHierarchyImpl();<br/>        roleHierarchy.setHierarchy(<span
+            class="hljs-string">"ADMIN &gt; USER"</span>);<br/>        <span class="hljs-keyword">return</span> roleHierarchy;<br/>    }<br/><br/>    <span
+            class="hljs-annotation">@Override</span><br/>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span
+            class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(AuthenticationManagerBuilder auth)</span> <span
+            class="hljs-keyword">throws</span> Exception </span>{<br/>        auth.inMemoryAuthentication()<br/>                .withUser(<span
+            class="hljs-string">"ekansh"</span>)<br/>                .password(<span
+            class="hljs-string">"password"</span>)<br/>                .authorities(<span
+            class="hljs-string">"USER"</span>, <span class="hljs-string">"ROLE"</span>);<br/>        auth.inMemoryAuthentication()<br/>                .withUser(<span
+            class="hljs-string">"admin"</span>)<br/>                .password(<span
+            class="hljs-string">"admin"</span>)<br/>                .authorities(<span
+            class="hljs-string">"ADMIN"</span>);<br/>    }<br/><br/>    <span
+            class="hljs-annotation">@Override</span><br/>    <span class="hljs-function"><span class="hljs-keyword">protected</span> <span
+            class="hljs-keyword">void</span> <span class="hljs-title">configure</span><span class="hljs-params">(HttpSecurity http)</span> <span
+            class="hljs-keyword">throws</span> Exception </span>{<br/>        http<br/>            .authorizeRequests()<br/>                .expressionHandler(webExpressionHandler())<br/>                .antMatchers(<span
+            class="hljs-string">"/admin/**"</span>).hasAuthority(<span class="hljs-string">"ADMIN"</span>)<br/>                .antMatchers(<span
+            class="hljs-string">"/user/**"</span>).hasAuthority(<span class="hljs-string">"USER"</span>)<br/>                .anyRequest().authenticated()<br/>            .and()<br/>            .formLogin()<br/>            .and()<br/>            .logout()<br/>        ;<br/>    }<br/>    <br/>}<br/><br/></code></pre>
+    <p>In the example above, we have made a role hierarchy where</p>
+    <ol>
+        <li>ADMIN can access MODERATOR and USER roles,</li>
+        <li>MODERATOR can access USER roles.</li>
+        <li>USER can neither access MODERATOR nor ADMIN roles.</li>
+    </ol>
+    <pre><code class="language-java">    <span class="hljs-annotation">@Bean</span><br/>    <span class="hljs-function"><span
+            class="hljs-keyword">public</span> RoleHierarchy <span class="hljs-title">roleHierarchy</span><span
+            class="hljs-params">()</span></span>{<br/>        RoleHierarchyImpl roleHierarchy = <span
+            class="hljs-keyword">new</span> RoleHierarchyImpl();<br/>        roleHierarchy.setHierarchy(<span
+            class="hljs-string">"ADMIN &gt; MODERATOR &gt; USER"</span>);<br/>        <span
+            class="hljs-keyword">return</span> roleHierarchy;<br/>    }<br/></code></pre>
+    <p>This is an easy way to configure and manage roles and role permissions for making security groups.</p>
+    <blockquote><p><strong>Also Read</strong></p>
+        <ul>
+            <li><a href="http://www.ekiras.com/2016/04/how-to-configure-spring-security-with-spring-boot.html">Configure
+                Spring Security with Spring boot</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/04/configure-spring-security-with-jdbc-mysql-query-for-authentication.html">Configure
+                    JDBC Authetication using MYSQL Query</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/04/authenticate-user-with-custom-user-details-service-in-spring-security.html">Authenticate
+                    User with Custom UserDetailsService</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/04/implement-role-hierarchy-in-spring-security-and-spring-boot.html">Implement
+                    Role Hierarchy with In-Memory Authentication</a></li>
+            <li><a href="http://www.ekiras.com/2016/04/how-to-list-user-authorities-in-spring-security.html">How to list
+                the User Authorities in Controller,Filter and Services</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/04/how-to-disable-session-creation-stateless-rest-spring-security.html">Disable
+                    Session Creation for Stateless Authentication</a></li>
+        </ul>
+    </blockquote>
+    <hr>
+    <pre class="download">    <a href="https://github.com/ekiras/spring-boot-spring-security-rest/tree/roleHierarchy">Download from Github</a><br/></pre>
+</div>

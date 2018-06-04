@@ -14,4 +14,14 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/12/how-to-make-enums-inside-ja
 redirect_from: "/2015/12/how-to-make-enums-inside-java-class.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to make enums inside java class</h2>You can use enums inside a class as shown in the code below.<br /><br /><div class='alert alert-info'><b>User.Gender.MALE or FEMALE</b>&nbsp;is always associated with the user property. However if you need Gender to be generic and u want to use it with animals also, then you might want to keep this enum in a separate class.</div><br /><pre class="brush:java">package com.ekiras.demo;<br /><br />public class User {<br /> <br /> public enum Gender{<br />  MALE,<br />  FEMALE<br /> }<br /> <br /> private String name;<br /> private String address;<br /> private String email;<br /> private String password;<br /> private Gender gender = Gender.MALE;<br /> <br />}</pre><br />You can also use the enums with parameters inside class as shown below.<br /><br /><pre class='brush:java'>package com.ekiras.demo;<br /><br />public class User {<br /> <br /> public enum Gender{<br />  MALE("male"),<br />  FEMALE("female");<br />  <br />  String value;<br />  Gender(String value){<br />   this.value=value;<br />  }<br /> }<br /> <br /> private String name;<br /> private String address;<br /> private String email;<br /> private String password;<br /> private Gender gender = Gender.MALE;<br /> <br />}<br /> </pre> </div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>How to make enums inside java class</h2>You can use enums
+    inside a class as shown in the code below.<br/><br/>
+    <div class='alert alert-info'><b>User.Gender.MALE or FEMALE</b>&nbsp;is always associated with the user property.
+        However if you need Gender to be generic and u want to use it with animals also, then you might want to keep
+        this enum in a separate class.
+    </div>
+    <br/>
+    <pre class="brush:java">package com.ekiras.demo;<br/><br/>public class User {<br/> <br/> public enum Gender{<br/>  MALE,<br/>  FEMALE<br/> }<br/> <br/> private String name;<br/> private String address;<br/> private String email;<br/> private String password;<br/> private Gender gender = Gender.MALE;<br/> <br/>}</pre>
+    <br/>You can also use the enums with parameters inside class as shown below.<br/><br/>
+    <pre class='brush:java'>package com.ekiras.demo;<br/><br/>public class User {<br/> <br/> public enum Gender{<br/>  MALE("male"),<br/>  FEMALE("female");<br/>  <br/>  String value;<br/>  Gender(String value){<br/>   this.value=value;<br/>  }<br/> }<br/> <br/> private String name;<br/> private String address;<br/> private String email;<br/> private String password;<br/> private Gender gender = Gender.MALE;<br/> <br/>}<br/> </pre>
+</div>

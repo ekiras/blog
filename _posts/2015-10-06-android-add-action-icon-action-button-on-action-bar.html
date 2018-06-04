@@ -13,4 +13,36 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/10/android-add-action-icon-act
 redirect_from: "/2015/10/android-add-action-icon-action-button-on-action-bar.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>You need to create a file in <b>res &gt; menu &gt; menu.xml</b></li><li>You can use showAsAction property to decide if to show the action icon on action bar or not.&nbsp;</li></ul><br /><h2>Adding Action Icon Action button on Action Bar</h2><br />You can choose either of the following  <br /><ul><li><pre>app:showAsAction="never"</pre>This will show the action in the list view when menu icon is pressed. </li><li><pre>app:showAsAction="ifRoom"</pre>This will show the action in the action bar if the amount of space required to show the action is available on the Action bar. </li></ul><br /><pre class="brush:xml;highlight:[7,10,13,16]">&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"<br />    xmlns:app="http://schemas.android.com/apk/res-auto"<br />    xmlns:tools="http://schemas.android.com/tools"<br />    tools:context=".HomeActivity"&gt;<br /><br />    &lt;item<br />        android:id="@+id/action_settings"<br />        android:orderInCategory="100"<br />        android:title="#Settings"<br />        app:showAsAction="never" /&gt;<br /><br />    &lt;item<br />        android:id="@+id/app_search"<br />        android:orderInCategory="99"<br />        android:title="#Search"<br />        app:showAsAction="ifRoom" /&gt;<br /><br />&lt;/menu&gt;<br /></pre><div><br />Line 7 and 13 tells how to order them in the list.<br />Line 10 and 16 tells how to show the action in the action bar.<br /><br />Output will look the following<br /><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-IX_lNDamwB0/VhLdzVjoroI/AAAAAAAAAfA/Wgi-pdyrIxk/s1600/and2.png" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://3.bp.blogspot.com/-IX_lNDamwB0/VhLdzVjoroI/AAAAAAAAAfA/Wgi-pdyrIxk/s1600/and2.png" /></a><a href="http://1.bp.blogspot.com/-2ykmgVADAaE/VhLdoNvIwjI/AAAAAAAAAe4/LkubcOPqjHc/s1600/and1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-2ykmgVADAaE/VhLdoNvIwjI/AAAAAAAAAe4/LkubcOPqjHc/s1600/and1.png" /></a></div><br /><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>You need to create a file in <b>res &gt; menu &gt; menu.xml</b></li>
+        <li>You can use showAsAction property to decide if to show the action icon on action bar or not.&nbsp;</li>
+    </ul>
+    <br/>
+    <h2>Adding Action Icon Action button on Action Bar</h2><br/>You can choose either of the following <br/>
+    <ul>
+        <li>
+            <pre>app:showAsAction="never"</pre>
+            This will show the action in the list view when menu icon is pressed.
+        </li>
+        <li>
+            <pre>app:showAsAction="ifRoom"</pre>
+            This will show the action in the action bar if the amount of space required to show the action is available
+            on the Action bar.
+        </li>
+    </ul>
+    <br/>
+    <pre class="brush:xml;highlight:[7,10,13,16]">&lt;menu xmlns:android="http://schemas.android.com/apk/res/android"<br/>    xmlns:app="http://schemas.android.com/apk/res-auto"<br/>    xmlns:tools="http://schemas.android.com/tools"<br/>    tools:context=".HomeActivity"&gt;<br/><br/>    &lt;item<br/>        android:id="@+id/action_settings"<br/>        android:orderInCategory="100"<br/>        android:title="#Settings"<br/>        app:showAsAction="never" /&gt;<br/><br/>    &lt;item<br/>        android:id="@+id/app_search"<br/>        android:orderInCategory="99"<br/>        android:title="#Search"<br/>        app:showAsAction="ifRoom" /&gt;<br/><br/>&lt;/menu&gt;<br/></pre>
+    <div><br/>Line 7 and 13 tells how to order them in the list.<br/>Line 10 and 16 tells how to show the action in the
+        action bar.<br/><br/>Output will look the following<br/><br/>
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="http://3.bp.blogspot.com/-IX_lNDamwB0/VhLdzVjoroI/AAAAAAAAAfA/Wgi-pdyrIxk/s1600/and2.png"
+                imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img
+                border="0"
+                src="http://3.bp.blogspot.com/-IX_lNDamwB0/VhLdzVjoroI/AAAAAAAAAfA/Wgi-pdyrIxk/s1600/and2.png"/></a><a
+                href="http://1.bp.blogspot.com/-2ykmgVADAaE/VhLdoNvIwjI/AAAAAAAAAe4/LkubcOPqjHc/s1600/and1.png"
+                imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                                                                                  src="http://1.bp.blogspot.com/-2ykmgVADAaE/VhLdoNvIwjI/AAAAAAAAAe4/LkubcOPqjHc/s1600/and1.png"/></a>
+        </div>
+        <br/><br/></div>
+</div>

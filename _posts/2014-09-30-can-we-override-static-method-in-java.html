@@ -12,4 +12,27 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/can-we-override-static-meth
 redirect_from: "/2014/09/can-we-override-static-method-in-java.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>Static methods can not be overriden.</li><li>Static methods are at class level and not at object level.</li><li>Static methods take lock on a class and non static methods takes lock on an object.</li></ul><br /><div class="hl-note"><b>Example : Trying to override a static method</b></div>Suppose we have a class A and another class B that extends this class. Both the classes have same static method test() with same return type and same parameters. So this satisfies this the conditions for overriding a function. So what will be the output of the following program ?<br /><br /><pre class="brush : java">class A{<br />  public static void test(){<br />    System.out.println("Class A");   <br />  }<br />}<br /><br /><br />public class B extends A{<br /><br />  public static void main(String args[]){<br />  A obj1 = new B();<br />  B obj2 = new B();<br />  obj1.test();<br />  obj2.test();<br />  A.test();<br />  B.test();<br />  }<br /><br />  public static void test(){<br />    System.out.println("Class B");<br />  } <br /><br />}<br /></pre><pre class="output">Class A<br />Class B<br />Class A<br />Class B<br /></pre>So, why did we get this output ? Incase it was a case of overriding we should have got the output of obj1.test() and obj2.test() &nbsp;as Class B. So this is definitely not the case of overriding.<br /><br />We get this because method test() is static and belongs to class and not any object. Thus when we call obj1.test(), we get a reference of class A, thus it will call the test() of class A and when we do obj2.test(), we get a reference of class B, thus it will call the test() of class B.<br /><br />Now, lets see what happens if we remove the static keyword from the methods,<br /><br /><pre class="brush : java">class A{<br />  public void test(){<br />    System.out.println("Class A");   <br />  }<br />}<br /><br /><br />public class B extends A{<br /><br />  public static void main(String args[]){<br />  A obj1 = new B();<br />  obj1.test();<br />  }<br /><br />  public void test(){<br />    System.out.println("Class B");<br />  } <br /><br />}<br /></pre><pre class="output">Class B<br /></pre><br />So, now the method test() of class A gets overridden, this is why we get Class B as the output.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>Static methods can not be overriden.</li>
+        <li>Static methods are at class level and not at object level.</li>
+        <li>Static methods take lock on a class and non static methods takes lock on an object.</li>
+    </ul>
+    <br/>
+    <div class="hl-note"><b>Example : Trying to override a static method</b></div>
+    Suppose we have a class A and another class B that extends this class. Both the classes have same static method
+    test() with same return type and same parameters. So this satisfies this the conditions for overriding a function.
+    So what will be the output of the following program ?<br/><br/>
+    <pre class="brush : java">class A{<br/>  public static void test(){<br/>    System.out.println("Class A");   <br/>  }<br/>}<br/><br/><br/>public class B extends A{<br/><br/>  public static void main(String args[]){<br/>  A obj1 = new B();<br/>  B obj2 = new B();<br/>  obj1.test();<br/>  obj2.test();<br/>  A.test();<br/>  B.test();<br/>  }<br/><br/>  public static void test(){<br/>    System.out.println("Class B");<br/>  } <br/><br/>}<br/></pre>
+    <pre class="output">Class A<br/>Class B<br/>Class A<br/>Class B<br/></pre>
+    So, why did we get this output ? Incase it was a case of overriding we should have got the output of obj1.test() and
+    obj2.test() &nbsp;as Class B. So this is definitely not the case of overriding.<br/><br/>We get this because method
+    test() is static and belongs to class and not any object. Thus when we call obj1.test(), we get a reference of class
+    A, thus it will call the test() of class A and when we do obj2.test(), we get a reference of class B, thus it will
+    call the test() of class B.<br/><br/>Now, lets see what happens if we remove the static keyword from the
+    methods,<br/><br/>
+    <pre class="brush : java">class A{<br/>  public void test(){<br/>    System.out.println("Class A");   <br/>  }<br/>}<br/><br/><br/>public class B extends A{<br/><br/>  public static void main(String args[]){<br/>  A obj1 = new B();<br/>  obj1.test();<br/>  }<br/><br/>  public void test(){<br/>    System.out.println("Class B");<br/>  } <br/><br/>}<br/></pre>
+    <pre class="output">Class B<br/></pre>
+    <br/>So, now the method test() of class A gets overridden, this is why we get Class B as the output.
+</div>

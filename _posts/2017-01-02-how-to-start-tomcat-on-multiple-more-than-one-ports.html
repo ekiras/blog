@@ -12,4 +12,151 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/01/how-to-start-tomcat-on-mult
 redirect_from: "/2017/01/how-to-start-tomcat-on-multiple-more-than-one-ports.html"
 ---
 
-<div class='markdown'><h2>How to start Tomcat on more than one Port.</h2><p>Tomcat settings can be found in <code>TomcatFolder/conf/server.xml</code> file.</p><ol><li><code>Root</code> element of the configuration is <code>Server</code> tag.</li><li>You can add multiple <code>Service</code> under <code>Server</code> tag for running tomcat on more than one port.</li></ol><h3>Default Service Configuration should look as follows</h3><pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8080"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"HTTP/1.1"</span><br />               <span class="hljs-attribute">connectionTimeout</span>=<span class="hljs-value">"20000"</span><br />               <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8009"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span class="hljs-value">"localhost"</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br />               <span class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"webapps"</span><br />            <span class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br /><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br />               <span class="hljs-attribute">prefix</span>=<span class="hljs-value">"localhost_access_log."</span> <span class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br />               <span class="hljs-attribute">pattern</span>=<span class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br /><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br />    <span class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br />  <span class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br /><br /></code></pre><p>The above configurations states the folllowing things</p><ol><li><code>Service name="Catalina"</code> - Service name is <code>Catalina</code>, you can change it to give your application name.</li><li><code>Connector port="8080" protocol="HTTP/1.1"</code> - Tomcat will run on <code>port 8080</code></li><li><code>connectionTimeout="20000"</code> - Connection timeout in <code>20000 mili seconds</code></li><li><code>Connector port="8009" protocol="AJP/1.3"</code> - AJP connection on port <code>8009</code>.</li><li><code>name="localhost"</code> - Name of the host where tomcat will run.</li><li><code>appBase="webapp"</code> - Base directory for deployed apps is <code>webapp</code></li><li><code>unpackWARs="true"</code> - The war files deplyed wll be unpacked</li></ol><h2>Running Tomcat on multiple ports.</h2><p>To start tomcat on more than one port you can add multiple <code>Service</code> blocks under <code>Server</code> root tag as shown below</p><pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"app1"</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8080"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"HTTP/1.1"</span><br />               <span class="hljs-attribute">connectionTimeout</span>=<span class="hljs-value">"20000"</span><br />               <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8009"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span class="hljs-value">"localhost"</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br />               <span class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"app1"</span><br />            <span class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br /><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br />               <span class="hljs-attribute">prefix</span>=<span class="hljs-value">"app1_access_log."</span> <span class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br />               <span class="hljs-attribute">pattern</span>=<span class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br /><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br />    <span class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br />  <span class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br />  <span class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"app2"</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8090"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"HTTP/1.1"</span><br />               <span class="hljs-attribute">connectionTimeout</span>=<span class="hljs-value">"20000"</span><br />               <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span class="hljs-attribute">port</span>=<span class="hljs-value">"8091"</span> <span class="hljs-attribute">protocol</span>=<span class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span class="hljs-value">"8443"</span> /&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span class="hljs-value">"localhost"</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br />               <span class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br /><br />      <span class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"app2"</span><br />            <span class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br /><br />        <span class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br />               <span class="hljs-attribute">prefix</span>=<span class="hljs-value">"app2_access_log."</span> <span class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br />               <span class="hljs-attribute">pattern</span>=<span class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br /><br />      <span class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br />    <span class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br />  <span class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br /><br /></code></pre><p>Here in above configuration we have specified the following.</p><ol><li>Service <code>app1</code> configuration will run on port <code>8080</code>.</li><li>Service <code>app2</code> configuration will run on port <code>8090</code>.</li><li><code>app1</code> will keep files and war files in folder <code>app1</code>.</li><li><code>app2</code> will keep files and war files in folder <code>app2</code>.</li><li><code>app1</code> and <code>app2</code> will write access logs in folder <code>logs/app1_access_log.txt</code> and <code>logs/app2_access_log.txt</code> respectively</li></ol><blockquote><p>Note : None of the above configuration will keep files or war files in webapp folder.</p></blockquote><blockquote><p><strong>Also Read</strong></p><ul><li><a href="http://www.ekiras.com/2017/01/how-to-run-change-default-port-8080-of-tomcat.html">How to change default port 8080 of Tomcat</a></li><li><a href="http://www.ekiras.com/2016/12/tomcat-how-to-change-deployment-directory-webapps-to-custom-directory.html">How to change Deployment directory from webapp to custom Directory</a></li><li><a href="http://www.ekiras.com/2017/01/how-to-start-tomcat-on-multiple-more-than-one-ports.html">How to start Tomcat on more than one Port</a></li><li><a href="http://www.ekiras.com/2014/12/how-to-deploy-war-on-tomcat.html">How to Deploy a war on Tomcat</a></li></ul></blockquote></div>
+<div class='markdown'><h2>How to start Tomcat on more than one Port.</h2>
+    <p>Tomcat settings can be found in <code>TomcatFolder/conf/server.xml</code> file.</p>
+    <ol>
+        <li><code>Root</code> element of the configuration is <code>Server</code> tag.</li>
+        <li>You can add multiple <code>Service</code> under <code>Server</code> tag for running tomcat on more than one
+            port.
+        </li>
+    </ol>
+    <h3>Default Service Configuration should look as follows</h3>
+    <pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span
+            class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span>&gt;</span><br/>    <span
+            class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8080"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"HTTP/1.1"</span><br/>               <span
+            class="hljs-attribute">connectionTimeout</span>=<span
+            class="hljs-value">"20000"</span><br/>               <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8009"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span
+            class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span
+            class="hljs-value">"localhost"</span>&gt;</span><br/><br/>      <span class="hljs-tag">&lt;<span
+            class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span
+            class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br/>               <span
+            class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span
+            class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"webapps"</span><br/>            <span
+            class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span
+            class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br/><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span
+            class="hljs-attribute">className</span>=<span
+            class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span
+            class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br/>               <span
+            class="hljs-attribute">prefix</span>=<span class="hljs-value">"localhost_access_log."</span> <span
+            class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br/>               <span
+            class="hljs-attribute">pattern</span>=<span
+            class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br/>    <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br/>  <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br/><br/></code></pre>
+    <p>The above configurations states the folllowing things</p>
+    <ol>
+        <li><code>Service name="Catalina"</code> - Service name is <code>Catalina</code>, you can change it to give your
+            application name.
+        </li>
+        <li><code>Connector port="8080" protocol="HTTP/1.1"</code> - Tomcat will run on <code>port 8080</code></li>
+        <li><code>connectionTimeout="20000"</code> - Connection timeout in <code>20000 mili seconds</code></li>
+        <li><code>Connector port="8009" protocol="AJP/1.3"</code> - AJP connection on port <code>8009</code>.</li>
+        <li><code>name="localhost"</code> - Name of the host where tomcat will run.</li>
+        <li><code>appBase="webapp"</code> - Base directory for deployed apps is <code>webapp</code></li>
+        <li><code>unpackWARs="true"</code> - The war files deplyed wll be unpacked</li>
+    </ol>
+    <h2>Running Tomcat on multiple ports.</h2>
+    <p>To start tomcat on more than one port you can add multiple <code>Service</code> blocks under <code>Server</code>
+        root tag as shown below</p>
+    <pre><code class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span
+            class="hljs-attribute">name</span>=<span class="hljs-value">"app1"</span>&gt;</span><br/>    <span
+            class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8080"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"HTTP/1.1"</span><br/>               <span
+            class="hljs-attribute">connectionTimeout</span>=<span
+            class="hljs-value">"20000"</span><br/>               <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8009"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span
+            class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span
+            class="hljs-value">"localhost"</span>&gt;</span><br/><br/>      <span class="hljs-tag">&lt;<span
+            class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span
+            class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br/>               <span
+            class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span
+            class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"app1"</span><br/>            <span
+            class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span
+            class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br/><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span
+            class="hljs-attribute">className</span>=<span
+            class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span
+            class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br/>               <span
+            class="hljs-attribute">prefix</span>=<span class="hljs-value">"app1_access_log."</span> <span
+            class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br/>               <span
+            class="hljs-attribute">pattern</span>=<span
+            class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br/>    <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br/>  <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br/>  <span
+            class="hljs-tag">&lt;<span class="hljs-title">Service</span> <span class="hljs-attribute">name</span>=<span
+            class="hljs-value">"app2"</span>&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8090"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"HTTP/1.1"</span><br/>               <span
+            class="hljs-attribute">connectionTimeout</span>=<span
+            class="hljs-value">"20000"</span><br/>               <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Connector</span> <span
+            class="hljs-attribute">port</span>=<span class="hljs-value">"8091"</span> <span class="hljs-attribute">protocol</span>=<span
+            class="hljs-value">"AJP/1.3"</span> <span class="hljs-attribute">redirectPort</span>=<span
+            class="hljs-value">"8443"</span> /&gt;</span><br/>    <span class="hljs-tag">&lt;<span class="hljs-title">Engine</span> <span
+            class="hljs-attribute">name</span>=<span class="hljs-value">"Catalina"</span> <span class="hljs-attribute">defaultHost</span>=<span
+            class="hljs-value">"localhost"</span>&gt;</span><br/><br/>      <span class="hljs-tag">&lt;<span
+            class="hljs-title">Realm</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.LockOutRealm"</span>&gt;</span><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Realm</span> <span
+            class="hljs-attribute">className</span>=<span class="hljs-value">"org.apache.catalina.realm.UserDatabaseRealm"</span><br/>               <span
+            class="hljs-attribute">resourceName</span>=<span class="hljs-value">"UserDatabase"</span>/&gt;</span><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Realm</span>&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;<span class="hljs-title">Host</span> <span class="hljs-attribute">name</span>=<span
+            class="hljs-value">"localhost"</span>  <span class="hljs-attribute">appBase</span>=<span class="hljs-value">"app2"</span><br/>            <span
+            class="hljs-attribute">unpackWARs</span>=<span class="hljs-value">"true"</span> <span
+            class="hljs-attribute">autoDeploy</span>=<span class="hljs-value">"true"</span>&gt;</span><br/><br/>        <span
+            class="hljs-tag">&lt;<span class="hljs-title">Valve</span> <span
+            class="hljs-attribute">className</span>=<span
+            class="hljs-value">"org.apache.catalina.valves.AccessLogValve"</span> <span
+            class="hljs-attribute">directory</span>=<span class="hljs-value">"logs"</span><br/>               <span
+            class="hljs-attribute">prefix</span>=<span class="hljs-value">"app2_access_log."</span> <span
+            class="hljs-attribute">suffix</span>=<span class="hljs-value">".txt"</span><br/>               <span
+            class="hljs-attribute">pattern</span>=<span
+            class="hljs-value">"%h %l %u %t &amp;quot;%r&amp;quot; %s %b"</span> /&gt;</span><br/><br/>      <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Host</span>&gt;</span><br/>    <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Engine</span>&gt;</span><br/>  <span
+            class="hljs-tag">&lt;/<span class="hljs-title">Service</span>&gt;</span><br/><br/></code></pre>
+    <p>Here in above configuration we have specified the following.</p>
+    <ol>
+        <li>Service <code>app1</code> configuration will run on port <code>8080</code>.</li>
+        <li>Service <code>app2</code> configuration will run on port <code>8090</code>.</li>
+        <li><code>app1</code> will keep files and war files in folder <code>app1</code>.</li>
+        <li><code>app2</code> will keep files and war files in folder <code>app2</code>.</li>
+        <li><code>app1</code> and <code>app2</code> will write access logs in folder
+            <code>logs/app1_access_log.txt</code> and <code>logs/app2_access_log.txt</code> respectively
+        </li>
+    </ol>
+    <blockquote><p>Note : None of the above configuration will keep files or war files in webapp folder.</p>
+    </blockquote>
+    <blockquote><p><strong>Also Read</strong></p>
+        <ul>
+            <li><a href="http://www.ekiras.com/2017/01/how-to-run-change-default-port-8080-of-tomcat.html">How to change
+                default port 8080 of Tomcat</a></li>
+            <li>
+                <a href="http://www.ekiras.com/2016/12/tomcat-how-to-change-deployment-directory-webapps-to-custom-directory.html">How
+                    to change Deployment directory from webapp to custom Directory</a></li>
+            <li><a href="http://www.ekiras.com/2017/01/how-to-start-tomcat-on-multiple-more-than-one-ports.html">How to
+                start Tomcat on more than one Port</a></li>
+            <li><a href="http://www.ekiras.com/2014/12/how-to-deploy-war-on-tomcat.html">How to Deploy a war on
+                Tomcat</a></li>
+        </ul>
+    </blockquote>
+</div>

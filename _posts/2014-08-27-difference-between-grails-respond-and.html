@@ -12,4 +12,27 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/08/difference-between-grails-r
 redirect_from: "/2014/08/difference-between-grails-respond-and.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>First things that comes in mind</b></div><ul style="text-align: left;"><li>Respond was introduced in Grails v2.3.</li><li>Render is used by Grails to render different forms of responses from simple text response, to views to templates.</li><li>Respond automatically attempts to return the most appropriate type for the requested content type.</li><li>Respond is a better version of render, and can do everything render does.</li></ul><div class="hl-note"><b>Example</b></div>In case you want to send data to the view in "xml" or in "json" format then you will have to do the following<br /><ul><li><b>render :</b>&nbsp;// renders text for a specified content-type/encoding<br />render(text: "<xml>some xml</xml>", contentType: "text/xml", encoding: "UTF-8"<br />render(text: "<xml>some json</xml>", contentType: "text/json", encoding: "UTF-8"</li><li><b>respond : </b>&nbsp;by using&nbsp;respond, it will automatically select the correct return type</li>respond( text: "some text in json or xml" [formats : ['xml' , 'json']]) it will automatically send the required respond depending upon the type of request.</ul></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>First things that comes in mind</b></div>
+    <ul style="text-align: left;">
+        <li>Respond was introduced in Grails v2.3.</li>
+        <li>Render is used by Grails to render different forms of responses from simple text response, to views to
+            templates.
+        </li>
+        <li>Respond automatically attempts to return the most appropriate type for the requested content type.</li>
+        <li>Respond is a better version of render, and can do everything render does.</li>
+    </ul>
+    <div class="hl-note"><b>Example</b></div>
+    In case you want to send data to the view in "xml" or in "json" format then you will have to do the following<br/>
+    <ul>
+        <li><b>render :</b>&nbsp;// renders text for a specified content-type/encoding<br/>render(text: "
+            <xml>some xml</xml>
+            ", contentType: "text/xml", encoding: "UTF-8"<br/>render(text: "
+            <xml>some json</xml>
+            ", contentType: "text/json", encoding: "UTF-8"
+        </li>
+        <li><b>respond : </b>&nbsp;by using&nbsp;respond, it will automatically select the correct return type</li>
+        respond( text: "some text in json or xml" [formats : ['xml' , 'json']]) it will automatically send the required
+        respond depending upon the type of request.
+    </ul>
+</div>

@@ -12,4 +12,14 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/how-to-display-pdf-file-in-
 redirect_from: "/2014/09/how-to-display-pdf-file-in-browser.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Display PDF in browser using Java from response</b></div><pre class="brush : java">response.setContentType("application/pdf");<br />response.setHeader("Content-Disposition", "inline; filename='" + pdfName + "'");<br />response.setContentLength((int) FileInputStream input = new FileInputStream("File.pdf").length());<br /></pre><br />The above lines of code can be used to send a response to the view( like .jsp) as a pdf. &nbsp;This will open the pdf in the browser and not make the pdf downloadable.<br /><br /><div class="hl-note"><b>Display PDF in browser view page</b></div>To indicate to the browser that the file should be viewed in the browser :<br /><pre class="brush : html">Content-Type : application/pdf<br /><br />Content-Disposition : inline; filename.pdf<br /><br /></pre><br />To have the file downloaded rather than viewed:<br /><pre class="brush : html">Content-Type : application/pdf<br /><br />Content-Disposition : attachment; filename.pdf<br /><br /></pre><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Display PDF in browser using Java from response</b></div>
+    <pre class="brush : java">response.setContentType("application/pdf");<br/>response.setHeader("Content-Disposition", "inline; filename='" + pdfName + "'");<br/>response.setContentLength((int) FileInputStream input = new FileInputStream("File.pdf").length());<br/></pre>
+    <br/>The above lines of code can be used to send a response to the view( like .jsp) as a pdf. &nbsp;This will open
+    the pdf in the browser and not make the pdf downloadable.<br/><br/>
+    <div class="hl-note"><b>Display PDF in browser view page</b></div>
+    To indicate to the browser that the file should be viewed in the browser :<br/>
+    <pre class="brush : html">Content-Type : application/pdf<br/><br/>Content-Disposition : inline; filename.pdf<br/><br/></pre>
+    <br/>To have the file downloaded rather than viewed:<br/>
+    <pre class="brush : html">Content-Type : application/pdf<br/><br/>Content-Disposition : attachment; filename.pdf<br/><br/></pre>
+    <br/></div>

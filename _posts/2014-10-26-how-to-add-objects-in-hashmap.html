@@ -13,4 +13,20 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/10/how-to-add-objects-in-hashm
 redirect_from: "/2014/10/how-to-add-objects-in-hashmap.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>HashMap saves objects in form of <b>key-value</b> pair in form of <b>Entry</b> object (Map.Entry).</li><li>We can use any object as a key on which <b>hashCode() and equals()</b> can be applied.</li><li>We <b>cannot use primitive datatypes</b> as keys or values.</li><li>We can have <b>only one value corresponding to a key</b>, other values will get overridden.</li><li>A hashMap can contain a <b>single null key</b>.</li><li><b>Initial size</b> of a HashMap <b>is 16</b> and its <b>load factor is 0.75</b> after this HashMap gets rehashed.</li></ul><div class="hl-note"><b>Program : Adding Objects to HashMap</b></div>Below program shows how to save key-value pairs as entry objects in a HashMap. We use <b>put()</b>&nbsp;method to store key-value pairs in a Hashmap.<br /><pre class="brush : java">import java.util.HashMap;<br /><br />class Test{<br /><br />  public static void main(String args[]){<br /><br />    // Declaring and Initializing a HashMap <br />    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();<br /><br />    // Adding Objects TO HashMap<br />    map.put("key 1","value 1");<br />    map.put("key 2","value 2");<br />    map.put("key 3","value 3");<br />    map.put("key 4","value 4");<br />    map.put("key 5","value 5");<br />  }<br /><br />}</pre></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>HashMap saves objects in form of <b>key-value</b> pair in form of <b>Entry</b> object (Map.Entry).</li>
+        <li>We can use any object as a key on which <b>hashCode() and equals()</b> can be applied.</li>
+        <li>We <b>cannot use primitive datatypes</b> as keys or values.</li>
+        <li>We can have <b>only one value corresponding to a key</b>, other values will get overridden.</li>
+        <li>A hashMap can contain a <b>single null key</b>.</li>
+        <li><b>Initial size</b> of a HashMap <b>is 16</b> and its <b>load factor is 0.75</b> after this HashMap gets
+            rehashed.
+        </li>
+    </ul>
+    <div class="hl-note"><b>Program : Adding Objects to HashMap</b></div>
+    Below program shows how to save key-value pairs as entry objects in a HashMap. We use <b>put()</b>&nbsp;method to
+    store key-value pairs in a Hashmap.<br/>
+    <pre class="brush : java">import java.util.HashMap;<br/><br/>class Test{<br/><br/>  public static void main(String args[]){<br/><br/>    // Declaring and Initializing a HashMap <br/>    HashMap&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();<br/><br/>    // Adding Objects TO HashMap<br/>    map.put("key 1","value 1");<br/>    map.put("key 2","value 2");<br/>    map.put("key 3","value 3");<br/>    map.put("key 4","value 4");<br/>    map.put("key 5","value 5");<br/>  }<br/><br/>}</pre>
+</div>

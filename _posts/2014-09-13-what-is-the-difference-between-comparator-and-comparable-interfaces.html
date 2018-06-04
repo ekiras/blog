@@ -13,4 +13,48 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/what-is-the-difference-betw
 redirect_from: "/2014/09/what-is-the-difference-between-comparator-and-comparable-interfaces.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Difference between Comparator and Comparable</b></div><table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;" class="table-bg"><tbody><tr width="50%"><th>Comparator</th><th width="50%">Comparable</th></tr><tr><td>It is available in <b>java.util </b>package.</td><td>It is available in <b>java.lang</b> package.<br /><br /></td></tr><tr><td>We need to override <b>compare()</b>&nbsp;method.</td><td>We need to override <b>compareTo()</b> method.</td></tr><tr><td>It takes two arguments as parameters.<br /><b>public int compare(Object obj1,Object obj2 )</b></td><td>&nbsp;It takes only one argument as a parameter.<br /><b>public int compareTo(Object obj)</b></td></tr><tr><td>Its primary use is where we need to write the <b>comparing logic outside the class</b> which has to be compared.&nbsp;</td><td>&nbsp;It is used when we need to compare the instance of an object with a given object. <b>Comparing logic is inside the class</b> that needs to be compared.</td></tr><tr><td>&nbsp;<b>this</b> reference is not made while comparing objects</td><td><b>this</b>&nbsp;reference is used to compare the object.</td></tr><tr><td>&nbsp;It is used for comparing objects based on any logic.</td><td>It is mostly used for comparing objects based on the natural ordering.</td></tr></tbody></table><br /><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>Both compareTo() and compare() methods return int value.</li><li>Both&nbsp;compareTo() and compare() methods return either a negative integer, 0 or a positive integer.</li><li>Both Comparator and Comparable are interfaces.</li></ul></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Difference between Comparator and Comparable</b></div>
+    <table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;" class="table-bg">
+        <tbody>
+        <tr width="50%">
+            <th>Comparator</th>
+            <th width="50%">Comparable</th>
+        </tr>
+        <tr>
+            <td>It is available in <b>java.util </b>package.</td>
+            <td>It is available in <b>java.lang</b> package.<br/><br/></td>
+        </tr>
+        <tr>
+            <td>We need to override <b>compare()</b>&nbsp;method.</td>
+            <td>We need to override <b>compareTo()</b> method.</td>
+        </tr>
+        <tr>
+            <td>It takes two arguments as parameters.<br/><b>public int compare(Object obj1,Object obj2 )</b></td>
+            <td>&nbsp;It takes only one argument as a parameter.<br/><b>public int compareTo(Object obj)</b></td>
+        </tr>
+        <tr>
+            <td>Its primary use is where we need to write the <b>comparing logic outside the class</b> which has to be
+                compared.&nbsp;</td>
+            <td>&nbsp;It is used when we need to compare the instance of an object with a given object. <b>Comparing
+                logic is inside the class</b> that needs to be compared.
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;<b>this</b> reference is not made while comparing objects</td>
+            <td><b>this</b>&nbsp;reference is used to compare the object.</td>
+        </tr>
+        <tr>
+            <td>&nbsp;It is used for comparing objects based on any logic.</td>
+            <td>It is mostly used for comparing objects based on the natural ordering.</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>Both compareTo() and compare() methods return int value.</li>
+        <li>Both&nbsp;compareTo() and compare() methods return either a negative integer, 0 or a positive integer.</li>
+        <li>Both Comparator and Comparable are interfaces.</li>
+    </ul>
+</div>

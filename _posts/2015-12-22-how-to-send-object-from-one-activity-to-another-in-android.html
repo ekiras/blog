@@ -12,4 +12,27 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/12/how-to-send-object-from-one
 redirect_from: "/2015/12/how-to-send-object-from-one-activity-to-another-in-android.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can send an Object from one Activity to another using two ways<br /><br /><ul style="text-align: left;"><li>Make a class extend Parcelable&nbsp;</li><li>Make class Serializable</li></ul><div><b>Parcelable</b> is a faster way to send and receive data, but it needs a lot of code to be written and manage in a particular way, however <b>Serializable</b> is a Java technique and is much simpler than the former way.</div><br /><h2>Send Object from one Activity to Another Activity using Serializable</h2>We will make a POJO class Person that needs to be sent from ActivityOne to ActivityTwo. The Person class just needs to implement the serializable interface.<br /><br />The code may look like below<br /><br /><ul style="text-align: left;"><li>Activity to send Object <br /><pre>intent.putExtra("name", object);</pre></li><li>Activity to receive object <br /> <pre>Object object = (Object) getIntent().getSerializableExtra("name");</pre></li></ul><br/>The full code example looks like the following <br /><script src="https://gist.github.com/gitekiras/ce17387134104e4cc1ef.js"></script></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can send an Object from one Activity
+    to another using two ways<br/><br/>
+    <ul style="text-align: left;">
+        <li>Make a class extend Parcelable&nbsp;</li>
+        <li>Make class Serializable</li>
+    </ul>
+    <div><b>Parcelable</b> is a faster way to send and receive data, but it needs a lot of code to be written and manage
+        in a particular way, however <b>Serializable</b> is a Java technique and is much simpler than the former way.
+    </div>
+    <br/>
+    <h2>Send Object from one Activity to Another Activity using Serializable</h2>We will make a POJO class Person that
+    needs to be sent from ActivityOne to ActivityTwo. The Person class just needs to implement the serializable
+    interface.<br/><br/>The code may look like below<br/><br/>
+    <ul style="text-align: left;">
+        <li>Activity to send Object <br/>
+            <pre>intent.putExtra("name", object);</pre>
+        </li>
+        <li>Activity to receive object <br/>
+            <pre>Object object = (Object) getIntent().getSerializableExtra("name");</pre>
+        </li>
+    </ul>
+    <br/>The full code example looks like the following <br/>
+    <script src="https://gist.github.com/gitekiras/ce17387134104e4cc1ef.js"></script>
+</div>

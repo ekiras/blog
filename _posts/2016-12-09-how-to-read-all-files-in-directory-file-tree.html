@@ -14,4 +14,23 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/12/how-to-read-all-files-in-di
 redirect_from: "/2016/12/how-to-read-all-files-in-directory-file-tree.html"
 ---
 
-<div class="markdown"><h2>Introduction to FileTree in Gradle Api</h2><p><code>FileTree</code> is an interface that extends <a href="http://www.ekiras.com/2016/12/what-is-file-collection-in-gradle.html">FileCollection</a> and introduces methods like <code>matching()</code> and <code>visit()</code>. It class represents a hierarchy of files in a given directory. It includes files in same folder and all sub folders.</p><h2>How to get all files in a Directory</h2><p><img src="http://resources.ekiras.com/images/gradle/fs-1.png" alt="File Structure"></p><p>To load all files in a given directory and its sub directories you can use <code>FileTree</code>. Syntax for FileTree is as shown below.</p><pre><code class="language-gradle">FileTree tree = fileTree('path/to/dir')<br /></code></pre><p>The FileTree can get files in following ways</p><ol><li>from relative path</li><li>from</li></ol><p>We can write a gradle task to list all the files in the src folder as shown below.</p><pre><code class="language-gradle"><br />task loadFiles(){<br />    doLast{<br />        FileTree tree = fileTree('src')<br />        tree.each {<br />            println it.name<br />        }<br />    }<br />}<br /></code></pre><p>When we run the aobe task using command <code>gradle -q loadFiles</code> it will give the following output</p><pre><code class="language-output">sample1.txt<br />sample2txt<br />file1.properties<br />A.java<br /></code></pre></div>
+<div class="markdown"><h2>Introduction to FileTree in Gradle Api</h2>
+    <p><code>FileTree</code> is an interface that extends <a
+            href="http://www.ekiras.com/2016/12/what-is-file-collection-in-gradle.html">FileCollection</a> and
+        introduces methods like <code>matching()</code> and <code>visit()</code>. It class represents a hierarchy of
+        files in a given directory. It includes files in same folder and all sub folders.</p>
+    <h2>How to get all files in a Directory</h2>
+    <p><img src="http://resources.ekiras.com/images/gradle/fs-1.png" alt="File Structure"></p>
+    <p>To load all files in a given directory and its sub directories you can use <code>FileTree</code>. Syntax for
+        FileTree is as shown below.</p>
+    <pre><code class="language-gradle">FileTree tree = fileTree('path/to/dir')<br/></code></pre>
+    <p>The FileTree can get files in following ways</p>
+    <ol>
+        <li>from relative path</li>
+        <li>from</li>
+    </ol>
+    <p>We can write a gradle task to list all the files in the src folder as shown below.</p>
+    <pre><code class="language-gradle"><br/>task loadFiles(){<br/>    doLast{<br/>        FileTree tree = fileTree('src')<br/>        tree.each {<br/>            println it.name<br/>        }<br/>    }<br/>}<br/></code></pre>
+    <p>When we run the aobe task using command <code>gradle -q loadFiles</code> it will give the following output</p>
+    <pre><code class="language-output">sample1.txt<br/>sample2txt<br/>file1.properties<br/>A.java<br/></code></pre>
+</div>

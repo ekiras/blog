@@ -13,4 +13,65 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/what-is-difference-between-
 redirect_from: "/2014/09/what-is-difference-between-enumeration-and-iterator-in-java.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>In java 1.0, there were two primary collection classes <b>HashMap and Vector.</b></li><li>Enumeration was a class in Java 1.0 to Iterate through these collection classes.(They are not the enum types.)</li><li>Iterator was introduced in Java 1.2</li></ul><br /><div class="hl-note"><b>Difference between Enumeration and Iterator.</b></div><table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;"><tbody><tr width="50%"><th>Enumeration</th><th width="50%">Iterator</th></tr><tr><td>It was introduces in Java v1.0</td><td>It was introduced in java v1.2</td></tr><tr><td>Enumeration does not have remove() method</td><td>Iterator has remove() method</td></tr><tr><td>Enumeration provides a read only iteration over collection</td><td>Iterator provides iteration over collections along with manipulation of objects like adding and removing from object.</td></tr><tr><td>Enumeration is less safe and secure</td><td>Iterator is more secure and safe, when multiple thread work on same object, it does not allow any thread to modify the object and throws <b>ConcurrentModificationException.</b></td></tr><tr><td>Enumeration has lengthy method names like<br /><ul><li><b>hasMoreElements()</b></li><li><b>nextElements()</b></li></ul></td><td>Iterator have short method names like<br /><ul><li><b>hasNext()</b></li><li><b>next()</b></li></ul></td></tr><tr><td>Enumeration is used when we want to iterate Collection object in read only manner.</td><td>Iterator is used when we want to iterate on collection object along with object manipulation.</td></tr></tbody></table><br /><div class="hl-note"><b>Using Enumeration to Iterate.</b></div><pre class="brush : java">Vector names = new Vector();<br /><br />// ... add some names to the collection<br /><br />Enumeration e = names.elements();<br />while (e.hasMoreElements())<br />  {<br />    String name = (String) e.nextElement();<br />    System.out.println(name);<br />  }<br /></pre><div class="hl-note"><b>Using Iterator to Iterate.</b></div><pre class="brush : java">List names = new LinkedList();<br /><br />// ... add some names to the collection<br /><br />Iterator i = names.iterator();<br />while (i.hasNext())<br />  {<br />    String name = (String) i.next();<br />    System.out.println(name);<br />  }<br /></pre></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>In java 1.0, there were two primary collection classes <b>HashMap and Vector.</b></li>
+        <li>Enumeration was a class in Java 1.0 to Iterate through these collection classes.(They are not the enum
+            types.)
+        </li>
+        <li>Iterator was introduced in Java 1.2</li>
+    </ul>
+    <br/>
+    <div class="hl-note"><b>Difference between Enumeration and Iterator.</b></div>
+    <table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;">
+        <tbody>
+        <tr width="50%">
+            <th>Enumeration</th>
+            <th width="50%">Iterator</th>
+        </tr>
+        <tr>
+            <td>It was introduces in Java v1.0</td>
+            <td>It was introduced in java v1.2</td>
+        </tr>
+        <tr>
+            <td>Enumeration does not have remove() method</td>
+            <td>Iterator has remove() method</td>
+        </tr>
+        <tr>
+            <td>Enumeration provides a read only iteration over collection</td>
+            <td>Iterator provides iteration over collections along with manipulation of objects like adding and removing
+                from object.
+            </td>
+        </tr>
+        <tr>
+            <td>Enumeration is less safe and secure</td>
+            <td>Iterator is more secure and safe, when multiple thread work on same object, it does not allow any thread
+                to modify the object and throws <b>ConcurrentModificationException.</b></td>
+        </tr>
+        <tr>
+            <td>Enumeration has lengthy method names like<br/>
+                <ul>
+                    <li><b>hasMoreElements()</b></li>
+                    <li><b>nextElements()</b></li>
+                </ul>
+            </td>
+            <td>Iterator have short method names like<br/>
+                <ul>
+                    <li><b>hasNext()</b></li>
+                    <li><b>next()</b></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>Enumeration is used when we want to iterate Collection object in read only manner.</td>
+            <td>Iterator is used when we want to iterate on collection object along with object manipulation.</td>
+        </tr>
+        </tbody>
+    </table>
+    <br/>
+    <div class="hl-note"><b>Using Enumeration to Iterate.</b></div>
+    <pre class="brush : java">Vector names = new Vector();<br/><br/>// ... add some names to the collection<br/><br/>Enumeration e = names.elements();<br/>while (e.hasMoreElements())<br/>  {<br/>    String name = (String) e.nextElement();<br/>    System.out.println(name);<br/>  }<br/></pre>
+    <div class="hl-note"><b>Using Iterator to Iterate.</b></div>
+    <pre class="brush : java">List names = new LinkedList();<br/><br/>// ... add some names to the collection<br/><br/>Iterator i = names.iterator();<br/>while (i.hasNext())<br/>  {<br/>    String name = (String) i.next();<br/>    System.out.println(name);<br/>  }<br/></pre>
+</div>

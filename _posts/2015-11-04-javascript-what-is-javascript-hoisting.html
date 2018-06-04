@@ -12,4 +12,30 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/11/javascript-what-is-javascri
 redirect_from: "/2015/11/javascript-what-is-javascript-hoisting.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>What is Hoisting in Javascript ??</h2>In Javascript the variable declaration can be done at any place inside the function or inside the script. <b>Where a variable is declared makes no difference because the javascript interpreter always move the variable declarations silently to the top of the scope where the variable is used.</b><br />For example, everyone will be fine the following javascript code. <br /><br /><pre>&lt;script&gt;<br />  var num;<br />  num = 5;<br />  <br />  function foo(){<br />    alert(num);<br />  }<br />  foo();  <br />&lt;/script&gt;<br /></pre><br />And, all will be able to guess that the function <b>foo() will alert value 5</b>. <br />However, the following code will confuse a lot of the developers, since the variable num is used before it is declared. <br /><br /><pre>&lt;script&gt;<br />  num = 5;<br />  <br />  function foo(){<br />    alert(num);<br />  }<br />    <br />  foo();  <br />  var num;<br />&lt;/script&gt;<br /></pre><br />The above code will run absolutely fine and will alert 5 just as in the previous example.<br />So what happened in example 2 ? What happened is <b>Javascript Hoisting</b>&nbsp;and it happened automatically behind the scenes.<br /><div class="alert alert-info">As stated earlier, The javascript interpreter moved the declaration of the variable num to the top not the initialization, so the code becomes</div><br /><pre><br /><br />  var num;<br />  num = 5;<br />  <br />  function foo(){<br />    alert(num);<br />  }<br />    <br />  foo();  <br /><br /></pre><br /><div class="alert alert-info"><b>Note :: javascript hoisting only moves declarations to top but not initialization to top.</b></div>What above statement means is that<br /><pre>  <br />  function foo(){<br />    alert(num);<br />  } <br />  foo();  <br /><br />  var num = 5;<br /></pre><br />The above code will alert <b>undefined</b>, instead of 5, this is because only the declaration is hoisted and not initialization. The above code as read bu interpreter is as follows<br /><br/><pre>  <br />  var num;<br /><br />  function foo(){<br />    alert(num);<br />  }<br />  foo();  <br /><br />  num = 5;<br /></pre>So it is very important to keep this in mind while writing your javascript code.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>What is Hoisting in Javascript ??</h2>In Javascript the
+    variable declaration can be done at any place inside the function or inside the script. <b>Where a variable is
+        declared makes no difference because the javascript interpreter always move the variable declarations silently
+        to the top of the scope where the variable is used.</b><br/>For example, everyone will be fine the following
+    javascript code. <br/><br/>
+    <pre>&lt;script&gt;<br/>  var num;<br/>  num = 5;<br/>  <br/>  function foo(){<br/>    alert(num);<br/>  }<br/>  foo();  <br/>&lt;/script&gt;<br/></pre>
+    <br/>And, all will be able to guess that the function <b>foo() will alert value 5</b>. <br/>However, the following
+    code will confuse a lot of the developers, since the variable num is used before it is declared. <br/><br/>
+    <pre>&lt;script&gt;<br/>  num = 5;<br/>  <br/>  function foo(){<br/>    alert(num);<br/>  }<br/>    <br/>  foo();  <br/>  var num;<br/>&lt;/script&gt;<br/></pre>
+    <br/>The above code will run absolutely fine and will alert 5 just as in the previous example.<br/>So what happened
+    in example 2 ? What happened is <b>Javascript Hoisting</b>&nbsp;and it happened automatically behind the
+    scenes.<br/>
+    <div class="alert alert-info">As stated earlier, The javascript interpreter moved the declaration of the variable
+        num to the top not the initialization, so the code becomes
+    </div>
+    <br/>
+    <pre><br/><br/>  var num;<br/>  num = 5;<br/>  <br/>  function foo(){<br/>    alert(num);<br/>  }<br/>    <br/>  foo();  <br/><br/></pre>
+    <br/>
+    <div class="alert alert-info"><b>Note :: javascript hoisting only moves declarations to top but not initialization
+        to top.</b></div>
+    What above statement means is that<br/>
+    <pre>  <br/>  function foo(){<br/>    alert(num);<br/>  } <br/>  foo();  <br/><br/>  var num = 5;<br/></pre>
+    <br/>The above code will alert <b>undefined</b>, instead of 5, this is because only the declaration is hoisted and
+    not initialization. The above code as read bu interpreter is as follows<br/><br/>
+    <pre>  <br/>  var num;<br/><br/>  function foo(){<br/>    alert(num);<br/>  }<br/>  foo();  <br/><br/>  num = 5;<br/></pre>
+    So it is very important to keep this in mind while writing your javascript code.
+</div>

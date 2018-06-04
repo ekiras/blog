@@ -13,4 +13,31 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/12/how-to-disable-gradle-daemo
 redirect_from: "/2016/12/how-to-disable-gradle-daemon.html"
 ---
 
-<div class="markdown"><h2>How to disable Gradle Daemon</h2><p>There are two ways in which you can disable gradle daemons.</p><ol><li><p>Using Environment Variable<br>To disable gradle daemon using env variable you can add a new flag <code>-Dorg.gradle.daemon=false</code> to <code>GRADLE_OPTS</code> env variable.</p><pre><code>GRADLE_OPTS="-Dorg.gradle.daemon=false"<br /></code></pre></li><li><p>Using <code>gradle.properties</code></p><p>To diable gradle daemon using gradle.properties, you can edit the <code>gradle.properties</code> file that is under the directory <code>&lt;User-Home&gt;/.gradle/</code>. You need to set the following property in the file.</p><pre><code>org.gradle.daemon=false<br /></code></pre></li></ol><blockquote><p><strong>Also Read</strong></p><ul><li><a href="http://www.ekiras.com/p/gradle.html">Introduction to Gradle</a></li><li><a href="http://www.ekiras.com/2016/12/what-is-gradle-daemon.html">Gradle : What is a Gradle Daemon ?</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-continue-build-even-if-a-failure-occurs.html">How to continue a build even if a failure occurs</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-import-gradle-file-in-another-gradle-file.html">How to import a gradle file in another gradle file</a></li><li><a href="http://www.ekiras.com/2016/12/how-to-stop-running-gradle-daemon.html">How to stop a running Gradle Daemon ?</a></li></ul></blockquote></div>
+<div class="markdown"><h2>How to disable Gradle Daemon</h2>
+    <p>There are two ways in which you can disable gradle daemons.</p>
+    <ol>
+        <li><p>Using Environment Variable<br>To disable gradle daemon using env variable you can add a new flag <code>-Dorg.gradle.daemon=false</code>
+            to <code>GRADLE_OPTS</code> env variable.</p>
+            <pre><code>GRADLE_OPTS="-Dorg.gradle.daemon=false"<br/></code></pre>
+        </li>
+        <li><p>Using <code>gradle.properties</code></p>
+            <p>To diable gradle daemon using gradle.properties, you can edit the <code>gradle.properties</code> file
+                that is under the directory <code>&lt;User-Home&gt;/.gradle/</code>. You need to set the following
+                property in the file.</p>
+            <pre><code>org.gradle.daemon=false<br/></code></pre>
+        </li>
+    </ol>
+    <blockquote><p><strong>Also Read</strong></p>
+        <ul>
+            <li><a href="http://www.ekiras.com/p/gradle.html">Introduction to Gradle</a></li>
+            <li><a href="http://www.ekiras.com/2016/12/what-is-gradle-daemon.html">Gradle : What is a Gradle Daemon
+                ?</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-continue-build-even-if-a-failure-occurs.html">How to
+                continue a build even if a failure occurs</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-import-gradle-file-in-another-gradle-file.html">How to
+                import a gradle file in another gradle file</a></li>
+            <li><a href="http://www.ekiras.com/2016/12/how-to-stop-running-gradle-daemon.html">How to stop a running
+                Gradle Daemon ?</a></li>
+        </ul>
+    </blockquote>
+</div>

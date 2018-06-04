@@ -13,4 +13,23 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/how-to-view-table-schema-in
 redirect_from: "/2014/09/how-to-view-table-schema-in-mysql.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Syntax : SHOW CREATE TABLE </b>tablename</div><br /><div class="hl-note"><b>When To Use ?</b></div><ul style="text-align: left;"><li>You already have a table in the database and you want to view how this table was created.</li><li>You want to check all the datatypes, default value, nullability of the columns.</li><li>You want to see all the constraints and keys that are applicable to this table.</li><li>This command can be used to recreate the table as it is with all constraints and keys set.&nbsp;</li></ul><div class="hl-note"><b>Example</b></div><br />Suppose we have two tables <b>Institute and User </b>&nbsp;and we want to check the schema of the tables or in simple terms how these tables were created, then we will use this command&nbsp;<b>SHOW CREATE TABLE&nbsp;</b>user, where user is the table name whose schema we want to check.<br />The above command will give the following output.<br /><br /><pre class="brush : sql">user  | CREATE TABLE `user` (<br />  `id` bigint(20) NOT NULL AUTO_INCREMENT,<br />  `city` varchar(255) DEFAULT NULL,<br />  `date_created` datetime NOT NULL,<br />  `dob` datetime DEFAULT NULL,<br />  `email` varchar(255) NOT NULL,<br />  `firstName` varchar(30) DEFAULT NULL,<br />  `gender` varchar(255) DEFAULT NULL,<br />  `is_enabled` tinyint(1) NOT NULL,<br />  `is_expired` tinyint(1) DEFAULT NULL,<br />  `lastName` varchar(30) DEFAULT NULL,<br />  `last_updated` datetime NOT NULL,<br />  `mobile` bigint(20) DEFAULT NULL,<br />  `pwd` varchar(255) NOT NULL,<br />  `token` varchar(255) DEFAULT NULL,<br />  `user_role` int(11) NOT NULL,<br />  `institute_id` bigint(20) NOT NULL,<br />  PRIMARY KEY (`id`),<br />  UNIQUE KEY `UK_52d8b7773f334f29885182c5fad` (`email`),<br />  KEY `FK_d87d9b2cd99f4f999b750d83637` (`institute_id`),<br />  CONSTRAINT `FK_d87d9b2cd99f4f999b750d83637` FOREIGN KEY (`institute_id`) REFERENCES `institute` (`id`)<br />) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 |<br /><br /></pre><br /><ul style="text-align: left;"></ul><div><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Syntax : SHOW CREATE TABLE </b>tablename</div>
+    <br/>
+    <div class="hl-note"><b>When To Use ?</b></div>
+    <ul style="text-align: left;">
+        <li>You already have a table in the database and you want to view how this table was created.</li>
+        <li>You want to check all the datatypes, default value, nullability of the columns.</li>
+        <li>You want to see all the constraints and keys that are applicable to this table.</li>
+        <li>This command can be used to recreate the table as it is with all constraints and keys set.&nbsp;</li>
+    </ul>
+    <div class="hl-note"><b>Example</b></div>
+    <br/>Suppose we have two tables <b>Institute and User </b>&nbsp;and we want to check the schema of the tables or in
+    simple terms how these tables were created, then we will use this command&nbsp;<b>SHOW CREATE TABLE&nbsp;</b>user,
+    where user is the table name whose schema we want to check.<br/>The above command will give the following
+    output.<br/><br/>
+    <pre class="brush : sql">user  | CREATE TABLE `user` (<br/>  `id` bigint(20) NOT NULL AUTO_INCREMENT,<br/>  `city` varchar(255) DEFAULT NULL,<br/>  `date_created` datetime NOT NULL,<br/>  `dob` datetime DEFAULT NULL,<br/>  `email` varchar(255) NOT NULL,<br/>  `firstName` varchar(30) DEFAULT NULL,<br/>  `gender` varchar(255) DEFAULT NULL,<br/>  `is_enabled` tinyint(1) NOT NULL,<br/>  `is_expired` tinyint(1) DEFAULT NULL,<br/>  `lastName` varchar(30) DEFAULT NULL,<br/>  `last_updated` datetime NOT NULL,<br/>  `mobile` bigint(20) DEFAULT NULL,<br/>  `pwd` varchar(255) NOT NULL,<br/>  `token` varchar(255) DEFAULT NULL,<br/>  `user_role` int(11) NOT NULL,<br/>  `institute_id` bigint(20) NOT NULL,<br/>  PRIMARY KEY (`id`),<br/>  UNIQUE KEY `UK_52d8b7773f334f29885182c5fad` (`email`),<br/>  KEY `FK_d87d9b2cd99f4f999b750d83637` (`institute_id`),<br/>  CONSTRAINT `FK_d87d9b2cd99f4f999b750d83637` FOREIGN KEY (`institute_id`) REFERENCES `institute` (`id`)<br/>) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 |<br/><br/></pre>
+    <br/>
+    <ul style="text-align: left;"></ul>
+    <div><br/></div>
+</div>

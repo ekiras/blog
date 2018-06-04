@@ -13,4 +13,19 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/03/what-is-safe-navigation-ope
 redirect_from: "/2017/03/what-is-safe-navigation-operator-or-null-check-operator.html"
 ---
 
-<div class="markdown"><h2>Safe navigation operator</h2>&#10;<p>The safe navigation Operator is used to avoid null pointer exceptions. Many a times you come across the need to access the value of an object if it is not null.</p>&#10;<p>Syntax for the Safe Navigation Operator is</p>&#10;<pre class="hljs"><code>&lt;object&gt;?.&lt;property&gt;&#10;</code></pre>&#10;<p>Here the  could be any object and  could be any property of the object.<p></p>&#10;<p>Let's have a look at the below example,</p>&#10;<pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>{&#10;  String name;&#10;}&#10;&#10;User u  = <span class="hljs-keyword">new</span> User(name : <span class="hljs-string">&#34;ekiras&#34;</span>)&#10;&#10;<span class="hljs-keyword">if</span>(u != <span class="hljs-keyword">null</span>)&#10;  println u.name  <span class="hljs-comment">// prints ekiras</span>&#10;&#10;</code></pre>&#10;<p>In the above code we have to write the <code>if</code> block to check if the user object is null or not. So, with the Safe navigation operator we do not need to write the if-else blocks.</p>&#10;<p>We can rewrite the above code as shown below</p>&#10;<pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> {</span>&#10;  String name;&#10;}&#10;&#10;User u  = <span class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">&#34;ekiras&#34;</span>)&#10;&#10;println u?.name // prints ekiras&#10;</code></pre>&#10;</p></div>
+<div class="markdown"><h2>Safe navigation operator</h2>&#10;<p>The safe navigation Operator is used to avoid null
+    pointer exceptions. Many a times you come across the need to access the value of an object if it is not null.</p>
+    &#10;<p>Syntax for the Safe Navigation Operator is</p>&#10;
+    <pre class="hljs"><code>&lt;object&gt;?.&lt;property&gt;&#10;</code></pre>
+    &#10;<p>Here the could be any object and could be any property of the object.
+    <p></p>&#10;<p>Let's have a look at the below example,</p>&#10;
+    <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>{&#10;  String name;&#10;}&#10;&#10;User u  = <span
+            class="hljs-keyword">new</span> User(name : <span
+            class="hljs-string">&#34;ekiras&#34;</span>)&#10;&#10;<span class="hljs-keyword">if</span>(u != <span
+            class="hljs-keyword">null</span>)&#10;  println u.name  <span class="hljs-comment">// prints ekiras</span>&#10;&#10;</code></pre>
+    &#10;<p>In the above code we have to write the <code>if</code> block to check if the user object is null or not. So,
+        with the Safe navigation operator we do not need to write the if-else blocks.</p>&#10;<p>We can rewrite the
+        above code as shown below</p>&#10;
+    <pre class="hljs"><code><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> {</span>&#10;  String name;&#10;}&#10;&#10;User u  = <span
+            class="hljs-keyword">new</span> User(<span class="hljs-string">name :</span> <span class="hljs-string">&#34;ekiras&#34;</span>)&#10;&#10;println u?.name // prints ekiras&#10;</code></pre>
+    &#10;</p></div>

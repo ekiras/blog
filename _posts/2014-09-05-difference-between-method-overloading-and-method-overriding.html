@@ -13,4 +13,65 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/difference-between-method-o
 redirect_from: "/2014/09/difference-between-method-overloading-and-method-overriding.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Key Differences</b></div><table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;">  <thead><tr> <th width="50%">Method Overloading</th> <th width="50%">Method Overriding</th></tr></thead><tbody><tr><td>Method Overloading always happens within the same class.</td><td>Method Overriding always happen between a super class and a sub class.</td></tr><tr><td>In method overloading the return type of the method need not to be the same.</td><td>In method overriding the return type of the method must be same&nbsp;</td></tr><tr><td>Number of arguments can be different.</td><td>Number of arguments should be same.</td></tr><tr><td>Overloaded methods can have different access specifiers.</td><td>Overriding method should not have weaker access specifier than the method it is overriding.</td></tr><tr><td>Type of arguments can be same or different.</td><td>Type of arguments should be same.</td></tr><tr><td>In method overloading one method cannot hide the other method.</td><td>In method overriding base class method hides the super class method.</td></tr><tr><td>It helps to achieve Static or Compile time Polymorphism</td><td>It helps to achieve Dynamic or Run time Polymorphism</td></tr></tbody></table><div class="separator" style="clear: both; text-align: center;"><br /></div><div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-5-Fgw7Wtgfo/VAiqrvPbhdI/AAAAAAAAAGs/Ijh5Sm5403U/s1600/overloadingvsoverriding.gif" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-5-Fgw7Wtgfo/VAiqrvPbhdI/AAAAAAAAAGs/Ijh5Sm5403U/s1600/overloadingvsoverriding.gif" height="353" width="640" /></a></div><br />The above picture tries to show the difference between Overloading and Overriding.<br /><br /><ul style="text-align: left;"><li>In overloading we have more than one arrow(method) and they are all available at runtime.</li><li>In overriding we may have more than one arrow, but at runtime we have only one arrow that is available.</li><li>In overloading their return type or parameters or type of parameters can be different.</li><li>In overloading their return type, parameters and type of parameters all must be same.</li></ul><br /><div class="hl-note"><b>Examples of Overloading and Overriding</b></div>Try to identify Overloading and Overriding in the example given below.<br /><br /><pre class="brush : java">class Base {<br />  public void print() {<br />     System.out.println("Base class print()");   <br />  }<br />}<br />   <br />class Derived extends Base {<br /><br />  public String show(String args) {<br />     System.out.println(args);   <br />     return "";  <br />  }<br />  public void show() {<br />     System.out.println("No args show");     <br />  }<br />  public void print() {<br />     System.out.println("Derived class print()");   <br />  }<br />  public static void main(String[] args) {<br />      Derived obj = new Derived();<br />      obj.show();<br />      obj.show("String overloaded show");<br />      obj.print();<br />  }  <br />}</pre><b>Output of the program is</b><br />No args show<br />String overloaded show<br />Derived class print()<br /><br />In this example the method <b>show() is overloaded</b> and the method <b>print() </b>&nbsp;is overridden. Thus it is clear that we can access all the overloaded methods, but only one overridden method( method in the super class is hidden).</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Key Differences</b></div>
+    <table border="1" cellpadding="5" cellspacing="0" class="table-bg" style="width: 100%;">
+        <thead>
+        <tr>
+            <th width="50%">Method Overloading</th>
+            <th width="50%">Method Overriding</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Method Overloading always happens within the same class.</td>
+            <td>Method Overriding always happen between a super class and a sub class.</td>
+        </tr>
+        <tr>
+            <td>In method overloading the return type of the method need not to be the same.</td>
+            <td>In method overriding the return type of the method must be same&nbsp;</td>
+        </tr>
+        <tr>
+            <td>Number of arguments can be different.</td>
+            <td>Number of arguments should be same.</td>
+        </tr>
+        <tr>
+            <td>Overloaded methods can have different access specifiers.</td>
+            <td>Overriding method should not have weaker access specifier than the method it is overriding.</td>
+        </tr>
+        <tr>
+            <td>Type of arguments can be same or different.</td>
+            <td>Type of arguments should be same.</td>
+        </tr>
+        <tr>
+            <td>In method overloading one method cannot hide the other method.</td>
+            <td>In method overriding base class method hides the super class method.</td>
+        </tr>
+        <tr>
+            <td>It helps to achieve Static or Compile time Polymorphism</td>
+            <td>It helps to achieve Dynamic or Run time Polymorphism</td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="separator" style="clear: both; text-align: center;"><br/></div>
+    <div class="separator" style="clear: both; text-align: center;"><a
+            href="http://1.bp.blogspot.com/-5-Fgw7Wtgfo/VAiqrvPbhdI/AAAAAAAAAGs/Ijh5Sm5403U/s1600/overloadingvsoverriding.gif"
+            imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0"
+                                                                              src="http://1.bp.blogspot.com/-5-Fgw7Wtgfo/VAiqrvPbhdI/AAAAAAAAAGs/Ijh5Sm5403U/s1600/overloadingvsoverriding.gif"
+                                                                              height="353" width="640"/></a></div>
+    <br/>The above picture tries to show the difference between Overloading and Overriding.<br/><br/>
+    <ul style="text-align: left;">
+        <li>In overloading we have more than one arrow(method) and they are all available at runtime.</li>
+        <li>In overriding we may have more than one arrow, but at runtime we have only one arrow that is available.</li>
+        <li>In overloading their return type or parameters or type of parameters can be different.</li>
+        <li>In overloading their return type, parameters and type of parameters all must be same.</li>
+    </ul>
+    <br/>
+    <div class="hl-note"><b>Examples of Overloading and Overriding</b></div>
+    Try to identify Overloading and Overriding in the example given below.<br/><br/>
+    <pre class="brush : java">class Base {<br/>  public void print() {<br/>     System.out.println("Base class print()");   <br/>  }<br/>}<br/>   <br/>class Derived extends Base {<br/><br/>  public String show(String args) {<br/>     System.out.println(args);   <br/>     return "";  <br/>  }<br/>  public void show() {<br/>     System.out.println("No args show");     <br/>  }<br/>  public void print() {<br/>     System.out.println("Derived class print()");   <br/>  }<br/>  public static void main(String[] args) {<br/>      Derived obj = new Derived();<br/>      obj.show();<br/>      obj.show("String overloaded show");<br/>      obj.print();<br/>  }  <br/>}</pre>
+    <b>Output of the program is</b><br/>No args show<br/>String overloaded show<br/>Derived class print()<br/><br/>In
+    this example the method <b>show() is overloaded</b> and the method <b>print() </b>&nbsp;is overridden. Thus it is
+    clear that we can access all the overloaded methods, but only one overridden method( method in the super class is
+    hidden).
+</div>

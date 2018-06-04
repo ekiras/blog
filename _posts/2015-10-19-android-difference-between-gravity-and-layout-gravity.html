@@ -12,4 +12,25 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/10/android-difference-between-
 redirect_from: "/2015/10/android-difference-between-gravity-and-layout-gravity.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>There are two attributes for a View in android to align its content<br /><br /><ul style="text-align: left;"><li>gravity</li><li>layout_gravity</li></ul><br />The basic difference between the two is that<br /><br /><ul style="text-align: left;"><li><b>android:gravity</b> is used for <b>child elements of the view.</b></li><li><b>android:gravity_layout&nbsp;</b>is used for this element <b>with respect to parent view</b>.</li></ul><div><br /></div><div>So, if you have a layout like<br /><br /></div><pre class="brush:xml;highlight:[4,11,16]">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br />    android:layout_width="match_parent"<br />    android:layout_height="match_parent"<br />    android:gravity="center"<br />    &gt;<br />        &lt;TextView<br />            android:layout_width="match_parent"<br />            android:layout_height="50dp"<br />            android:text="EkiRas"<br />            android:textSize="22dp"<br />            android:gravity="center"<br />            /&gt;<br /> &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br />     android:layout_width="match_parent"<br />     android:layout_height="match_parent"<br />     android:layout_gravity="center"<br />     &gt;<br /> // Other Elements<br /> &lt;/LinearLayout&gt;<br />&lt;/LinearLayout&gt;</pre><br />In the above code,<br /><br /><ul style="text-align: left;"><li>outer&nbsp;LinearLayout&nbsp;will set its child elements in center.</li><li>TextView <b>gravity:center</b>&nbsp;will set its ocntent in center.</li><li>inner LinearLayout will be aligned in the center of its parent, that is outer&nbsp;LinearLayout.</li></ul><div><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>There are two attributes for a View in
+    android to align its content<br/><br/>
+    <ul style="text-align: left;">
+        <li>gravity</li>
+        <li>layout_gravity</li>
+    </ul>
+    <br/>The basic difference between the two is that<br/><br/>
+    <ul style="text-align: left;">
+        <li><b>android:gravity</b> is used for <b>child elements of the view.</b></li>
+        <li><b>android:gravity_layout&nbsp;</b>is used for this element <b>with respect to parent view</b>.</li>
+    </ul>
+    <div><br/></div>
+    <div>So, if you have a layout like<br/><br/></div>
+    <pre class="brush:xml;highlight:[4,11,16]">&lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br/>    android:layout_width="match_parent"<br/>    android:layout_height="match_parent"<br/>    android:gravity="center"<br/>    &gt;<br/>        &lt;TextView<br/>            android:layout_width="match_parent"<br/>            android:layout_height="50dp"<br/>            android:text="EkiRas"<br/>            android:textSize="22dp"<br/>            android:gravity="center"<br/>            /&gt;<br/> &lt;LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"<br/>     android:layout_width="match_parent"<br/>     android:layout_height="match_parent"<br/>     android:layout_gravity="center"<br/>     &gt;<br/> // Other Elements<br/> &lt;/LinearLayout&gt;<br/>&lt;/LinearLayout&gt;</pre>
+    <br/>In the above code,<br/><br/>
+    <ul style="text-align: left;">
+        <li>outer&nbsp;LinearLayout&nbsp;will set its child elements in center.</li>
+        <li>TextView <b>gravity:center</b>&nbsp;will set its ocntent in center.</li>
+        <li>inner LinearLayout will be aligned in the center of its parent, that is outer&nbsp;LinearLayout.</li>
+    </ul>
+    <div><br/></div>
+</div>

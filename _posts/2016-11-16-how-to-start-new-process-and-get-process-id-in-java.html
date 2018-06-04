@@ -14,4 +14,47 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/11/how-to-start-new-process-an
 redirect_from: "/2016/11/how-to-start-new-process-and-get-process-id-in-java.html"
 ---
 
-<div class='markdown'><h2>Points to Remember</h2><ol><li>This post used <code>Java 1.9</code> since <code>ProcessHandle</code> was introduced in Java 1.9.</li></ol><blockquote><p><strong>Read More</strong></p><ul><li><a href="www.ekiras.com/p/java9.html">Java 9 Feature</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">List all processes running on the OS</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">Get the information of the current process</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-start-new-process-and-get-process-id-in-java.html">Start a new Process and get its Process Id</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-get-process-information-from-process-id-in-java.html">How to get Process Information from Process Id</a></li><li><a href="http://www.ekiras.com/2016/11/how-to-destroy-terminate-running-process-in-java.html">Destroy a running process</a></li></ul></blockquote><h2>Get the Current Process Information.</h2><p>In this example we will try to get information about the current process. For this we will use the m</p><pre><code class="language-java"><span class="hljs-keyword">import</span> java.io.IOException;<br /><br /><span class="hljs-javadoc">/**<br /> *<span class="hljs-javadoctag"> @author</span> ekiras<br /> */</span><br /><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StartProcess</span> </span>{<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br />        <span class="hljs-keyword">try</span> {<br />            Process process = startProcess(<span class="hljs-string">"tail -F /dev/null"</span>);<br />            printProcessInfo(process.toHandle());<br />        } <span class="hljs-keyword">catch</span> (IOException e) {<br />            e.printStackTrace();<br />        }<br />    }<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printProcessInfo</span><span class="hljs-params">(ProcessHandle processHandle)</span></span>{<br />        System.out.println(<span class="hljs-string">"---Process Info---"</span>);<br />        System.out.println(<span class="hljs-string">" Process Id :: "</span> + processHandle.getPid());<br />        System.out.println(<span class="hljs-string">" Process isAlive() :: "</span> + processHandle.isAlive());<br />        System.out.println(<span class="hljs-string">" Process children :: "</span> + processHandle.children().count());<br />        System.out.println(<span class="hljs-string">" Process supportsNormalTermination() :: "</span> + processHandle.supportsNormalTermination());<br />        System.out.println(<span class="hljs-string">" Process Info :: "</span> + processHandle.info().toString());<br /><br />    }<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Process <span class="hljs-title">startProcess</span><span class="hljs-params">(String command)</span> <span class="hljs-keyword">throws</span> IOException </span>{<br />        Runtime runtime = Runtime.getRuntime();<br />        Process process = runtime.exec(command);<br />        <span class="hljs-keyword">return</span> process;<br />    }<br /><br />}<br /><br /></code></pre><p>When we run the above code, it will return the following output.</p><pre class="output">---Process Info---<br /> Process Id :: 1865<br /> Process isAlive() :: true<br /> Process children :: 0<br /> Process supportsNormalTermination() :: true<br /> Process Info :: [user: Optional[root], cmd: /usr/bin/tail, args: [-F, /dev/null], startTime: Optional[2016-11-16T12:40:10.460Z], totalTime: Optional[PT0S]]<br /></pre></div>
+<div class='markdown'><h2>Points to Remember</h2>
+    <ol>
+        <li>This post used <code>Java 1.9</code> since <code>ProcessHandle</code> was introduced in Java 1.9.</li>
+    </ol>
+    <blockquote><p><strong>Read More</strong></p>
+        <ul>
+            <li><a href="www.ekiras.com/p/java9.html">Java 9 Feature</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">List all
+                processes running on the OS</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-list-all-processes-running-on-the-os.html">Get the
+                information of the current process</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-start-new-process-and-get-process-id-in-java.html">Start a
+                new Process and get its Process Id</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-get-process-information-from-process-id-in-java.html">How
+                to get Process Information from Process Id</a></li>
+            <li><a href="http://www.ekiras.com/2016/11/how-to-destroy-terminate-running-process-in-java.html">Destroy a
+                running process</a></li>
+        </ul>
+    </blockquote>
+    <h2>Get the Current Process Information.</h2>
+    <p>In this example we will try to get information about the current process. For this we will use the m</p>
+    <pre><code class="language-java"><span class="hljs-keyword">import</span> java.io.IOException;<br/><br/><span
+            class="hljs-javadoc">/**<br/> *<span class="hljs-javadoctag"> @author</span> ekiras<br/> */</span><br/><span
+            class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span
+            class="hljs-title">StartProcess</span> </span>{<br/><br/>    <span class="hljs-function"><span
+            class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span
+            class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{<br/>        <span
+            class="hljs-keyword">try</span> {<br/>            Process process = startProcess(<span class="hljs-string">"tail -F /dev/null"</span>);<br/>            printProcessInfo(process.toHandle());<br/>        } <span
+            class="hljs-keyword">catch</span> (IOException e) {<br/>            e.printStackTrace();<br/>        }<br/>    }<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span
+            class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printProcessInfo</span><span
+            class="hljs-params">(ProcessHandle processHandle)</span></span>{<br/>        System.out.println(<span
+            class="hljs-string">"---Process Info---"</span>);<br/>        System.out.println(<span class="hljs-string">" Process Id :: "</span> + processHandle.getPid());<br/>        System.out.println(<span
+            class="hljs-string">" Process isAlive() :: "</span> + processHandle.isAlive());<br/>        System.out.println(<span
+            class="hljs-string">" Process children :: "</span> + processHandle.children().count());<br/>        System.out.println(<span
+            class="hljs-string">" Process supportsNormalTermination() :: "</span> + processHandle.supportsNormalTermination());<br/>        System.out.println(<span
+            class="hljs-string">" Process Info :: "</span> + processHandle.info().toString());<br/><br/>    }<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> Process <span
+            class="hljs-title">startProcess</span><span class="hljs-params">(String command)</span> <span
+            class="hljs-keyword">throws</span> IOException </span>{<br/>        Runtime runtime = Runtime.getRuntime();<br/>        Process process = runtime.exec(command);<br/>        <span
+            class="hljs-keyword">return</span> process;<br/>    }<br/><br/>}<br/><br/></code></pre>
+    <p>When we run the above code, it will return the following output.</p>
+    <pre class="output">---Process Info---<br/> Process Id :: 1865<br/> Process isAlive() :: true<br/> Process children :: 0<br/> Process supportsNormalTermination() :: true<br/> Process Info :: [user: Optional[root], cmd: /usr/bin/tail, args: [-F, /dev/null], startTime: Optional[2016-11-16T12:40:10.460Z], totalTime: Optional[PT0S]]<br/></pre>
+</div>

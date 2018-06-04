@@ -13,4 +13,58 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/11/what-is-gradle-task-how-to-
 redirect_from: "/2016/11/what-is-gradle-task-how-to-write-custom-gradle-task.html"
 ---
 
-<div class="markdown"><h2>What is a Gradle Task.</h2><p>Lets first create a gradle file <code>build.gradle</code> with the following contents in it.</p><pre><code>group 'com.ekiras'<br />version '1.0-SNAPSHOT'<br /><br />apply plugin: 'java'<br /><br />sourceCompatibility = 1.8<br /><br />repositories {<br />    mavenCentral()<br />}<br /><br />dependencies {<br />    testCompile group: 'junit', name: 'junit', version: '4.11'<br />}<br /><br /></code></pre><p>Now, lets run the the following command from terminal in the <code>root directory</code> where <code>build.gradle</code> is saved.</p><pre><code>gradle tasks<br /></code></pre><p>It will give the list of all the tasks that are defined. It includes both <code>gradle default tasks</code> and <code>custom tasks</code>.</p><p>Now, you can run any defined task using the command.</p><pre><code>gradle &lt;task-name&gt;<br /></code></pre><h2>How to write a Custom Task in Gradle.</h2><ol><li>A task in gradle is an imlpementation of <code>org.gradle.api.Task</code> interface.</li><li><code>Task</code> interface has two methods <code>doLast()</code> and <code>doFirst()</code> which can define the order of task execution. <ul><li><code>doFirst(Closure action)</code> - This adds the given closure to the beginning of this task's action list.</li><li><code>doLast(Closure action)</code> - This adds the given Action to the end of this task's action list.</li></ul></li><li>Other useful methods are <ul><li><code>getName()</code> - returns the name of the task</li><li><code>getPath()</code> - returns the fully qualified path of the task</li><li><code>mustRunAfter(Object... paths)</code> - task should run after the given tasks</li><li><code>setGroup(String group)</code> - Adds the task to a specified group.</li><li><code>setDependsOn(Iterable&lt;?&gt; dependsOnTasks)</code> - set a list of tasks this task depends on.</li></ul></li></ol><p>You can see <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html">Full List of Methods in Task interface</a> in the official documents.</p><p>Syntax for writing a task is as follows.</p><pre><code>// Simple Task<br />task core(){<br />  // do stuff<br />}<br /><br />// Task which depends on some other task<br /><br />task main(dependsOn : 'core'){<br />   // do stuff<br />}<br /></code></pre><p>So we can write the tasks as follows.</p><pre><code class="language-gradle">task A {<br />    doLast {<br />        println 'Running task A'<br />    }<br />}<br /><br />task B(dependsOn: A) {<br />    doLast {<br />        println 'Running task B'<br />    }<br />}<br /><br />task C(dependsOn: [A, B]) {<br />    doLast {<br />        println 'Running task C'<br />    }<br />}<br /><br />task D(dependsOn: [A, C]) {<br />    doLast {<br />        println 'Running task D'<br />    }<br />}<br /></code></pre><ol><li>We can run any task using command <code>gradle &lt;task-name&gt;</code>.</li><li>To run multipe tasks in one step you can use command <code>gradle &lt;task-name&gt; &lt;task-name&gt; &lt;task-name&gt;</code>. It will run the tasks in the defined list specified.</li></ol><blockquote><p><strong>Note</strong></p><p><code>gradle &lt;task-name&gt; &lt;task-name&gt; &lt;task-name&gt;</code> will only trigger tasks in this order, but task run list is still defined by tasks definitions that is if a tasks depends on any other task then taht task will be executed first. Also a task is run only once even if it is defines many times. <code>gradle A A A</code> is equivalent to <code>gradle A</code>.</p></blockquote></div>
+<div class="markdown"><h2>What is a Gradle Task.</h2>
+    <p>Lets first create a gradle file <code>build.gradle</code> with the following contents in it.</p>
+    <pre><code>group 'com.ekiras'<br/>version '1.0-SNAPSHOT'<br/><br/>apply plugin: 'java'<br/><br/>sourceCompatibility = 1.8<br/><br/>repositories {<br/>    mavenCentral()<br/>}<br/><br/>dependencies {<br/>    testCompile group: 'junit', name: 'junit', version: '4.11'<br/>}<br/><br/></code></pre>
+    <p>Now, lets run the the following command from terminal in the <code>root directory</code> where
+        <code>build.gradle</code> is saved.</p>
+    <pre><code>gradle tasks<br/></code></pre>
+    <p>It will give the list of all the tasks that are defined. It includes both <code>gradle default tasks</code> and
+        <code>custom tasks</code>.</p>
+    <p>Now, you can run any defined task using the command.</p>
+    <pre><code>gradle &lt;task-name&gt;<br/></code></pre>
+    <h2>How to write a Custom Task in Gradle.</h2>
+    <ol>
+        <li>A task in gradle is an imlpementation of <code>org.gradle.api.Task</code> interface.</li>
+        <li><code>Task</code> interface has two methods <code>doLast()</code> and <code>doFirst()</code> which can
+            define the order of task execution.
+            <ul>
+                <li><code>doFirst(Closure action)</code> - This adds the given closure to the beginning of this task's
+                    action list.
+                </li>
+                <li><code>doLast(Closure action)</code> - This adds the given Action to the end of this task's action
+                    list.
+                </li>
+            </ul>
+        </li>
+        <li>Other useful methods are
+            <ul>
+                <li><code>getName()</code> - returns the name of the task</li>
+                <li><code>getPath()</code> - returns the fully qualified path of the task</li>
+                <li><code>mustRunAfter(Object... paths)</code> - task should run after the given tasks</li>
+                <li><code>setGroup(String group)</code> - Adds the task to a specified group.</li>
+                <li><code>setDependsOn(Iterable&lt;?&gt; dependsOnTasks)</code> - set a list of tasks this task depends
+                    on.
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <p>You can see <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html">Full List of Methods in
+        Task interface</a> in the official documents.</p>
+    <p>Syntax for writing a task is as follows.</p>
+    <pre><code>// Simple Task<br/>task core(){<br/>  // do stuff<br/>}<br/><br/>// Task which depends on some other task<br/><br/>task main(dependsOn : 'core'){<br/>   // do stuff<br/>}<br/></code></pre>
+    <p>So we can write the tasks as follows.</p>
+    <pre><code
+            class="language-gradle">task A {<br/>    doLast {<br/>        println 'Running task A'<br/>    }<br/>}<br/><br/>task B(dependsOn: A) {<br/>    doLast {<br/>        println 'Running task B'<br/>    }<br/>}<br/><br/>task C(dependsOn: [A, B]) {<br/>    doLast {<br/>        println 'Running task C'<br/>    }<br/>}<br/><br/>task D(dependsOn: [A, C]) {<br/>    doLast {<br/>        println 'Running task D'<br/>    }<br/>}<br/></code></pre>
+    <ol>
+        <li>We can run any task using command <code>gradle &lt;task-name&gt;</code>.</li>
+        <li>To run multipe tasks in one step you can use command <code>gradle &lt;task-name&gt; &lt;task-name&gt; &lt;task-name&gt;</code>.
+            It will run the tasks in the defined list specified.
+        </li>
+    </ol>
+    <blockquote><p><strong>Note</strong></p>
+        <p><code>gradle &lt;task-name&gt; &lt;task-name&gt; &lt;task-name&gt;</code> will only trigger tasks in this
+            order, but task run list is still defined by tasks definitions that is if a tasks depends on any other task
+            then taht task will be executed first. Also a task is run only once even if it is defines many times. <code>gradle
+                A A A</code> is equivalent to <code>gradle A</code>.</p></blockquote>
+</div>

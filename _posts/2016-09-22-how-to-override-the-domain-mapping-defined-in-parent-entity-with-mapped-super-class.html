@@ -2,7 +2,7 @@
 layout: post
 exclude: true
 title: 'SpringDataJpa : How to override the domain mapping defined in Parent Entity
-  class with MappedSuperclass'
+class with MappedSuperclass'
 date: '2016-09-22T17:38:00.000+05:30'
 author: Ekansh Rastogi
 tags:
@@ -17,4 +17,81 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/09/how-to-override-the-domain-
 redirect_from: "/2016/09/how-to-override-the-domain-mapping-defined-in-parent-entity-with-mapped-super-class.html"
 ---
 
-<div class="markdown"><h2>Points To Remember</h2><ol><li>Your Parent class should be annotated with <code>@MappedSuperclass</code>.</li><li>Follow the <a href="http://www.ekiras.com/2016/09/how-to-handle-inheritance-with-entities-in-spring-data-jpa.html">Tutorial : How to handle Inheritence with Entities</a> to know how to wrap common properties of entities to a base class.</li><li>To override any property you must<br>a.  Apply the <code>@AttributeOverride</code> annotation on the class that need to override the property<br>b.  set <code>name</code> property of <code>@AttributeOverride</code> as the name of the field in super class.<br>c.  set the <code>column</code> property of <code>@AttributeOverride</code> to override the column definition of the attribute.</li></ol><p>Let's say our Base class looks as follows</p><pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.domain.base;<br /><br /><span class="hljs-keyword">import</span> javax.persistence.*;<br /><span class="hljs-keyword">import</span> java.util.Date;<br /><br /><span class="hljs-javadoc">/**<br />*<span class="hljs-javadoctag"> @author</span> ekiras<br />*/</span><br /><span class="hljs-annotation">@MappedSuperclass</span><br /><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">BaseDomain</span> </span>{<br /><br />  <span class="hljs-annotation">@Id</span><br />  <span class="hljs-annotation">@GeneratedValue</span>(strategy = GenerationType.AUTO)<br />  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">long</span> id;<br /><br />  <span class="hljs-annotation">@Temporal</span>(TemporalType.TIMESTAMP)<br />  <span class="hljs-keyword">protected</span> Date dateCreated;<br /><br />  <span class="hljs-annotation">@Temporal</span>(TemporalType.TIMESTAMP)<br />  <span class="hljs-keyword">protected</span> Date lastUpdated;<br /><br />  <span class="hljs-annotation">@Override</span><br />  <span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{<br />      <span class="hljs-keyword">return</span> <span class="hljs-string">"BaseDomain{"</span> +<br />              <span class="hljs-string">"id="</span> + id +<br />              <span class="hljs-string">", dateCreated="</span> + dateCreated +<br />              <span class="hljs-string">", lastUpdated="</span> + lastUpdated +<br />              <span class="hljs-string">'}'</span>;<br />  }<br />  <span class="hljs-comment">// getters and setters</span><br />}<br /></code></pre><p>We can override the <code>id</code> field of the <code>BaseDomain</code> class in inheriting class as follows</p><pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.domain;<br /><br /><span class="hljs-keyword">import</span> com.ekiras.domain.base.BaseDomain;<br /><br /><span class="hljs-keyword">import</span> javax.persistence.AttributeOverride;<br /><span class="hljs-keyword">import</span> javax.persistence.Column;<br /><span class="hljs-keyword">import</span> javax.persistence.Entity;<br /><br /><span class="hljs-javadoc">/**<br /> *<span class="hljs-javadoctag"> @author</span> ekiras<br /> */</span><br /><span class="hljs-annotation">@Entity</span><br /><span class="hljs-annotation">@AttributeOverride</span>(name = <span class="hljs-string">"id"</span>,column = <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"userId"</span>))<br /><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">BaseDomain</span></span>{<br /><br />    <span class="hljs-keyword">private</span> String email;<br />    <span class="hljs-keyword">private</span> String name;<br />    <span class="hljs-keyword">private</span> String password;<br /><br />    <span class="hljs-comment">// getters and setters</span><br />}<br /></code></pre><p>As shown in the code above we have used <code>@AttributeOverride</code></p><pre><code class="language-java"><span class="hljs-annotation">@AttributeOverride</span>(name = <span class="hljs-string">"id"</span>,column = <span class="hljs-annotation">@Column</span>(name = <span class="hljs-string">"userId"</span>))<br /></code></pre><p>Here, <code>name= "id"</code> states that we are going to override the mapping for the <code>id</code> field of the super class. <code>column = @Column(name = "userId")</code> states the new configuration of the <code>id</code> defined in the super class. Here we simple change the name of the column for table <code>user</code> defined by class <code>User</code>.</p><p>This will create the table user as shown below.</p><pre><code>mysql&gt; show tables;<br />+-----------------------+<br />| Tables_in_jpa_mapping |<br />+-----------------------+<br />| user                  |<br />+-----------------------+<br />1 row in set (0.00 sec)<br /><br />mysql&gt; desc user;<br />+--------------+--------------+------+-----+---------+----------------+<br />| Field        | Type         | Null | Key | Default | Extra          |<br />+--------------+--------------+------+-----+---------+----------------+<br />| user_id      | bigint(20)   | NO   | PRI | NULL    | auto_increment |<br />| date_created | datetime     | YES  |     | NULL    |                |<br />| last_updated | datetime     | YES  |     | NULL    |                |<br />| email        | varchar(255) | YES  |     | NULL    |                |<br />| name         | varchar(255) | YES  |     | NULL    |                |<br />| password     | varchar(255) | YES  |     | NULL    |                |<br />+--------------+--------------+------+-----+---------+----------------+<br />6 rows in set (0.00 sec)<br /><br /></code></pre><blockquote><p><strong>@AttributeOverride</strong></p><p>May be applied to an entity that extends a mapped superclass or to an embedded field or<br>property to override a basic mapping or id mapping defined by the mapped superclass or embeddable class (or embeddable class of one of its attributes).</p></blockquote><blockquote><p>May be applied to an element collection containing instances of an embeddable class or to a map collection whose key and/or value is an embeddable class. When AttributeOverride is applied to a map, "key." or "value." must be used to prefix the name of the attribute that is being overridden in order to specify it as part of the map key or map value.</p></blockquote><blockquote><p>To override mappings at multiple levels of embedding, a dot (".") notation form must be used in the name element to indicate an attribute within an embedded attribute. The value of each identifier used with the dot notation is the name of the respective embedded field or property.</p></blockquote><p><br></p><div class="download"><a href="https://github.com/ekiras/spring-boot/tree/master/data-jpa/inheritance/attribute-override">Download code from GITHUB</a></div><br><h3>Also Read</h3><ol><li><a href="http://www.ekiras.com/2016/09/how-to-handle-inheritance-with-entities-in-spring-data-jpa.html">How to handle inheritance with Entities</a></li></ol></div>
+<div class="markdown"><h2>Points To Remember</h2>
+    <ol>
+        <li>Your Parent class should be annotated with <code>@MappedSuperclass</code>.</li>
+        <li>Follow the <a
+                href="http://www.ekiras.com/2016/09/how-to-handle-inheritance-with-entities-in-spring-data-jpa.html">Tutorial
+            : How to handle Inheritence with Entities</a> to know how to wrap common properties of entities to a base
+            class.
+        </li>
+        <li>To override any property you must<br>a. Apply the <code>@AttributeOverride</code> annotation on the class
+            that need to override the property<br>b. set <code>name</code> property of <code>@AttributeOverride</code>
+            as the name of the field in super class.<br>c. set the <code>column</code> property of <code>@AttributeOverride</code>
+            to override the column definition of the attribute.
+        </li>
+    </ol>
+    <p>Let's say our Base class looks as follows</p>
+    <pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.domain.base;<br/><br/><span
+            class="hljs-keyword">import</span> javax.persistence.*;<br/><span class="hljs-keyword">import</span> java.util.Date;<br/><br/><span
+            class="hljs-javadoc">/**<br/>*<span class="hljs-javadoctag"> @author</span> ekiras<br/>*/</span><br/><span
+            class="hljs-annotation">@MappedSuperclass</span><br/><span class="hljs-keyword">public</span> <span
+            class="hljs-keyword">abstract</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span
+            class="hljs-title">BaseDomain</span> </span>{<br/><br/>  <span
+            class="hljs-annotation">@Id</span><br/>  <span class="hljs-annotation">@GeneratedValue</span>(strategy = GenerationType.AUTO)<br/>  <span
+            class="hljs-keyword">protected</span> <span class="hljs-keyword">long</span> id;<br/><br/>  <span
+            class="hljs-annotation">@Temporal</span>(TemporalType.TIMESTAMP)<br/>  <span
+            class="hljs-keyword">protected</span> Date dateCreated;<br/><br/>  <span
+            class="hljs-annotation">@Temporal</span>(TemporalType.TIMESTAMP)<br/>  <span
+            class="hljs-keyword">protected</span> Date lastUpdated;<br/><br/>  <span
+            class="hljs-annotation">@Override</span><br/>  <span class="hljs-function"><span
+            class="hljs-keyword">public</span> String <span class="hljs-title">toString</span><span class="hljs-params">()</span> </span>{<br/>      <span
+            class="hljs-keyword">return</span> <span class="hljs-string">"BaseDomain{"</span> +<br/>              <span
+            class="hljs-string">"id="</span> + id +<br/>              <span class="hljs-string">", dateCreated="</span> + dateCreated +<br/>              <span
+            class="hljs-string">", lastUpdated="</span> + lastUpdated +<br/>              <span
+            class="hljs-string">'}'</span>;<br/>  }<br/>  <span class="hljs-comment">// getters and setters</span><br/>}<br/></code></pre>
+    <p>We can override the <code>id</code> field of the <code>BaseDomain</code> class in inheriting class as follows</p>
+    <pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.domain;<br/><br/><span
+            class="hljs-keyword">import</span> com.ekiras.domain.base.BaseDomain;<br/><br/><span class="hljs-keyword">import</span> javax.persistence.AttributeOverride;<br/><span
+            class="hljs-keyword">import</span> javax.persistence.Column;<br/><span class="hljs-keyword">import</span> javax.persistence.Entity;<br/><br/><span
+            class="hljs-javadoc">/**<br/> *<span class="hljs-javadoctag"> @author</span> ekiras<br/> */</span><br/><span
+            class="hljs-annotation">@Entity</span><br/><span
+            class="hljs-annotation">@AttributeOverride</span>(name = <span
+            class="hljs-string">"id"</span>,column = <span class="hljs-annotation">@Column</span>(name = <span
+            class="hljs-string">"userId"</span>))<br/><span class="hljs-keyword">public</span> <span class="hljs-class"><span
+            class="hljs-keyword">class</span> <span class="hljs-title">User</span> <span
+            class="hljs-keyword">extends</span> <span class="hljs-title">BaseDomain</span></span>{<br/><br/>    <span
+            class="hljs-keyword">private</span> String email;<br/>    <span class="hljs-keyword">private</span> String name;<br/>    <span
+            class="hljs-keyword">private</span> String password;<br/><br/>    <span class="hljs-comment">// getters and setters</span><br/>}<br/></code></pre>
+    <p>As shown in the code above we have used <code>@AttributeOverride</code></p>
+    <pre><code class="language-java"><span class="hljs-annotation">@AttributeOverride</span>(name = <span
+            class="hljs-string">"id"</span>,column = <span class="hljs-annotation">@Column</span>(name = <span
+            class="hljs-string">"userId"</span>))<br/></code></pre>
+    <p>Here, <code>name= "id"</code> states that we are going to override the mapping for the <code>id</code> field of
+        the super class. <code>column = @Column(name = "userId")</code> states the new configuration of the
+        <code>id</code> defined in the super class. Here we simple change the name of the column for table
+        <code>user</code> defined by class <code>User</code>.</p>
+    <p>This will create the table user as shown below.</p>
+    <pre><code>mysql&gt; show tables;<br/>+-----------------------+<br/>| Tables_in_jpa_mapping |<br/>+-----------------------+<br/>| user                  |<br/>+-----------------------+<br/>1 row in set (0.00 sec)<br/><br/>mysql&gt; desc user;<br/>+--------------+--------------+------+-----+---------+----------------+<br/>| Field        | Type         | Null | Key | Default | Extra          |<br/>+--------------+--------------+------+-----+---------+----------------+<br/>| user_id      | bigint(20)   | NO   | PRI | NULL    | auto_increment |<br/>| date_created | datetime     | YES  |     | NULL    |                |<br/>| last_updated | datetime     | YES  |     | NULL    |                |<br/>| email        | varchar(255) | YES  |     | NULL    |                |<br/>| name         | varchar(255) | YES  |     | NULL    |                |<br/>| password     | varchar(255) | YES  |     | NULL    |                |<br/>+--------------+--------------+------+-----+---------+----------------+<br/>6 rows in set (0.00 sec)<br/><br/></code></pre>
+    <blockquote><p><strong>@AttributeOverride</strong></p>
+        <p>May be applied to an entity that extends a mapped superclass or to an embedded field or<br>property to
+            override a basic mapping or id mapping defined by the mapped superclass or embeddable class (or embeddable
+            class of one of its attributes).</p></blockquote>
+    <blockquote><p>May be applied to an element collection containing instances of an embeddable class or to a map
+        collection whose key and/or value is an embeddable class. When AttributeOverride is applied to a map, "key." or
+        "value." must be used to prefix the name of the attribute that is being overridden in order to specify it as
+        part of the map key or map value.</p></blockquote>
+    <blockquote><p>To override mappings at multiple levels of embedding, a dot (".") notation form must be used in the
+        name element to indicate an attribute within an embedded attribute. The value of each identifier used with the
+        dot notation is the name of the respective embedded field or property.</p></blockquote>
+    <p><br></p>
+    <div class="download"><a
+            href="https://github.com/ekiras/spring-boot/tree/master/data-jpa/inheritance/attribute-override">Download
+        code from GITHUB</a></div>
+    <br>
+    <h3>Also Read</h3>
+    <ol>
+        <li><a href="http://www.ekiras.com/2016/09/how-to-handle-inheritance-with-entities-in-spring-data-jpa.html">How
+            to handle inheritance with Entities</a></li>
+    </ol>
+</div>

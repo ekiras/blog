@@ -16,4 +16,65 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/07/spring-mvc-handle-exception
 redirect_from: "/2015/07/spring-mvc-handle-exceptions-in-controllers.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>You can handle all types of runtime exceptions and custom exceptions using&nbsp;<b>@ExceptionHandler</b>&nbsp;annotation.&nbsp;</li><li>You just need to define the class to the annotation to handle exceptions of that class.</li></ul><br /><h2>Spring MVC handle Exceptions in Controller</h2>Here we have a simple Spring MVC application with the following.<br /><br /><ul style="text-align: left;"><li>HomeController wih three actions&nbsp;</li><ul><li><b>throw1</b> - throws Custom exception</li><li><b>throw2</b> - throws Custom exception</li><li><b>throw3</b> - throws Runtime exception</li></ul></ul><div><br /><div class="panel panel-default"><div class="panel-heading">Home Controller</div><div class="panel-body"><pre class="brush:java, highlight:[40,46,51,57,63]">package com.ekiras.controller;<br /><br />import java.text.DateFormat;<br />import java.util.Date;<br />import java.util.Locale;<br /><br />import org.slf4j.Logger;<br />import org.slf4j.LoggerFactory;<br />import org.springframework.stereotype.Controller;<br />import org.springframework.ui.Model;<br />import org.springframework.web.bind.annotation.ExceptionHandler;<br />import org.springframework.web.bind.annotation.RequestMapping;<br />import org.springframework.web.bind.annotation.RequestMethod;<br />import org.springframework.web.bind.annotation.ResponseBody;<br /><br />import com.ekiras.exception.MyException;<br />import com.ekiras.exception.MyGlobalException;<br /><br />@Controller<br />public class HomeController {<br /> <br /> private static final Logger logger = LoggerFactory.getLogger(HomeController.class);<br /> <br /> @RequestMapping(value = "/", method = RequestMethod.GET)<br /> public String home(Locale locale, Model model) {<br />  logger.info("Welcome home! The client locale is {}.", locale);<br />  <br />  Date date = new Date();<br />  DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);<br />  <br />  String formattedDate = dateFormat.format(date);<br />  <br />  model.addAttribute("serverTime", formattedDate );<br />  <br />  return "home";<br /> }<br /> <br /> @RequestMapping(value="/throw1")<br /> public String throw1(){<br />  throw new MyException();<br /> }<br /> <br /><br /> @RequestMapping(value="/throw2")<br /> public String throw2(){<br />  throw new MyGlobalException();<br /> }<br /><br /> @RequestMapping(value="/throw3")<br /> public String throw3(){<br />  throw new RuntimeException();<br /> }<br /> <br /><br /> <br /> @ResponseBody<br /> @ExceptionHandler(MyException.class)<br /> public String myException(MyException exception){<br />  return "exception caught message="+ exception.getMessage();<br /> }<br /><br /> @ResponseBody<br /> @ExceptionHandler(MyGlobalException.class)<br /> public String myGlobalException(MyGlobalException exception){<br />  return "exception caught message="+ exception.getMessage();<br /> }<br /> <br />}<br /></pre><div><br /></div></div></div><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-bVieYZcT_ek/Va6O6MPZgZI/AAAAAAAAAbg/09EScNxpPOg/s1600/ex1.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="320" src="http://3.bp.blogspot.com/-bVieYZcT_ek/Va6O6MPZgZI/AAAAAAAAAbg/09EScNxpPOg/s640/ex1.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-1DFlVVyctPk/Va6O57uqPTI/AAAAAAAAAbY/ASaeQ6Zw3GE/s1600/ex2.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="320" src="http://4.bp.blogspot.com/-1DFlVVyctPk/Va6O57uqPTI/AAAAAAAAAbY/ASaeQ6Zw3GE/s640/ex2.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://4.bp.blogspot.com/-Y1ak6tmJAa8/Va6O5yYMHkI/AAAAAAAAAbc/qzKEFe-sxuE/s1600/ex3.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="320" src="http://4.bp.blogspot.com/-Y1ak6tmJAa8/Va6O5yYMHkI/AAAAAAAAAbc/qzKEFe-sxuE/s640/ex3.png" width="640" /></a></div><br /><div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-qWkcNRXYUww/Va6O7Au4nPI/AAAAAAAAAbw/PcLcAtiiZB4/s1600/ex4.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive" height="388" src="http://3.bp.blogspot.com/-qWkcNRXYUww/Va6O7Au4nPI/AAAAAAAAAbw/PcLcAtiiZB4/s640/ex4.png" width="640" /></a></div><br /><br /><b>The above code will not catch any &nbsp;Exception of class RuntimeException. &nbsp;If you want to catch it you can add another method like following to your code.</b><br /><br /><div class="panel panel-default"><div class="panel-body"><pre class="brush:java"><br /> @ResponseBody<br /> @ExceptionHandler(Exception.class)<br /> public String myGlobalException(Exception exception){<br />  return "exception caught message="+ exception.getMessage();<br /> }</pre></div></div><b><br /></b><b>Now, after adding the above code to your controller. Your controller will handle all types of Exceptions.</b></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>You can handle all types of runtime exceptions and custom exceptions using&nbsp;<b>@ExceptionHandler</b>&nbsp;annotation.&nbsp;
+        </li>
+        <li>You just need to define the class to the annotation to handle exceptions of that class.</li>
+    </ul>
+    <br/>
+    <h2>Spring MVC handle Exceptions in Controller</h2>Here we have a simple Spring MVC application with the
+    following.<br/><br/>
+    <ul style="text-align: left;">
+        <li>HomeController wih three actions&nbsp;</li>
+        <ul>
+            <li><b>throw1</b> - throws Custom exception</li>
+            <li><b>throw2</b> - throws Custom exception</li>
+            <li><b>throw3</b> - throws Runtime exception</li>
+        </ul>
+    </ul>
+    <div><br/>
+        <div class="panel panel-default">
+            <div class="panel-heading">Home Controller</div>
+            <div class="panel-body">
+                <pre class="brush:java, highlight:[40,46,51,57,63]">package com.ekiras.controller;<br/><br/>import java.text.DateFormat;<br/>import java.util.Date;<br/>import java.util.Locale;<br/><br/>import org.slf4j.Logger;<br/>import org.slf4j.LoggerFactory;<br/>import org.springframework.stereotype.Controller;<br/>import org.springframework.ui.Model;<br/>import org.springframework.web.bind.annotation.ExceptionHandler;<br/>import org.springframework.web.bind.annotation.RequestMapping;<br/>import org.springframework.web.bind.annotation.RequestMethod;<br/>import org.springframework.web.bind.annotation.ResponseBody;<br/><br/>import com.ekiras.exception.MyException;<br/>import com.ekiras.exception.MyGlobalException;<br/><br/>@Controller<br/>public class HomeController {<br/> <br/> private static final Logger logger = LoggerFactory.getLogger(HomeController.class);<br/> <br/> @RequestMapping(value = "/", method = RequestMethod.GET)<br/> public String home(Locale locale, Model model) {<br/>  logger.info("Welcome home! The client locale is {}.", locale);<br/>  <br/>  Date date = new Date();<br/>  DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);<br/>  <br/>  String formattedDate = dateFormat.format(date);<br/>  <br/>  model.addAttribute("serverTime", formattedDate );<br/>  <br/>  return "home";<br/> }<br/> <br/> @RequestMapping(value="/throw1")<br/> public String throw1(){<br/>  throw new MyException();<br/> }<br/> <br/><br/> @RequestMapping(value="/throw2")<br/> public String throw2(){<br/>  throw new MyGlobalException();<br/> }<br/><br/> @RequestMapping(value="/throw3")<br/> public String throw3(){<br/>  throw new RuntimeException();<br/> }<br/> <br/><br/> <br/> @ResponseBody<br/> @ExceptionHandler(MyException.class)<br/> public String myException(MyException exception){<br/>  return "exception caught message="+ exception.getMessage();<br/> }<br/><br/> @ResponseBody<br/> @ExceptionHandler(MyGlobalException.class)<br/> public String myGlobalException(MyGlobalException exception){<br/>  return "exception caught message="+ exception.getMessage();<br/> }<br/> <br/>}<br/></pre>
+                <div><br/></div>
+            </div>
+        </div>
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="http://3.bp.blogspot.com/-bVieYZcT_ek/Va6O6MPZgZI/AAAAAAAAAbg/09EScNxpPOg/s1600/ex1.png"
+                imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                                  height="320"
+                                                                                  src="http://3.bp.blogspot.com/-bVieYZcT_ek/Va6O6MPZgZI/AAAAAAAAAbg/09EScNxpPOg/s640/ex1.png"
+                                                                                  width="640"/></a></div>
+        <br/>
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="http://4.bp.blogspot.com/-1DFlVVyctPk/Va6O57uqPTI/AAAAAAAAAbY/ASaeQ6Zw3GE/s1600/ex2.png"
+                imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                                  height="320"
+                                                                                  src="http://4.bp.blogspot.com/-1DFlVVyctPk/Va6O57uqPTI/AAAAAAAAAbY/ASaeQ6Zw3GE/s640/ex2.png"
+                                                                                  width="640"/></a></div>
+        <br/>
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="http://4.bp.blogspot.com/-Y1ak6tmJAa8/Va6O5yYMHkI/AAAAAAAAAbc/qzKEFe-sxuE/s1600/ex3.png"
+                imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                                  height="320"
+                                                                                  src="http://4.bp.blogspot.com/-Y1ak6tmJAa8/Va6O5yYMHkI/AAAAAAAAAbc/qzKEFe-sxuE/s640/ex3.png"
+                                                                                  width="640"/></a></div>
+        <br/>
+        <div class="separator" style="clear: both; text-align: center;"><a
+                href="http://3.bp.blogspot.com/-qWkcNRXYUww/Va6O7Au4nPI/AAAAAAAAAbw/PcLcAtiiZB4/s1600/ex4.png"
+                imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" class="img-responsive"
+                                                                                  height="388"
+                                                                                  src="http://3.bp.blogspot.com/-qWkcNRXYUww/Va6O7Au4nPI/AAAAAAAAAbw/PcLcAtiiZB4/s640/ex4.png"
+                                                                                  width="640"/></a></div>
+        <br/><br/><b>The above code will not catch any &nbsp;Exception of class RuntimeException. &nbsp;If you want to
+            catch it you can add another method like following to your code.</b><br/><br/>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <pre class="brush:java"><br/> @ResponseBody<br/> @ExceptionHandler(Exception.class)<br/> public String myGlobalException(Exception exception){<br/>  return "exception caught message="+ exception.getMessage();<br/> }</pre>
+            </div>
+        </div>
+        <b><br/></b><b>Now, after adding the above code to your controller. Your controller will handle all types of
+            Exceptions.</b></div>
+</div>

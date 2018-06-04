@@ -12,4 +12,11 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/11/hazelcast-auto-reconnect-to
 redirect_from: "/2015/11/hazelcast-auto-reconnect-to-hazelcast-server.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can call the method <b>getLifecycleService().isRunning()</b>&nbsp;to check if the hazelcast clinet is up and running.<br /><h2>Auto Reconnect to Hazelcast Server</h2>You can use the following code to reconnect to Hazelcast server, in case the hazelcast client looses the connection to the hazelcast server. <pre>if(!(hazelcastInstance!=null && hazelcastInstance.getLifecycleService().isRunning())){<br />            // create a new hazelcast connection<br />        }<br />      return hazelcast instance<br /></pre> <br /><script src="https://gist.github.com/gitekiras/eca85c09837ff002371c.js"></script></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2>You can call the method <b>getLifecycleService().isRunning()</b>&nbsp;to
+    check if the hazelcast clinet is up and running.<br/>
+    <h2>Auto Reconnect to Hazelcast Server</h2>You can use the following code to reconnect to Hazelcast server, in case
+    the hazelcast client looses the connection to the hazelcast server.
+    <pre>if(!(hazelcastInstance!=null && hazelcastInstance.getLifecycleService().isRunning())){<br/>            // create a new hazelcast connection<br/>        }<br/>      return hazelcast instance<br/></pre>
+    <br/>
+    <script src="https://gist.github.com/gitekiras/eca85c09837ff002371c.js"></script>
+</div>

@@ -13,4 +13,35 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/09/what-are-static-variables-i
 redirect_from: "/2014/09/what-are-static-variables-in-java.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>Static variable are the variables at the class level.</li><li>Static variables are not attached to the objects.</li><li>Static variable cannot be declared inside any method of a class.</li><li>Static variables are assigned the memory only once during the execution of the class.</li><li>Static variables can be called directly from static context or by class reference.</li></ul><div class="hl-note"><b>Definition</b></div>Static variables are the class level variable that are allocated the memory only once and they cannot be declared inside any method of a class or inside a static block or static method but can be declared only &nbsp;outside all methods and inside a class. A static variable is called by using the reference of the class and not the object.<br /><div class="hl-note"><b>Example</b></div><a href="http://1.bp.blogspot.com/-8AUgN_YBKmA/VCprWGln-fI/AAAAAAAAAI0/lKXUw-oA6Ww/s1600/static.jpg" imageanchor="1" style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0" src="http://1.bp.blogspot.com/-8AUgN_YBKmA/VCprWGln-fI/AAAAAAAAAI0/lKXUw-oA6Ww/s1600/static.jpg" height="214" width="400" /></a>So lets assume an easy example where we have a class Test, with two variables, "<b>a</b>" non-static variable and the other "<b>b</b>" a static variable. <b>Then variable "a" will be specific to the objects of the class Test and variable "b" will be common for all the objects of the class Test.</b><br /><br />As shown in the image both object s1 and s2 have their own copy of variable "a", and both s1 and s2 have same copy of the variable "b".<br /><br /><pre class="brush : java">public class Test{<br /><br />  String a ;<br />  static String b ;<br /><br />  public static void main(String args[]){<br />  Test obj1 = new Test();<br />  Test obj2 = new Test();<br />  obj1.a = "Class A instance variable";<br />  obj2.a = "Class B instance variable";<br />  obj1.b = "Class A static variable";<br />  obj2.b = "Class B static variable";<br />  System.out.println(obj1.a);<br />  System.out.println(obj2.a);<br />  System.out.println(obj1.b);<br />  System.out.println(obj2.b);<br /><br />  }<br />}<br /></pre><pre class="output">Class A instance variable<br />Class B instance variable<br />Class B static variable<br />Class B static variable<br /></pre><br />So lets understand the output and match it with the statements we made above. An instance variable or non static variable is attached to an object (is at object level). This means that both objects obj1 and obj2 have their own variable "a". Thus obj1.a and obj2.a will give the values we assigned them. But when we assign static variable "b" value by obj1.b we assign value to the variable that is at class level. When we reassign it a value by obj2.b , the value of "b" is that was assigned by obj1.b is replaced by value of obj2.b. This is because <b>static variable are at class level and only one copy of a static variable is created.</b>&nbsp;Thus obj1.b and obj2.b both will point to the same variable.</div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>Static variable are the variables at the class level.</li>
+        <li>Static variables are not attached to the objects.</li>
+        <li>Static variable cannot be declared inside any method of a class.</li>
+        <li>Static variables are assigned the memory only once during the execution of the class.</li>
+        <li>Static variables can be called directly from static context or by class reference.</li>
+    </ul>
+    <div class="hl-note"><b>Definition</b></div>
+    Static variables are the class level variable that are allocated the memory only once and they cannot be declared
+    inside any method of a class or inside a static block or static method but can be declared only &nbsp;outside all
+    methods and inside a class. A static variable is called by using the reference of the class and not the object.<br/>
+    <div class="hl-note"><b>Example</b></div>
+    <a href="http://1.bp.blogspot.com/-8AUgN_YBKmA/VCprWGln-fI/AAAAAAAAAI0/lKXUw-oA6Ww/s1600/static.jpg" imageanchor="1"
+       style="clear: right; float: right; margin-bottom: 1em; margin-left: 1em;"><img border="0"
+                                                                                      src="http://1.bp.blogspot.com/-8AUgN_YBKmA/VCprWGln-fI/AAAAAAAAAI0/lKXUw-oA6Ww/s1600/static.jpg"
+                                                                                      height="214" width="400"/></a>So
+    lets assume an easy example where we have a class Test, with two variables, "<b>a</b>" non-static variable and the
+    other "<b>b</b>" a static variable. <b>Then variable "a" will be specific to the objects of the class Test and
+    variable "b" will be common for all the objects of the class Test.</b><br/><br/>As shown in the image both object s1
+    and s2 have their own copy of variable "a", and both s1 and s2 have same copy of the variable "b".<br/><br/>
+    <pre class="brush : java">public class Test{<br/><br/>  String a ;<br/>  static String b ;<br/><br/>  public static void main(String args[]){<br/>  Test obj1 = new Test();<br/>  Test obj2 = new Test();<br/>  obj1.a = "Class A instance variable";<br/>  obj2.a = "Class B instance variable";<br/>  obj1.b = "Class A static variable";<br/>  obj2.b = "Class B static variable";<br/>  System.out.println(obj1.a);<br/>  System.out.println(obj2.a);<br/>  System.out.println(obj1.b);<br/>  System.out.println(obj2.b);<br/><br/>  }<br/>}<br/></pre>
+    <pre class="output">Class A instance variable<br/>Class B instance variable<br/>Class B static variable<br/>Class B static variable<br/></pre>
+    <br/>So lets understand the output and match it with the statements we made above. An instance variable or non
+    static variable is attached to an object (is at object level). This means that both objects obj1 and obj2 have their
+    own variable "a". Thus obj1.a and obj2.a will give the values we assigned them. But when we assign static variable
+    "b" value by obj1.b we assign value to the variable that is at class level. When we reassign it a value by obj2.b ,
+    the value of "b" is that was assigned by obj1.b is replaced by value of obj2.b. This is because <b>static variable
+    are at class level and only one copy of a static variable is created.</b>&nbsp;Thus obj1.b and obj2.b both will
+    point to the same variable.
+</div>

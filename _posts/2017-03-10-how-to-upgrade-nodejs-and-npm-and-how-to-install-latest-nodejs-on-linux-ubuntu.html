@@ -2,7 +2,7 @@
 layout: post
 exclude: true
 title: 'Node : How to Upgrade NodeJs and Npm and How to install latest NodeJs on Linux,
-  Ubuntu'
+Ubuntu'
 date: '2017-03-10T13:54:00.000+05:30'
 author: Ekansh Rastogi
 tags:
@@ -15,4 +15,23 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/03/how-to-upgrade-nodejs-and-n
 redirect_from: "/2017/03/how-to-upgrade-nodejs-and-npm-and-how-to-install-latest-nodejs-on-linux-ubuntu.html"
 ---
 
-<div class="markdown"><h2>Points to Remember</h2>&#10;<p>If you are installing node for the first time then, use the <code>NodeSource PPA</code>  and first choose the version of node you want to install.</p>&#10;<p>Following are the sources for the node versions</p>&#10;<h3>for Node.js v4</h3>&#10;<pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -&#10;</code></pre>&#10;<h3>for Node.js v5</h3>&#10;<pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -&#10;</code></pre>&#10;<h3>for Node.js v6</h3>&#10;<pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -&#10;</code></pre>&#10;<h3>for Node.js v7</h3>&#10;<pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -&#10;</code></pre>&#10;<p>Once this is done, then update your repositories by command</p>&#10;<pre class="hljs"><code>sudo apt-get update&#10;</code></pre>&#10;<p>Now, finally install NodeJs and Npm using the following command</p>&#10;<pre class="hljs"><code>sudo apt-get install nodejs&#10;sudo apt-get install npm&#10;</code></pre>&#10;<p>To check the version of node, try command <code>node -v</code> and npm version by command <code>npm -v</code></p>&#10;<h2>Upgrading NodeJs and Npm</h2>&#10;<p>If you already have node and npm install and you want to upgrade the version then you should first run the following command to remove them.</p>&#10;<pre class="hljs"><code>sudo apt-get purge nodejs npm&#10;</code></pre>&#10;<p>This will remove nodejs and npm, now you can follow the steps mentioned above to install fresh copy of node and npm.</p>&#10;</div>
+<div class="markdown"><h2>Points to Remember</h2>&#10;<p>If you are installing node for the first time then, use the
+    <code>NodeSource PPA</code> and first choose the version of node you want to install.</p>&#10;<p>Following are the
+    sources for the node versions</p>&#10;<h3>for Node.js v4</h3>&#10;
+    <pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -&#10;</code></pre>
+    &#10;<h3>for Node.js v5</h3>&#10;
+    <pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_5.x | sudo -E bash -&#10;</code></pre>
+    &#10;<h3>for Node.js v6</h3>&#10;
+    <pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -&#10;</code></pre>
+    &#10;<h3>for Node.js v7</h3>&#10;
+    <pre class="hljs"><code>curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -&#10;</code></pre>
+    &#10;<p>Once this is done, then update your repositories by command</p>&#10;
+    <pre class="hljs"><code>sudo apt-get update&#10;</code></pre>
+    &#10;<p>Now, finally install NodeJs and Npm using the following command</p>&#10;
+    <pre class="hljs"><code>sudo apt-get install nodejs&#10;sudo apt-get install npm&#10;</code></pre>
+    &#10;<p>To check the version of node, try command <code>node -v</code> and npm version by command <code>npm
+        -v</code></p>&#10;<h2>Upgrading NodeJs and Npm</h2>&#10;<p>If you already have node and npm install and you want
+        to upgrade the version then you should first run the following command to remove them.</p>&#10;
+    <pre class="hljs"><code>sudo apt-get purge nodejs npm&#10;</code></pre>
+    &#10;<p>This will remove nodejs and npm, now you can follow the steps mentioned above to install fresh copy of node
+        and npm.</p>&#10;</div>

@@ -15,4 +15,57 @@ blogger_orig_url: http://ekiras.blogspot.com/2017/02/how-to-use-gradle-cargo-plu
 redirect_from: "/2017/02/how-to-use-gradle-cargo-plugin-to-deploy-war-on-tomcat.html"
 ---
 
-<div class="markdown"><p>This post is based on the <a href="https://github.com/bmuschko/gradle-cargo-plugin">Gradle Cargo Plugin by bmuschko</a></p>&#10;<h2>Include the Plugin</h2>&#10;<p>You need to include the plugin in your <code>build.gradle</code>.</p>&#10;<pre class="hljs"><code><span class="hljs-keyword">buildscript</span> {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        jcenter()&#10;    }&#10;&#10;    <span class="hljs-keyword">dependencies</span> {&#10;        <span class="hljs-keyword">classpath</span> <span class="hljs-string">'com.bmuschko:gradle-cargo-plugin:2.2.3'</span>&#10;    }&#10;}&#10;&#10;apply plugin: <span class="hljs-string">'com.bmuschko.cargo'</span>&#10;</code></pre>&#10;<p><code>buildscript</code> block should be the first thing in the <code>build.gradle</code> file.</p>&#10;<h2>Include the Gradle Cargo plugin dependencies</h2>&#10;<p>Add the following in your gradle<code>dependencies</code> block</p>&#10;<pre class="hljs"><code><span class="hljs-keyword">dependencies</span> {&#10;    <span class="hljs-keyword">def</span> cargoVersion = <span class="hljs-string">'1.4.5'</span>&#10;    cargo <span class="hljs-string">&#34;org.codehaus.cargo:cargo-core-uberjar:$cargoVersion&#34;</span>,&#10;            <span class="hljs-string">&#34;org.codehaus.cargo:cargo-ant:$cargoVersion&#34;</span>&#10;}&#10;</code></pre>&#10;<h2>Define the Tomcat Container</h2>&#10;<p>To deploy The war files to Tomcat you need to create a <code>dsl</code> by name <code>cargo</code> and define the mandatory <code>containerId</code>.</p>&#10;<div class="note"> <b>Note</b><br><p>ContainerId will define the version of tomcat you want to use. If your want to deploy to tomcat6 your containerId will <code>tomcat6x</code>.</p>&#10;<p><a href="https://codehaus-cargo.github.io/cargo/Home.html">See the complete list of possible contianerId's supported</a></p>&#10;</div><br><h2>Gradle task to deploy <code>war</code> file on Tomcat</h2>&#10;<p>Below is a sample gradle task that will deploy war file from given location to Tomcat.</p>&#10;<pre class="hljs"><code><span class="hljs-keyword">task</span> deployAppA(type: com.bmuschko.gradle.cargo.tasks.remote.CargoRedeployRemote) {&#10;    <span class="hljs-keyword">description</span> = <span class="hljs-string">&#34;Deploys WAR to Tomcat .&#34;</span>  <span class="hljs-comment">// description of task </span>&#10;    hostname = <span class="hljs-string">'127.0.0.1'</span> <span class="hljs-comment">// ip of the tomcat </span>&#10;    port = <span class="hljs-number">8080</span> <span class="hljs-comment">// port at which tomcat is running</span>&#10;    username = <span class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-comment">// username of tomcat</span>&#10;    password = <span class="hljs-string">&#34;tomcat&#34;</span>  <span class="hljs-comment">// password of the tomcat</span>&#10;    deployables = [&#10;            <span class="hljs-keyword">new</span> com.bmuschko.gradle.cargo.convention.Deployable(<span class="hljs-keyword">file</span>: <span class="hljs-keyword">file</span>(<span class="hljs-string">'/path/to/war/appA.war'</span>), context: <span class="hljs-string">'appA'</span>)]&#10;}&#10;</code></pre>&#10;<p>The above will deploy your war file <code>appA.war</code> on Tomcat running on your local machine.</p>&#10;<div class="note"> <b>Note</b><br><p>Your tomcat should have <code>manager-script</code> role to allow the plugin to deploy war on tomcat.</p>&#10;</div><br><h2>Adding Manage-Script role to Tomcat</h2>&#10;<p>To add the role to Tomcat, go to <code>path-to-tomcat/conf</code> folder and replace the contents of file with the following.</p>&#10;<pre class="hljs"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">'1.0'</span> encoding=<span class="hljs-string">'utf-8'</span><span class="hljs-meta">?&gt;</span></span>&#10;<span class="hljs-tag">&lt;<span class="hljs-name">tomcat-users</span>&gt;</span>&#10;  <span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span class="hljs-attr">rolename</span>=<span class="hljs-string">&#34;manager-script&#34;</span>/&gt;</span>&#10;  <span class="hljs-tag">&lt;<span class="hljs-name">user</span> <span class="hljs-attr">username</span>=<span class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-attr">password</span>=<span class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-attr">roles</span>=<span class="hljs-string">&#34;tomcat,manager-script&#34;</span>/&gt;</span>&#10;&#10;<span class="hljs-tag">&lt;/<span class="hljs-name">tomcat-users</span>&gt;</span>&#10;</code></pre>&#10;<p>The above will set a user <code>tomcat</code> with password <code>tomcat</code> and roles <code>tomcat</code> and <code>manager-script</code>.</p>&#10;<p>Now restart your tomcat server and run the gradle task with the command</p>&#10;<pre class="hljs"><code>gradle -q deployAppA&#10;</code></pre>&#10;<p>This should deploy your war file to tomcat.</p>&#10;</div>
+<div class="markdown"><p>This post is based on the <a href="https://github.com/bmuschko/gradle-cargo-plugin">Gradle
+    Cargo Plugin by bmuschko</a></p>&#10;<h2>Include the Plugin</h2>&#10;<p>You need to include the plugin in your
+    <code>build.gradle</code>.</p>&#10;
+    <pre class="hljs"><code><span class="hljs-keyword">buildscript</span> {&#10;    <span class="hljs-keyword">repositories</span> {&#10;        jcenter()&#10;    }&#10;&#10;    <span
+            class="hljs-keyword">dependencies</span> {&#10;        <span class="hljs-keyword">classpath</span> <span
+            class="hljs-string">'com.bmuschko:gradle-cargo-plugin:2.2.3'</span>&#10;    }&#10;}&#10;&#10;apply plugin: <span
+            class="hljs-string">'com.bmuschko.cargo'</span>&#10;</code></pre>
+    &#10;<p><code>buildscript</code> block should be the first thing in the <code>build.gradle</code> file.</p>&#10;<h2>
+        Include the Gradle Cargo plugin dependencies</h2>&#10;<p>Add the following in your
+        gradle<code>dependencies</code> block</p>&#10;
+    <pre class="hljs"><code><span class="hljs-keyword">dependencies</span> {&#10;    <span
+            class="hljs-keyword">def</span> cargoVersion = <span class="hljs-string">'1.4.5'</span>&#10;    cargo <span
+            class="hljs-string">&#34;org.codehaus.cargo:cargo-core-uberjar:$cargoVersion&#34;</span>,&#10;            <span
+            class="hljs-string">&#34;org.codehaus.cargo:cargo-ant:$cargoVersion&#34;</span>&#10;}&#10;</code></pre>
+    &#10;<h2>Define the Tomcat Container</h2>&#10;<p>To deploy The war files to Tomcat you need to create a
+        <code>dsl</code> by name <code>cargo</code> and define the mandatory <code>containerId</code>.</p>&#10;
+    <div class="note"><b>Note</b><br>
+        <p>ContainerId will define the version of tomcat you want to use. If your want to deploy to tomcat6 your
+            containerId will <code>tomcat6x</code>.</p>&#10;<p><a
+                href="https://codehaus-cargo.github.io/cargo/Home.html">See the complete list of possible contianerId's
+            supported</a></p>&#10;</div>
+    <br>
+    <h2>Gradle task to deploy <code>war</code> file on Tomcat</h2>&#10;<p>Below is a sample gradle task that will deploy
+        war file from given location to Tomcat.</p>&#10;
+    <pre class="hljs"><code><span class="hljs-keyword">task</span> deployAppA(type: com.bmuschko.gradle.cargo.tasks.remote.CargoRedeployRemote) {&#10;    <span
+            class="hljs-keyword">description</span> = <span class="hljs-string">&#34;Deploys WAR to Tomcat .&#34;</span>  <span
+            class="hljs-comment">// description of task </span>&#10;    hostname = <span
+            class="hljs-string">'127.0.0.1'</span> <span class="hljs-comment">// ip of the tomcat </span>&#10;    port = <span
+            class="hljs-number">8080</span> <span class="hljs-comment">// port at which tomcat is running</span>&#10;    username = <span
+            class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-comment">// username of tomcat</span>&#10;    password = <span
+            class="hljs-string">&#34;tomcat&#34;</span>  <span class="hljs-comment">// password of the tomcat</span>&#10;    deployables = [&#10;            <span
+            class="hljs-keyword">new</span> com.bmuschko.gradle.cargo.convention.Deployable(<span class="hljs-keyword">file</span>: <span
+            class="hljs-keyword">file</span>(<span class="hljs-string">'/path/to/war/appA.war'</span>), context: <span
+            class="hljs-string">'appA'</span>)]&#10;}&#10;</code></pre>
+    &#10;<p>The above will deploy your war file <code>appA.war</code> on Tomcat running on your local machine.</p>&#10;
+    <div class="note"><b>Note</b><br>
+        <p>Your tomcat should have <code>manager-script</code> role to allow the plugin to deploy war on tomcat.</p>
+        &#10;</div>
+    <br>
+    <h2>Adding Manage-Script role to Tomcat</h2>&#10;<p>To add the role to Tomcat, go to
+        <code>path-to-tomcat/conf</code> folder and replace the contents of file with the following.</p>&#10;
+    <pre class="hljs"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">'1.0'</span> encoding=<span
+            class="hljs-string">'utf-8'</span><span class="hljs-meta">?&gt;</span></span>&#10;<span class="hljs-tag">&lt;<span
+            class="hljs-name">tomcat-users</span>&gt;</span>&#10;  <span class="hljs-tag">&lt;<span class="hljs-name">role</span> <span
+            class="hljs-attr">rolename</span>=<span class="hljs-string">&#34;manager-script&#34;</span>/&gt;</span>&#10;  <span
+            class="hljs-tag">&lt;<span class="hljs-name">user</span> <span class="hljs-attr">username</span>=<span
+            class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-attr">password</span>=<span
+            class="hljs-string">&#34;tomcat&#34;</span> <span class="hljs-attr">roles</span>=<span class="hljs-string">&#34;tomcat,manager-script&#34;</span>/&gt;</span>&#10;&#10;<span
+            class="hljs-tag">&lt;/<span class="hljs-name">tomcat-users</span>&gt;</span>&#10;</code></pre>
+    &#10;<p>The above will set a user <code>tomcat</code> with password <code>tomcat</code> and roles
+        <code>tomcat</code> and <code>manager-script</code>.</p>&#10;<p>Now restart your tomcat server and run the
+        gradle task with the command</p>&#10;
+    <pre class="hljs"><code>gradle -q deployAppA&#10;</code></pre>
+    &#10;<p>This should deploy your war file to tomcat.</p>&#10;</div>

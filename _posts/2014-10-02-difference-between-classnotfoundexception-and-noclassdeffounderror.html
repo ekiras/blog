@@ -12,4 +12,36 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/10/difference-between-classnot
 redirect_from: "/2014/10/difference-between-classnotfoundexception-and-noclassdeffounderror.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><ul style="text-align: left;"><li>ClassNotFoundException is an Exception.</li><li>NoClassDefFoundError is an Error.</li></ul><div class="hl-note"><b>ClassNotFoundException</b></div>This is a type of error when we are trying to access a class but that class is not available at the classpath or at the path specified by us. This type of error is thrown when an application tries to load in a class through its string name using:<br /><ol style="text-align: left;"><li>The forName method in class Class.</li><li>The findSystemClass method in class ClassLoader.</li><li>The loadClass method in class ClassLoader.</li></ol><div class="hl-note"><b>Example : When ClassNotFoundException occurs</b></div><pre class="brush : java">class A{}<br /><br />class Test{<br /><br /> public static void main(String args[]){<br />  try{<br />    System.out.println("classA = "+Class.forName("A").getClass());<br />    System.out.println("classB = "+Class.forName("B").getClass());<br />  }catch(ClassNotFoundException e){<br />    System.out.println("ClassNotFoundException");<br />  }<br /> }<br /><br />}<br /></pre><pre class="output">classA = class java.lang.Class<br />ClassNotFoundException<br /></pre>Since the class A is found class.forName() returns the instance of class but since class Test did not find class B, it threw ClassNotFoundException.<br /><br /><div class="hl-note"><b>NoClassDefFoundError</b></div>This is a type of error which occurs at runtime. It occurs when a class uses some other class which was available at the compile time but is not available at the run time.<br /><div class="hl-note"><b>Example : When ClassNotFoundException occurs</b></div><h4>Class : A.java</h4><pre class="brush : java">class A{<br /> public A(){<br />   System.out.println("Class A");<br /> }<br />}<br /></pre><h4>Class : Test.java</h4><pre class="brush : java">class Test{<br /><br /> public static void main(String args[]){<br />   System.out.println("Class Test");<br />   A object = new A();<br /> }<br /><br />}<br /></pre>The above code complies successfully and gives the following output. <br /><pre class="output">Class Test<br />Class A<br /></pre>Now if we intentionally delete class A, then we will start getting the following output at run time. <br /><pre class="output">Class Test<br />Exception in thread "main" java.lang.NoClassDefFoundError: A<br /> at Test.main(Test.java:5)<br />Caused by: java.lang.ClassNotFoundException: A<br /> at java.net.URLClassLoader$1.run(URLClassLoader.java:366)<br /> at java.net.URLClassLoader$1.run(URLClassLoader.java:355)<br /> at java.security.AccessController.doPrivileged(Native Method)<br /> at java.net.URLClassLoader.findClass(URLClassLoader.java:354)<br /> at java.lang.ClassLoader.loadClass(ClassLoader.java:425)<br /> at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)<br /> at java.lang.ClassLoader.loadClass(ClassLoader.java:358)<br /> ... 1 more<br /></pre><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div class="hl-note"><b>Points To Remember</b></div>
+    <ul style="text-align: left;">
+        <li>ClassNotFoundException is an Exception.</li>
+        <li>NoClassDefFoundError is an Error.</li>
+    </ul>
+    <div class="hl-note"><b>ClassNotFoundException</b></div>
+    This is a type of error when we are trying to access a class but that class is not available at the classpath or at
+    the path specified by us. This type of error is thrown when an application tries to load in a class through its
+    string name using:<br/>
+    <ol style="text-align: left;">
+        <li>The forName method in class Class.</li>
+        <li>The findSystemClass method in class ClassLoader.</li>
+        <li>The loadClass method in class ClassLoader.</li>
+    </ol>
+    <div class="hl-note"><b>Example : When ClassNotFoundException occurs</b></div>
+    <pre class="brush : java">class A{}<br/><br/>class Test{<br/><br/> public static void main(String args[]){<br/>  try{<br/>    System.out.println("classA = "+Class.forName("A").getClass());<br/>    System.out.println("classB = "+Class.forName("B").getClass());<br/>  }catch(ClassNotFoundException e){<br/>    System.out.println("ClassNotFoundException");<br/>  }<br/> }<br/><br/>}<br/></pre>
+    <pre class="output">classA = class java.lang.Class<br/>ClassNotFoundException<br/></pre>
+    Since the class A is found class.forName() returns the instance of class but since class Test did not find class B,
+    it threw ClassNotFoundException.<br/><br/>
+    <div class="hl-note"><b>NoClassDefFoundError</b></div>
+    This is a type of error which occurs at runtime. It occurs when a class uses some other class which was available at
+    the compile time but is not available at the run time.<br/>
+    <div class="hl-note"><b>Example : When ClassNotFoundException occurs</b></div>
+    <h4>Class : A.java</h4>
+    <pre class="brush : java">class A{<br/> public A(){<br/>   System.out.println("Class A");<br/> }<br/>}<br/></pre>
+    <h4>Class : Test.java</h4>
+    <pre class="brush : java">class Test{<br/><br/> public static void main(String args[]){<br/>   System.out.println("Class Test");<br/>   A object = new A();<br/> }<br/><br/>}<br/></pre>
+    The above code complies successfully and gives the following output. <br/>
+    <pre class="output">Class Test<br/>Class A<br/></pre>
+    Now if we intentionally delete class A, then we will start getting the following output at run time. <br/>
+    <pre class="output">Class Test<br/>Exception in thread "main" java.lang.NoClassDefFoundError: A<br/> at Test.main(Test.java:5)<br/>Caused by: java.lang.ClassNotFoundException: A<br/> at java.net.URLClassLoader$1.run(URLClassLoader.java:366)<br/> at java.net.URLClassLoader$1.run(URLClassLoader.java:355)<br/> at java.security.AccessController.doPrivileged(Native Method)<br/> at java.net.URLClassLoader.findClass(URLClassLoader.java:354)<br/> at java.lang.ClassLoader.loadClass(ClassLoader.java:425)<br/> at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:308)<br/> at java.lang.ClassLoader.loadClass(ClassLoader.java:358)<br/> ... 1 more<br/></pre>
+    <br/></div>

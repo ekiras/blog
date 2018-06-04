@@ -2,7 +2,7 @@
 layout: post
 exclude: true
 title: 'Logstash : No sincedb_path set, generating one based on the file path while
-  reading csv file'
+reading csv file'
 date: '2016-10-07T22:55:00.000+05:30'
 author: Ekansh Rastogi
 tags:
@@ -14,4 +14,23 @@ blogger_orig_url: http://ekiras.blogspot.com/2016/10/no-sincedb-path-set-getting
 redirect_from: "/2016/10/no-sincedb-path-set-getting-one-based-on-file.html"
 ---
 
-<div class='markdown'><h2>No sincedb_path set, generating one based on the file path</h2><p>Suppose you have a file at location <code>$PATH/a.csv</code> and we want to read and export data( elastic search server).Let's say you are trying to read this log file through the following configuration</p><pre><code>input {<br />  file {<br />    path =&gt; ["/some/path/a.csv"]<br />    start_position =&gt; "beginning"<br />  }<br />}<br /></code></pre><p>So, when you run this for the first time, this will work perfectly. The point to note here is that, when you have run this for the first time, logstash will automatically create a <code>sincedb_path</code> file at your home directory and it might look like <code>.sincedb_1a892d89f927eb484cb12a7b7385ab72</code>. This file tells the logstash that it has already processed this file.</p><p>If you want to reprocess this file, all you need to do is just delete this file.</p><p>OR</p><p>A better solution would be to use the following configurations</p><pre><code>input {<br />  file {<br />    path =&gt; ["/some/path/a.csv"]<br />    start_position =&gt; "beginning"<br />    sincedb_path =&gt; "/dev/null"<br />  }<br />}<br /></code></pre><p>The above configuration will always write the <code>.sincedb_path</code> file to the <code>/dev/null</code> path.</p><blockquote><h3>/dev/null</h3><p>/dev/null is a simple device (implemented in software and not corresponding to any hardware device on the system).</p><p>/dev/null looks empty when you read from it. Writing to /dev/null does nothing: data written to this device simply "disappear."</p></blockquote></div>
+<div class='markdown'><h2>No sincedb_path set, generating one based on the file path</h2>
+    <p>Suppose you have a file at location <code>$PATH/a.csv</code> and we want to read and export data( elastic search
+        server).Let's say you are trying to read this log file through the following configuration</p>
+    <pre><code>input {<br/>  file {<br/>    path =&gt; ["/some/path/a.csv"]<br/>    start_position =&gt; "beginning"<br/>  }<br/>}<br/></code></pre>
+    <p>So, when you run this for the first time, this will work perfectly. The point to note here is that, when you have
+        run this for the first time, logstash will automatically create a <code>sincedb_path</code> file at your home
+        directory and it might look like <code>.sincedb_1a892d89f927eb484cb12a7b7385ab72</code>. This file tells the
+        logstash that it has already processed this file.</p>
+    <p>If you want to reprocess this file, all you need to do is just delete this file.</p>
+    <p>OR</p>
+    <p>A better solution would be to use the following configurations</p>
+    <pre><code>input {<br/>  file {<br/>    path =&gt; ["/some/path/a.csv"]<br/>    start_position =&gt; "beginning"<br/>    sincedb_path =&gt; "/dev/null"<br/>  }<br/>}<br/></code></pre>
+    <p>The above configuration will always write the <code>.sincedb_path</code> file to the <code>/dev/null</code> path.
+    </p>
+    <blockquote><h3>/dev/null</h3>
+        <p>/dev/null is a simple device (implemented in software and not corresponding to any hardware device on the
+            system).</p>
+        <p>/dev/null looks empty when you read from it. Writing to /dev/null does nothing: data written to this device
+            simply "disappear."</p></blockquote>
+</div>

@@ -13,4 +13,280 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/04/test-java-25.html
 redirect_from: "/2015/04/test-java-25.html"
 ---
 
-<div id='test-controller'> <div class='info'>  This test contains 10 questions based on <b>Java</b>.  <br />  Each question answered correctly awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for unattempted answers.</div>  <h3>Select Test Type</h3>  <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>  <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button> </div> <div class='hidden' id='test-container'>  <div id='instructions'>   <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>   <div class='test-timer-container'>    <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>   </div>  </div>  <div id='test-score'></div><div class='container-question'> <div class='question'>Which of the following methods belong to the String class? 1. length()  2. compareTo()  3. equals()  4. substring()  </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>Length(), & compareTo()</td>    <td class='optionB'>Equals()</td>   </tr>   <tr>    <td class='optionC'>All of these</td>    <td class='optionD'>None of these</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the length of the application box made by this program? <pre class='brush:java'> import java.awt.*;<br />    import java.applet.*;<br />    public class myapplet extends Applet {<br />        Graphic g;<br />        g.drawString("A Simple Applet", 20, 20);    <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>20</td>    <td class='optionB'>Default value </td>   </tr>   <tr>    <td class='optionC'>Compilation Error</td>    <td class='optionD'>Runtime Error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class string_class {<br />        public static void main(String args[])<br />        {<br />            String obj = "I LIKE JAVA";   <br />            System.out.println(obj.charAt(3));<br />        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>I</td>    <td class='optionB'>L</td>   </tr>   <tr>    <td class='optionC'>K</td>    <td class='optionD'>E</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Objects of a super class cannot always be assigned to a subclass reference. This can only happen if they are in</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>Interference</td>    <td class='optionB'>Abstract Class</td>   </tr>   <tr>    <td class='optionC'>Inheritance</td>    <td class='optionD'>None of the above</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the name of the thread in output of this program? <pre class='brush:java'> class multithreaded_programing {<br />        public static void main(String args[]) {<br />            Thread t = Thread.currentThread();<br />            System.out.println(t.getPriority());        <br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>0</td>    <td class='optionB'>1</td>   </tr>   <tr>    <td class='optionC'>4</td>    <td class='optionD'>5</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class exception_handling {<br />        public static void main(String args[]) {<br />            try {<br />                int i, sum;<br />                sum = 10;<br />                for (i = -1; i < 3 ;++i) {<br />                    sum = (sum / i);<br />                System.out.print(i);<br />                }<br />            }<br />            catch(ArithmeticException e) {      <br />                System.out.print("0");<br />            }<br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>-1</td>    <td class='optionB'>-101</td>   </tr>   <tr>    <td class='optionC'>-10</td>    <td class='optionD'>0</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>When we implement the Runnable interface, we must define the method </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>start()</td>    <td class='optionB'>run()</td>   </tr>   <tr>    <td class='optionC'>main()</td>    <td class='optionD'>init() </td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class equality {<br />        int x;<br />        int y;<br />        boolean isequal() {<br />            return(x == y);  <br />        } <br />    }    <br />    class Output {<br />        public static void main(String args[])<br />        {<br />            equality obj = new equality();<br />            obj.x = 5;<br />            obj.y = 5;<br />            System.out.println(obj.isequal);        } <br />    }<br /></pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>true</td>    <td class='optionB'>false</td>   </tr>   <tr>    <td class='optionC'>0</td>    <td class='optionD'>1</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> import java.util.*;<br />    class Maps {<br />        public static void main(String args[]) {<br />            TreeMap obj = new TreeMap();<br />            obj.put("A", new Integer(1));<br />            obj.put("B", new Integer(2));<br />            obj.put("C", new Integer(3));<br />            System.out.println(obj.entrySet());<br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>[A=1, B=2, C=3]</td>    <td class='optionB'>[1, 2, 3]</td>   </tr>   <tr>    <td class='optionC'>[A, B, C]</td>    <td class='optionD'>{A=1, B=2, C=3}</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>what will be the output int a=0x0055; System.out.println(a);</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>5</td>    <td class='optionB'>55</td>   </tr>   <tr>    <td class='optionC'>85</td>    <td class='optionD'>none of these</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'>0x represents a hexadecimal number, therefore 0x0055 =16<sup>1</sup>x5 + 16<sup>0</sup>x5                  =80+5                  =85</div>  </div> </div></div><br /><div class='test-finish'>Finish Test</div></div>
+<div id='test-controller'>
+    <div class='info'> This test contains 10 questions based on <b>Java</b>. <br/> Each question answered correctly
+        awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for
+        unattempted answers.
+    </div>
+    <h3>Select Test Type</h3>
+    <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>
+    <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button>
+</div>
+<div class='hidden' id='test-container'>
+    <div id='instructions'>
+        <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>
+        <div class='test-timer-container'>
+            <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>
+        </div>
+    </div>
+    <div id='test-score'></div>
+    <div class='container-question'>
+        <div class='question'>Which of the following methods belong to the String class? 1. length() 2. compareTo() 3.
+            equals() 4. substring()
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>Length(), & compareTo()</td>
+                <td class='optionB'>Equals()</td>
+            </tr>
+            <tr>
+                <td class='optionC'>All of these</td>
+                <td class='optionD'>None of these</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the length of the application box made by this program?
+            <pre class='brush:java'> import java.awt.*;<br/>    import java.applet.*;<br/>    public class myapplet extends Applet {<br/>        Graphic g;<br/>        g.drawString("A Simple Applet", 20, 20);    <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>20</td>
+                <td class='optionB'>Default value</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Compilation Error</td>
+                <td class='optionD'>Runtime Error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class string_class {<br/>        public static void main(String args[])<br/>        {<br/>            String obj = "I LIKE JAVA";   <br/>            System.out.println(obj.charAt(3));<br/>        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>I</td>
+                <td class='optionB'>L</td>
+            </tr>
+            <tr>
+                <td class='optionC'>K</td>
+                <td class='optionD'>E</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Objects of a super class cannot always be assigned to a subclass reference. This can only
+            happen if they are in
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>Interference</td>
+                <td class='optionB'>Abstract Class</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Inheritance</td>
+                <td class='optionD'>None of the above</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the name of the thread in output of this program?
+            <pre class='brush:java'> class multithreaded_programing {<br/>        public static void main(String args[]) {<br/>            Thread t = Thread.currentThread();<br/>            System.out.println(t.getPriority());        <br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>0</td>
+                <td class='optionB'>1</td>
+            </tr>
+            <tr>
+                <td class='optionC'>4</td>
+                <td class='optionD'>5</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class exception_handling {<br/>        public static void main(String args[]) {<br/>            try {<br/>                int i, sum;<br/>                sum = 10;<br/>                for (i = -1; i < 3 ;++i) {<br/>                    sum = (sum / i);<br/>                System.out.print(i);<br/>                }<br/>            }<br/>            catch(ArithmeticException e) {      <br/>                System.out.print("0");<br/>            }<br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>-1</td>
+                <td class='optionB'>-101</td>
+            </tr>
+            <tr>
+                <td class='optionC'>-10</td>
+                <td class='optionD'>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>When we implement the Runnable interface, we must define the method</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>start()</td>
+                <td class='optionB'>run()</td>
+            </tr>
+            <tr>
+                <td class='optionC'>main()</td>
+                <td class='optionD'>init()</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class equality {<br/>        int x;<br/>        int y;<br/>        boolean isequal() {<br/>            return(x == y);  <br/>        } <br/>    }    <br/>    class Output {<br/>        public static void main(String args[])<br/>        {<br/>            equality obj = new equality();<br/>            obj.x = 5;<br/>            obj.y = 5;<br/>            System.out.println(obj.isequal);        } <br/>    }<br/></pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>true</td>
+                <td class='optionB'>false</td>
+            </tr>
+            <tr>
+                <td class='optionC'>0</td>
+                <td class='optionD'>1</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> import java.util.*;<br/>    class Maps {<br/>        public static void main(String args[]) {<br/>            TreeMap obj = new TreeMap();<br/>            obj.put("A", new Integer(1));<br/>            obj.put("B", new Integer(2));<br/>            obj.put("C", new Integer(3));<br/>            System.out.println(obj.entrySet());<br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>[A=1, B=2, C=3]</td>
+                <td class='optionB'>[1, 2, 3]</td>
+            </tr>
+            <tr>
+                <td class='optionC'>[A, B, C]</td>
+                <td class='optionD'>{A=1, B=2, C=3}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>what will be the output int a=0x0055; System.out.println(a);</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>5</td>
+                <td class='optionB'>55</td>
+            </tr>
+            <tr>
+                <td class='optionC'>85</td>
+                <td class='optionD'>none of these</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'>0x represents a hexadecimal number, therefore 0x0055 =16<sup>1</sup>x5 +
+                    16<sup>0</sup>x5 =80+5 =85
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='test-finish'>Finish Test</div>
+</div>

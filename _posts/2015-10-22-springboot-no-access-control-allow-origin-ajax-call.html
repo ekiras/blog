@@ -16,4 +16,53 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/10/springboot-no-access-contro
 redirect_from: "/2015/10/springboot-no-access-control-allow-origin-ajax-call.html"
 ---
 
-<div class='markdown'><h2>Points To Remember</h2><p>This error occurs when</p><ul><li>Server does not allow cross domain headers.</li><li>Application does not allow cross domain headers.</li><li>Custom headers provided by request is not accepted by the application.</li></ul><h2>How to Solve :&nbsp;No 'Access-Control-Allow-Origin' Access-Control-Allow-Origin error</h2><p>In order to allow cross domain ajax calls to your Server you need to allow the Cross Domian Headers in your application.</p><p>You can allow the cross domain requests from your application in Spring boot by adding a CORS Filter as shown below.</p><pre><code class="language-java">response.setHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>);<br />response.setHeader(<span class="hljs-string">"Access-Control-Allow-Methods"</span>, <span class="hljs-string">"POST, GET, OPTIONS, DELETE"</span>);<br />response.setHeader(<span class="hljs-string">"Access-Control-Max-Age"</span>, <span class="hljs-string">"3600"</span>);<br />response.setHeader(<span class="hljs-string">"Access-Control-Allow-Headers"</span>, <span class="hljs-string">"Content-Type, x-requested-with, X-Custom-Header"</span>);<br /></code></pre><p>Here you need to specify the following</p><ul><li>Headers your application accepts as a comma separated Header keys like <code>X-Custom-Header</code>.</li><li>Max age for the requests.</li><li>Methods that your application allows.</li><li>Origins that your application allows. In example above we have specified <code>*</code>, it means it will allow requests from all origins. You can give comma separated values to allow, access from your domains only.</li></ul><p>You can set CORS using <strong>spring boot default configurations</strong>, as shown below.</p><pre># ENDPOINTS CORS CONFIGURATION (EndpointCorsProperties)<br /><b>endpoints.cors.allow-credentials</b>=# Set whether credentials are supported. When not set, credentials are not supported.<br /><b>endpoints.cors.allowed-headers</b>=# Comma-separated list of headers to allow in a request. '*' allows all headers.<br /><b>endpoints.cors.allowed-methods</b>=GET # Comma-separated list of methods to allow. '*' allows all methods.<br /><b>endpoints.cors.allowed-origins</b>=# Comma-separated list of origins to allow. '*' allows all origins. When not set, CORS support is disabled.<br /><b>endpoints.cors.exposed-headers</b>=# Comma-separated list of headers to include in a response.<br /><b>endpoints.cors.max-age</b>=1800 # How long, in seconds, the response from a pre-flight request can be cached by clients.<br /></pre><p>You can use custom Filter to set CORS , Full example, how to use CorsFilter is shown below.</p><pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.filter;<br /><br /><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br /><br /><span class="hljs-keyword">import</span> javax.servlet.*;<br /><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br /><span class="hljs-keyword">import</span> java.io.IOException;<br /><br /><span class="hljs-javadoc">/**<br /> * Created by ekansh on 22/10/15.<br /> */</span><br /><span class="hljs-annotation">@Component</span><br /><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CorsFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>{<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="hljs-keyword">throws</span> IOException, ServletException </span>{<br />        HttpServletResponse response = (HttpServletResponse) res;<br />        response.setHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>);<br />        response.setHeader(<span class="hljs-string">"Access-Control-Allow-Methods"</span>, <span class="hljs-string">"POST, GET, OPTIONS, DELETE"</span>);<br />        response.setHeader(<span class="hljs-string">"Access-Control-Max-Age"</span>, <span class="hljs-string">"3600"</span>);<br />        response.setHeader(<span class="hljs-string">"Access-Control-Allow-Headers"</span>, <span class="hljs-string">"Content-Type, x-requested-with, X-Custom-Header"</span>);<br />        chain.doFilter(req, res);<br />    }<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">init</span><span class="hljs-params">(FilterConfig filterConfig)</span> </span>{}<br /><br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>{}<br /><br />}<br /></code></pre></div>
+<div class='markdown'><h2>Points To Remember</h2>
+    <p>This error occurs when</p>
+    <ul>
+        <li>Server does not allow cross domain headers.</li>
+        <li>Application does not allow cross domain headers.</li>
+        <li>Custom headers provided by request is not accepted by the application.</li>
+    </ul>
+    <h2>How to Solve :&nbsp;No 'Access-Control-Allow-Origin' Access-Control-Allow-Origin error</h2>
+    <p>In order to allow cross domain ajax calls to your Server you need to allow the Cross Domian Headers in your
+        application.</p>
+    <p>You can allow the cross domain requests from your application in Spring boot by adding a CORS Filter as shown
+        below.</p>
+    <pre><code class="language-java">response.setHeader(<span class="hljs-string">"Access-Control-Allow-Origin"</span>, <span
+            class="hljs-string">"*"</span>);<br/>response.setHeader(<span class="hljs-string">"Access-Control-Allow-Methods"</span>, <span
+            class="hljs-string">"POST, GET, OPTIONS, DELETE"</span>);<br/>response.setHeader(<span class="hljs-string">"Access-Control-Max-Age"</span>, <span
+            class="hljs-string">"3600"</span>);<br/>response.setHeader(<span class="hljs-string">"Access-Control-Allow-Headers"</span>, <span
+            class="hljs-string">"Content-Type, x-requested-with, X-Custom-Header"</span>);<br/></code></pre>
+    <p>Here you need to specify the following</p>
+    <ul>
+        <li>Headers your application accepts as a comma separated Header keys like <code>X-Custom-Header</code>.</li>
+        <li>Max age for the requests.</li>
+        <li>Methods that your application allows.</li>
+        <li>Origins that your application allows. In example above we have specified <code>*</code>, it means it will
+            allow requests from all origins. You can give comma separated values to allow, access from your domains
+            only.
+        </li>
+    </ul>
+    <p>You can set CORS using <strong>spring boot default configurations</strong>, as shown below.</p>
+    <pre># ENDPOINTS CORS CONFIGURATION (EndpointCorsProperties)<br/><b>endpoints.cors.allow-credentials</b>=# Set whether credentials are supported. When not set, credentials are not supported.<br/><b>endpoints.cors.allowed-headers</b>=# Comma-separated list of headers to allow in a request. '*' allows all headers.<br/><b>endpoints.cors.allowed-methods</b>=GET # Comma-separated list of methods to allow. '*' allows all methods.<br/><b>endpoints.cors.allowed-origins</b>=# Comma-separated list of origins to allow. '*' allows all origins. When not set, CORS support is disabled.<br/><b>endpoints.cors.exposed-headers</b>=# Comma-separated list of headers to include in a response.<br/><b>endpoints.cors.max-age</b>=1800 # How long, in seconds, the response from a pre-flight request can be cached by clients.<br/></pre>
+    <p>You can use custom Filter to set CORS , Full example, how to use CorsFilter is shown below.</p>
+    <pre><code class="language-java"><span class="hljs-keyword">package</span> com.ekiras.filter;<br/><br/><span
+            class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br/><br/><span
+            class="hljs-keyword">import</span> javax.servlet.*;<br/><span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;<br/><span
+            class="hljs-keyword">import</span> java.io.IOException;<br/><br/><span class="hljs-javadoc">/**<br/> * Created by ekansh on 22/10/15.<br/> */</span><br/><span
+            class="hljs-annotation">@Component</span><br/><span class="hljs-keyword">public</span> <span
+            class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CorsFilter</span> <span
+            class="hljs-keyword">implements</span> <span class="hljs-title">Filter</span> </span>{<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span
+            class="hljs-title">doFilter</span><span class="hljs-params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span
+            class="hljs-keyword">throws</span> IOException, ServletException </span>{<br/>        HttpServletResponse response = (HttpServletResponse) res;<br/>        response.setHeader(<span
+            class="hljs-string">"Access-Control-Allow-Origin"</span>, <span class="hljs-string">"*"</span>);<br/>        response.setHeader(<span
+            class="hljs-string">"Access-Control-Allow-Methods"</span>, <span class="hljs-string">"POST, GET, OPTIONS, DELETE"</span>);<br/>        response.setHeader(<span
+            class="hljs-string">"Access-Control-Max-Age"</span>, <span class="hljs-string">"3600"</span>);<br/>        response.setHeader(<span
+            class="hljs-string">"Access-Control-Allow-Headers"</span>, <span class="hljs-string">"Content-Type, x-requested-with, X-Custom-Header"</span>);<br/>        chain.doFilter(req, res);<br/>    }<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span
+            class="hljs-title">init</span><span
+            class="hljs-params">(FilterConfig filterConfig)</span> </span>{}<br/><br/>    <span
+            class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span
+            class="hljs-title">destroy</span><span class="hljs-params">()</span> </span>{}<br/><br/>}<br/></code></pre>
+</div>

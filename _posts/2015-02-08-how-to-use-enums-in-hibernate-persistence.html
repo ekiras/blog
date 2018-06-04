@@ -14,4 +14,39 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/02/how-to-use-enums-in-hiberna
 redirect_from: "/2015/02/how-to-use-enums-in-hibernate-persistence.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>Enums are special java classes that are used to declare constants and methods.</li><li>Enums have all the variables declared as public static final.</li><li>Enums variables can be compared using <b>==</b>&nbsp;operator.</li><li>End of a enum can be declared by a semi colon, but this is optional.</li><li>There are two ways to use Enums&nbsp;</li><ul><li>ORDINAL (saves the enum values in integer format starting from 0.)</li><li>STRING (saves the enum value in String, takes the value of the field itself. )</li></ul></ul><br /><h2>Use Enums in Hibernate</h2>In this example we will be using Enums to save a value in database using hibernate.<br />Suppose we have a Enum named <b>Level</b>&nbsp;and we want to save it in database using hibernate persistence.Then we can map this in the following way.<br /><br /><div class="panel panel-default"><div class="panel-heading">Level.java</div><div class="panel-body">This is an Enum that defines the level of difficulty of a question.<br /><pre class="brush:java">package com.ekiras.enums;<br /><br />public enum Level {<br /><br /> LEVEL_ONE,<br /> LEVEL_TWO,<br /> LEVEL_THREE,<br /> LEVEL_FOUR,<br /> LEVEL_FIVE;<br />}<br /></pre><div><br /></div></div></div><div class="panel panel-default"><div class="panel-heading">Qusetion.java</div><div class="panel-body">This class contains the enum as a field that will be saved to the database.<br /><pre class="brush:java">package com.ekiras.domain;<br /><br />import javax.persistence.Column;<br />import javax.persistence.Entity;<br />import javax.persistence.EnumType;<br />import javax.persistence.Enumerated;<br />import javax.persistence.GeneratedValue;<br />import javax.persistence.GenerationType;<br />import javax.persistence.Id;<br />import javax.persistence.Table;<br /><br />import com.ekiras.enums.Level;<br /><br />@Entity<br />@Table(name="question")<br />public class Question {<br />  <br />        @Id<br />        @Column(name="id")<br />        @GeneratedValue(strategy=GenerationType.AUTO)<br />        private Long id;<br /><br />        @Column(name="question")<br />        private String question;<br /><br />        @Column(name="level")<br />        @Enumerated(EnumType.ORDINAL)<br />        private Level status = Level.LEVEL_ONE;<br />  <br />        // GETTERS and SETTERS<br /><br />}<br /></pre></div></div>This will save the Enum in integer format, i.e it will save the int value of the enum. If you want to save the value in String format you need to add the following <b>Enumerated</b> property to the field.<br /><br /><pre class="brush:java">        <br /> @Column(name="level")<br /> @Enumerated(EnumType.STRING)<br /> private Level status = Level.LEVEL_ONE;</pre><br />This will save the value of the field in String format, i.e it will save LEVEL_ONE in database while <b>@Enumerated(EnumType.ORDINAL)</b>&nbsp;will save the values in integer format i.e it will save integer values for LEVEL_ONE &nbsp;= 0 and so on(<b>it has nothing to do with the value of the enum, it always starts from zero and increments and is defined by the order in which they are defined.</b> ).<br /><br /><br /></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>Enums are special java classes that are used to declare constants and methods.</li>
+        <li>Enums have all the variables declared as public static final.</li>
+        <li>Enums variables can be compared using <b>==</b>&nbsp;operator.</li>
+        <li>End of a enum can be declared by a semi colon, but this is optional.</li>
+        <li>There are two ways to use Enums&nbsp;</li>
+        <ul>
+            <li>ORDINAL (saves the enum values in integer format starting from 0.)</li>
+            <li>STRING (saves the enum value in String, takes the value of the field itself. )</li>
+        </ul>
+    </ul>
+    <br/>
+    <h2>Use Enums in Hibernate</h2>In this example we will be using Enums to save a value in database using
+    hibernate.<br/>Suppose we have a Enum named <b>Level</b>&nbsp;and we want to save it in database using hibernate
+    persistence.Then we can map this in the following way.<br/><br/>
+    <div class="panel panel-default">
+        <div class="panel-heading">Level.java</div>
+        <div class="panel-body">This is an Enum that defines the level of difficulty of a question.<br/>
+            <pre class="brush:java">package com.ekiras.enums;<br/><br/>public enum Level {<br/><br/> LEVEL_ONE,<br/> LEVEL_TWO,<br/> LEVEL_THREE,<br/> LEVEL_FOUR,<br/> LEVEL_FIVE;<br/>}<br/></pre>
+            <div><br/></div>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading">Qusetion.java</div>
+        <div class="panel-body">This class contains the enum as a field that will be saved to the database.<br/>
+            <pre class="brush:java">package com.ekiras.domain;<br/><br/>import javax.persistence.Column;<br/>import javax.persistence.Entity;<br/>import javax.persistence.EnumType;<br/>import javax.persistence.Enumerated;<br/>import javax.persistence.GeneratedValue;<br/>import javax.persistence.GenerationType;<br/>import javax.persistence.Id;<br/>import javax.persistence.Table;<br/><br/>import com.ekiras.enums.Level;<br/><br/>@Entity<br/>@Table(name="question")<br/>public class Question {<br/>  <br/>        @Id<br/>        @Column(name="id")<br/>        @GeneratedValue(strategy=GenerationType.AUTO)<br/>        private Long id;<br/><br/>        @Column(name="question")<br/>        private String question;<br/><br/>        @Column(name="level")<br/>        @Enumerated(EnumType.ORDINAL)<br/>        private Level status = Level.LEVEL_ONE;<br/>  <br/>        // GETTERS and SETTERS<br/><br/>}<br/></pre>
+        </div>
+    </div>
+    This will save the Enum in integer format, i.e it will save the int value of the enum. If you want to save the value
+    in String format you need to add the following <b>Enumerated</b> property to the field.<br/><br/>
+    <pre class="brush:java">        <br/> @Column(name="level")<br/> @Enumerated(EnumType.STRING)<br/> private Level status = Level.LEVEL_ONE;</pre>
+    <br/>This will save the value of the field in String format, i.e it will save LEVEL_ONE in database while <b>@Enumerated(EnumType.ORDINAL)</b>&nbsp;will
+    save the values in integer format i.e it will save integer values for LEVEL_ONE &nbsp;= 0 and so on(<b>it has
+        nothing to do with the value of the enum, it always starts from zero and increments and is defined by the order
+        in which they are defined.</b> ).<br/><br/><br/></div>

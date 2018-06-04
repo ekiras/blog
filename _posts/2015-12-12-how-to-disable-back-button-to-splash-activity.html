@@ -12,4 +12,24 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/12/how-to-disable-back-button-
 redirect_from: "/2015/12/how-to-disable-back-button-to-splash-activity.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br /><ul style="text-align: left;"><li>Ideally splash screen should be shown only at the start on the Android Application.</li><li>Application should not go back to the Splash screen when back button is pressed</li></ul><br /><h2>How to disable back button to Splash Screen Activity</h2>In order to disable your application to go back to the your can do the following<br /><br /><ul style="text-align: left;"><li>Disable the Back Button on the Activity called just after the Splash Screen.</li><li>Remove the Splash Activity from Application life-cycle/history.</li></ul><div><b>You can disable the back button on any activity programmatically</b> using the following &nbsp;</div><div><br /></div><div><pre>@Override<br />public void onBackPressed() {<br />}<br /></pre><div><br /></div><b>You can also do the same by disabling back to activity by removing it from history in AndroidManifest.xml</b><br /><br /><pre>&lt;activity android:name=".SplashActivity" android:noHistory="true"/&gt;</pre><br /></div></div>
+<div dir="ltr" style="text-align: left;" trbidi="on"><h2>Points To Remember</h2><br/>
+    <ul style="text-align: left;">
+        <li>Ideally splash screen should be shown only at the start on the Android Application.</li>
+        <li>Application should not go back to the Splash screen when back button is pressed</li>
+    </ul>
+    <br/>
+    <h2>How to disable back button to Splash Screen Activity</h2>In order to disable your application to go back to the
+    your can do the following<br/><br/>
+    <ul style="text-align: left;">
+        <li>Disable the Back Button on the Activity called just after the Splash Screen.</li>
+        <li>Remove the Splash Activity from Application life-cycle/history.</li>
+    </ul>
+    <div><b>You can disable the back button on any activity programmatically</b> using the following &nbsp;</div>
+    <div><br/></div>
+    <div>
+        <pre>@Override<br/>public void onBackPressed() {<br/>}<br/></pre>
+        <div><br/></div>
+        <b>You can also do the same by disabling back to activity by removing it from history in AndroidManifest.xml</b><br/><br/>
+        <pre>&lt;activity android:name=".SplashActivity" android:noHistory="true"/&gt;</pre>
+        <br/></div>
+</div>

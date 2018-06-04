@@ -12,4 +12,51 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/10/can-we-have-private-constru
 redirect_from: "/2014/10/can-we-have-private-constructor-in-class-in-java.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on"><div dir="ltr" style="text-align: left;" trbidi="on"><div class="hl-note"><b>Points To Remember</b></div><div style="text-align: left;"></div><ul style="text-align: left;"><li>A constructor have the same name as that of a class.</li><li>A constructor does not have any return type, not even void.</li><li>Constructor of a class is called first, before any other method is called.</li><li>Constructor of a super class is called before the base class constructor.&nbsp;</li><li>We can have a private constructor in a java class.</li><li>A class with a private constructor can not be inherited.</li><li>We cannot create object of a class with a private constructor.</li></ul><div class="hl-note"><b>What happens if we have a Private Constructor in a class.</b></div></div>Suppose if we make a private constructor of our class and try to create the object of that class from that class only.<br />In the example below, we have a class A and we created the constructor of this class that just prints a statement. Now we created the object of this class from a main method. The code will compile and run successfully to give a output. Thus, this proofs that <b>we can have a private constructor in a class</b>.<br /><br /><pre class="brush : java">class A <br />{<br /><br />  private A(){<br />    System.out.println("Private Constructor of A");<br />  }<br /><br />  public static void main(String args[]){<br />    System.out.println("Hello World");<br />    A obj = new A();<br /><br />  }<br />}</pre><pre class="output">Hello World<br />Private Constructor of A</pre><div class="hl-note"><b>What happens if we try to create an object of a class with &nbsp;a Private Constructor.</b></div>Now, if we have a class with a private constructor and we try to create the object of this class e.g. If we have a class A and another class B, both with private constructors and we try to create object of class B from class A. This will throw a compile time exception stating that we can not create the object of class B because we cannot access its default constructor. <b>Thus we cannot create the object of a class that has a private constructor.</b>&nbsp; Remember that, a whenever an object of a class is created, its default constructor must be accessible by the class that is trying to create its object.<br /><pre class="brush : java">class B{<br /><br />  private B(){<br />    System.out.println("Private Constructor of B");<br />  }<br /><br />}<br /><br />class A <br />{<br /><br />  private A(){<br />    System.out.println("Private Constructor of A");<br />  }<br /><br />  public static void main(String args[]){<br />    System.out.println("Hello World");<br />    A objectA = new A();<br />    B objectB = new B();<br /><br />  }<br />}</pre><br /><pre class="output">A.java:19: error: B() has private access in B<br />    B objectB = new B();<br />                ^<br />1 error</pre><br /><div class="hl-note"><b>What happens if we try to inherit a class with a Private Constructor.</b></div>Now, if we create a class B with a private constructor and try to inherit this class, we will get a compile time error stating that the class B have a private constructor. This means that&nbsp;<b>a class with the private constructor can not be inherited</b>.<br /><br class="Apple-interchange-newline" /><span style="font-family: monospace;"><span style="white-space: pre;">class B{    private B(){     System.out.println("Private Constructor of B");   }  }  class A extends B {    private A(){     System.out.println("Private Constructor of A");   }    public static void main(String args[]){     System.out.println("Hello World");   } }</span></span></div> <pre class="output">A.java:12: error: B() has private access in B<br />  private A(){<br />             ^<br />1 error</pre>Thus we cannot extend a class or make an object of a class that has a private constructor because its default constructor becomes inaccessible. When we inherit a class the default constructor of the super class is executed before the constructor of the base class is executed. Also when we make an object of a class its default constructor is accessed before any other method is accessed. <b>Thus constructor must be accessible for making the object of a class or inheriting a class. We can that a class with a private constructor can not be inherited nor we can make the object of this class.</b></div>
+<div dir="ltr" style="text-align: left;" trbidi="on">
+    <div dir="ltr" style="text-align: left;" trbidi="on">
+        <div dir="ltr" style="text-align: left;" trbidi="on">
+            <div class="hl-note"><b>Points To Remember</b></div>
+            <div style="text-align: left;"></div>
+            <ul style="text-align: left;">
+                <li>A constructor have the same name as that of a class.</li>
+                <li>A constructor does not have any return type, not even void.</li>
+                <li>Constructor of a class is called first, before any other method is called.</li>
+                <li>Constructor of a super class is called before the base class constructor.&nbsp;</li>
+                <li>We can have a private constructor in a java class.</li>
+                <li>A class with a private constructor can not be inherited.</li>
+                <li>We cannot create object of a class with a private constructor.</li>
+            </ul>
+            <div class="hl-note"><b>What happens if we have a Private Constructor in a class.</b></div>
+        </div>
+        Suppose if we make a private constructor of our class and try to create the object of that class from that class
+        only.<br/>In the example below, we have a class A and we created the constructor of this class that just prints
+        a statement. Now we created the object of this class from a main method. The code will compile and run
+        successfully to give a output. Thus, this proofs that <b>we can have a private constructor in a
+        class</b>.<br/><br/>
+        <pre class="brush : java">class A <br/>{<br/><br/>  private A(){<br/>    System.out.println("Private Constructor of A");<br/>  }<br/><br/>  public static void main(String args[]){<br/>    System.out.println("Hello World");<br/>    A obj = new A();<br/><br/>  }<br/>}</pre>
+        <pre class="output">Hello World<br/>Private Constructor of A</pre>
+        <div class="hl-note"><b>What happens if we try to create an object of a class with &nbsp;a Private
+            Constructor.</b></div>
+        Now, if we have a class with a private constructor and we try to create the object of this class e.g. If we have
+        a class A and another class B, both with private constructors and we try to create object of class B from class
+        A. This will throw a compile time exception stating that we can not create the object of class B because we
+        cannot access its default constructor. <b>Thus we cannot create the object of a class that has a private
+        constructor.</b>&nbsp; Remember that, a whenever an object of a class is created, its default constructor must
+        be accessible by the class that is trying to create its object.<br/>
+        <pre class="brush : java">class B{<br/><br/>  private B(){<br/>    System.out.println("Private Constructor of B");<br/>  }<br/><br/>}<br/><br/>class A <br/>{<br/><br/>  private A(){<br/>    System.out.println("Private Constructor of A");<br/>  }<br/><br/>  public static void main(String args[]){<br/>    System.out.println("Hello World");<br/>    A objectA = new A();<br/>    B objectB = new B();<br/><br/>  }<br/>}</pre>
+        <br/>
+        <pre class="output">A.java:19: error: B() has private access in B<br/>    B objectB = new B();<br/>                ^<br/>1 error</pre>
+        <br/>
+        <div class="hl-note"><b>What happens if we try to inherit a class with a Private Constructor.</b></div>
+        Now, if we create a class B with a private constructor and try to inherit this class, we will get a compile time
+        error stating that the class B have a private constructor. This means that&nbsp;<b>a class with the private
+        constructor can not be inherited</b>.<br/><br class="Apple-interchange-newline"/><span
+            style="font-family: monospace;"><span style="white-space: pre;">class B{    private B(){     System.out.println("Private Constructor of B");   }  }  class A extends B {    private A(){     System.out.println("Private Constructor of A");   }    public static void main(String args[]){     System.out.println("Hello World");   } }</span></span>
+    </div>
+    <pre class="output">A.java:12: error: B() has private access in B<br/>  private A(){<br/>             ^<br/>1 error</pre>
+    Thus we cannot extend a class or make an object of a class that has a private constructor because its default
+    constructor becomes inaccessible. When we inherit a class the default constructor of the super class is executed
+    before the constructor of the base class is executed. Also when we make an object of a class its default constructor
+    is accessed before any other method is accessed. <b>Thus constructor must be accessible for making the object of a
+    class or inheriting a class. We can that a class with a private constructor can not be inherited nor we can make the
+    object of this class.</b></div>

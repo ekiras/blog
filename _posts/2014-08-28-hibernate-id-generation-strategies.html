@@ -13,4 +13,28 @@ blogger_orig_url: http://ekiras.blogspot.com/2014/08/hibernate-id-generation-str
 redirect_from: "/2014/08/hibernate-id-generation-strategies.html"
 ---
 
-<div dir="ltr" style="text-align: left;" trbidi="on">There are 4 types of Generation Strategies that can be used to generate Id in hibernate.<br /><ol style="text-align: left;"><li><b>AUTO</b>&nbsp; e.g. strategy = GenerationType.AUTO</li><li><b>IDENTITY</b>&nbsp;e.g. strategy = GenerationType.IDENTITY</li><li><b>SEQUENCE</b>&nbsp;e.g. strategy = GenerationType.SEQUENCE</li><li><b>TABLE</b>&nbsp;e.g. strategy = GenerationType.TABLE</li></ol><div class="hl-note"><b>strategy = GenerationType.AUTO</b></div>This is the default Generation Strategy that is used by the hibernate. This strategy allows hibernate to decide what strategy to be used to generate the unique key for the table. Strategies used by hibernate can be different for different types of databases used.  <br /><div class="hl-note"><b>strategy = GenerationType.IDENTITY</b></div>In this Generation Strategy the hibernate is going to use an identity column. Identity column is a feature that is provided in some of the databases, this is not a generic feature and is provided by a few databases only.  <br /><div class="hl-note"><b>strategy = GenerationType.SEQUENCE</b></div>In this Generation Strategy, the hibernate&nbsp;generate unique keys by&nbsp;a sequence hilo. This uses a sequence object to generate a&nbsp;sequence of ids, and sequence.nextval will always give the next value of the sequence. &nbsp;Databases manages this on their own.  <br /><div class="hl-note"><b>strategy = GenerationType.TABLE</b></div>In this Generation Strategy, the hibernate uses a separate table to provide unique key. The table stores the latest value to store the last used primary key so that we can get this value and increment the value to create new primary key. <br /><br />I would recommend to use &nbsp;<b>strategy = GenerationType.AUTO </b>because it lets hibernate to use the best generation strategy based on the database we use. </div>
+<div dir="ltr" style="text-align: left;" trbidi="on">There are 4 types of Generation Strategies that can be used to
+    generate Id in hibernate.<br/>
+    <ol style="text-align: left;">
+        <li><b>AUTO</b>&nbsp; e.g. strategy = GenerationType.AUTO</li>
+        <li><b>IDENTITY</b>&nbsp;e.g. strategy = GenerationType.IDENTITY</li>
+        <li><b>SEQUENCE</b>&nbsp;e.g. strategy = GenerationType.SEQUENCE</li>
+        <li><b>TABLE</b>&nbsp;e.g. strategy = GenerationType.TABLE</li>
+    </ol>
+    <div class="hl-note"><b>strategy = GenerationType.AUTO</b></div>
+    This is the default Generation Strategy that is used by the hibernate. This strategy allows hibernate to decide what
+    strategy to be used to generate the unique key for the table. Strategies used by hibernate can be different for
+    different types of databases used. <br/>
+    <div class="hl-note"><b>strategy = GenerationType.IDENTITY</b></div>
+    In this Generation Strategy the hibernate is going to use an identity column. Identity column is a feature that is
+    provided in some of the databases, this is not a generic feature and is provided by a few databases only. <br/>
+    <div class="hl-note"><b>strategy = GenerationType.SEQUENCE</b></div>
+    In this Generation Strategy, the hibernate&nbsp;generate unique keys by&nbsp;a sequence hilo. This uses a sequence
+    object to generate a&nbsp;sequence of ids, and sequence.nextval will always give the next value of the sequence.
+    &nbsp;Databases manages this on their own. <br/>
+    <div class="hl-note"><b>strategy = GenerationType.TABLE</b></div>
+    In this Generation Strategy, the hibernate uses a separate table to provide unique key. The table stores the latest
+    value to store the last used primary key so that we can get this value and increment the value to create new primary
+    key. <br/><br/>I would recommend to use &nbsp;<b>strategy = GenerationType.AUTO </b>because it lets hibernate to use
+    the best generation strategy based on the database we use.
+</div>

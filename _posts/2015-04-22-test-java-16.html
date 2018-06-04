@@ -14,4 +14,284 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/04/test-java-16.html
 redirect_from: "/2015/04/test-java-16.html"
 ---
 
-<div id='test-controller'> <div class='info'>  This test contains 10 questions based on <b>Java</b>.  <br />  Each question answered correctly awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for unattempted answers.</div>  <h3>Select Test Type</h3>  <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>  <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button> </div> <div class='hidden' id='test-container'>  <div id='instructions'>   <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>   <div class='test-timer-container'>    <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>   </div>  </div>  <div id='test-score'></div><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class box {<br />        int width;<br />        int height;<br />        int length;<br />        int volume;<br />        box() {<br />            width = 5;<br />            height = 5;<br />            length = 6;<br />        }<br />        void volume() {<br />             volume = width*height*length;<br />        } <br />    }    <br />    class constructor_output {<br />        public static void main(String args[])<br />        {<br />            box obj = new box();<br />            obj.volume();<br />            System.out.println(obj.volume);        } <br />        }<br />   }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>100</td>    <td class='optionB'>150</td>   </tr>   <tr>    <td class='optionC'>200</td>    <td class='optionD'>250</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these have highest precedence? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>()</td>    <td class='optionB'>++</td>   </tr>   <tr>    <td class='optionC'>*</td>    <td class='optionD'>>></td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>class operators {<br />        public static void main(String args[]) <br />        {    <br />             int x = 8;<br />             System.out.println(++x * 3 + " " + x);<br />        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>24 8</td>    <td class='optionB'>25 9 </td>   </tr>   <tr>    <td class='optionC'>27 4</td>    <td class='optionD'>27 9</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of the following operators can operate on a boolean variable? 1. && 2. == 3. ?: 4. += </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>3 & 2</td>    <td class='optionB'>1 & 4</td>   </tr>   <tr>    <td class='optionC'>1, 2 & 4</td>    <td class='optionD'>1, 2 & 3</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Given the code String s1 = "yes"; String s2 = "yes"; String s3 = new String(s1); Which of the following would equate to true? (A) s1 == s2 (B) s1 = s2 (C) s3 == s1 (D) s1.equals(s2) (E) s3.equals(s1)</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>(A), (C) & (E)</td>    <td class='optionB'>(A), (B) & (C)</td>   </tr>   <tr>    <td class='optionC'>(A), (D) & (E)</td>    <td class='optionD'>(D) & (E) </td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these lines will give an error  line 1 :int a=1; line 2 :float f=2; line 3 :double d=2.9;</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>line 1 </td>    <td class='optionB'>line 2</td>   </tr>   <tr>    <td class='optionC'>line 3</td>    <td class='optionD'>none of these</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'>no error since float can take integer value</div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>class equality {<br />        int x;<br />        int y;<br />        boolean isequal() {<br />            return(x == y);  <br />        } <br />    }    <br />    class Output {<br />        public static void main(String args[])<br />        {<br />            equality obj = new equality();<br />            obj.x = 5;<br />            obj.y = 5;<br />            System.out.println(obj.isequal);        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>True</td>    <td class='optionB'>False </td>   </tr>   <tr>    <td class='optionC'>0</td>    <td class='optionD'>1</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class A {<br />        int i;<br />        void display() {<br />            System.out.println(i);<br />        }<br />    }    <br />    class B extends A {<br />        int j;<br />        void display() {<br />            System.out.println(j);<br />        }<br />    }    <br />    class method_overriding {<br />        public static void main(String args[])<br />        {<br />            B obj = new B();<br />            obj.i=1;<br />            obj.j=2;   <br />            obj.display();     <br />        }<br />   }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>0</td>    <td class='optionB'>1</td>   </tr>   <tr>    <td class='optionC'>2</td>    <td class='optionD'>Compilation Error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>interface calculate {<br />        int VAR = 0;<br />        void cal(int item);<br />    }<br />    class display implements calculate {<br />        int x;<br />        void cal(int item) {<br />            if (item < 2)<br />                x = VAR;<br />            else<br />                x = item * item;            <br />        }<br />    }<br />    class interfaces {<br />        public static void main(String args[]) {<br />            display arr[] = new display[3];<br />            arr[0].cal(0);    <br />            arr[1].cal(1);<br />            arr[2].cal(2);<br />            System.out.print(arr[0].x + " " + arr[1].x + " " + arr[2].x);<br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>0 1 2</td>    <td class='optionB'>0 2 4</td>   </tr>   <tr>    <td class='optionC'>0 0 4</td>    <td class='optionD'>0 1 4</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'><pre class='brush:java'> class A {<br />        int i;<br />        void display() {<br />            System.out.println(i);<br />        }<br />    }    <br />    class B extends A {<br />        int j;<br />        void display() {<br />            System.out.println(j);<br />        }<br />    }    <br />    class inheritance_demo {<br />        public static void main(String args[])<br />        {<br />            B obj = new B();<br />            obj.i=1;<br />            obj.j=2;   <br />            obj.display();     <br />        }<br />   }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>0</td>    <td class='optionB'>1</td>   </tr>   <tr>    <td class='optionC'>2</td>    <td class='optionD'>3</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'>This is a case of method overriding or dynamic polymorphism. Here the method display of class A gets overridden by the display method of class B. Thus when the call for display method is made, method of class B gets executed.</div>  </div> </div></div><br /><div class='test-finish'>Finish Test</div></div>
+<div id='test-controller'>
+    <div class='info'> This test contains 10 questions based on <b>Java</b>. <br/> Each question answered correctly
+        awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for
+        unattempted answers.
+    </div>
+    <h3>Select Test Type</h3>
+    <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>
+    <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button>
+</div>
+<div class='hidden' id='test-container'>
+    <div id='instructions'>
+        <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>
+        <div class='test-timer-container'>
+            <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>
+        </div>
+    </div>
+    <div id='test-score'></div>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class box {<br/>        int width;<br/>        int height;<br/>        int length;<br/>        int volume;<br/>        box() {<br/>            width = 5;<br/>            height = 5;<br/>            length = 6;<br/>        }<br/>        void volume() {<br/>             volume = width*height*length;<br/>        } <br/>    }    <br/>    class constructor_output {<br/>        public static void main(String args[])<br/>        {<br/>            box obj = new box();<br/>            obj.volume();<br/>            System.out.println(obj.volume);        } <br/>        }<br/>   }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>100</td>
+                <td class='optionB'>150</td>
+            </tr>
+            <tr>
+                <td class='optionC'>200</td>
+                <td class='optionD'>250</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these have highest precedence?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>()</td>
+                <td class='optionB'>++</td>
+            </tr>
+            <tr>
+                <td class='optionC'>*</td>
+                <td class='optionD'>>></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>class operators {<br/>        public static void main(String args[]) <br/>        {    <br/>             int x = 8;<br/>             System.out.println(++x * 3 + " " + x);<br/>        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>24 8</td>
+                <td class='optionB'>25 9</td>
+            </tr>
+            <tr>
+                <td class='optionC'>27 4</td>
+                <td class='optionD'>27 9</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of the following operators can operate on a boolean variable? 1. && 2. == 3. ?: 4.
+            +=
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>3 & 2</td>
+                <td class='optionB'>1 & 4</td>
+            </tr>
+            <tr>
+                <td class='optionC'>1, 2 & 4</td>
+                <td class='optionD'>1, 2 & 3</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Given the code String s1 = "yes"; String s2 = "yes"; String s3 = new String(s1); Which of
+            the following would equate to true? (A) s1 == s2 (B) s1 = s2 (C) s3 == s1 (D) s1.equals(s2) (E)
+            s3.equals(s1)
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>(A), (C) & (E)</td>
+                <td class='optionB'>(A), (B) & (C)</td>
+            </tr>
+            <tr>
+                <td class='optionC'>(A), (D) & (E)</td>
+                <td class='optionD'>(D) & (E)</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these lines will give an error line 1 :int a=1; line 2 :float f=2; line 3 :double
+            d=2.9;
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>line 1</td>
+                <td class='optionB'>line 2</td>
+            </tr>
+            <tr>
+                <td class='optionC'>line 3</td>
+                <td class='optionD'>none of these</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'>no error since float can take integer value</div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>class equality {<br/>        int x;<br/>        int y;<br/>        boolean isequal() {<br/>            return(x == y);  <br/>        } <br/>    }    <br/>    class Output {<br/>        public static void main(String args[])<br/>        {<br/>            equality obj = new equality();<br/>            obj.x = 5;<br/>            obj.y = 5;<br/>            System.out.println(obj.isequal);        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>True</td>
+                <td class='optionB'>False</td>
+            </tr>
+            <tr>
+                <td class='optionC'>0</td>
+                <td class='optionD'>1</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class A {<br/>        int i;<br/>        void display() {<br/>            System.out.println(i);<br/>        }<br/>    }    <br/>    class B extends A {<br/>        int j;<br/>        void display() {<br/>            System.out.println(j);<br/>        }<br/>    }    <br/>    class method_overriding {<br/>        public static void main(String args[])<br/>        {<br/>            B obj = new B();<br/>            obj.i=1;<br/>            obj.j=2;   <br/>            obj.display();     <br/>        }<br/>   }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>0</td>
+                <td class='optionB'>1</td>
+            </tr>
+            <tr>
+                <td class='optionC'>2</td>
+                <td class='optionD'>Compilation Error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>interface calculate {<br/>        int VAR = 0;<br/>        void cal(int item);<br/>    }<br/>    class display implements calculate {<br/>        int x;<br/>        void cal(int item) {<br/>            if (item < 2)<br/>                x = VAR;<br/>            else<br/>                x = item * item;            <br/>        }<br/>    }<br/>    class interfaces {<br/>        public static void main(String args[]) {<br/>            display arr[] = new display[3];<br/>            arr[0].cal(0);    <br/>            arr[1].cal(1);<br/>            arr[2].cal(2);<br/>            System.out.print(arr[0].x + " " + arr[1].x + " " + arr[2].x);<br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>0 1 2</td>
+                <td class='optionB'>0 2 4</td>
+            </tr>
+            <tr>
+                <td class='optionC'>0 0 4</td>
+                <td class='optionD'>0 1 4</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>
+            <pre class='brush:java'> class A {<br/>        int i;<br/>        void display() {<br/>            System.out.println(i);<br/>        }<br/>    }    <br/>    class B extends A {<br/>        int j;<br/>        void display() {<br/>            System.out.println(j);<br/>        }<br/>    }    <br/>    class inheritance_demo {<br/>        public static void main(String args[])<br/>        {<br/>            B obj = new B();<br/>            obj.i=1;<br/>            obj.j=2;   <br/>            obj.display();     <br/>        }<br/>   }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>0</td>
+                <td class='optionB'>1</td>
+            </tr>
+            <tr>
+                <td class='optionC'>2</td>
+                <td class='optionD'>3</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'>This is a case of method overriding or dynamic polymorphism. Here the method
+                    display of class A gets overridden by the display method of class B. Thus when the call for display
+                    method is made, method of class B gets executed.
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='test-finish'>Finish Test</div>
+</div>

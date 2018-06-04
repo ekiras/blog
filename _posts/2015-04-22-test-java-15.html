@@ -14,4 +14,276 @@ blogger_orig_url: http://ekiras.blogspot.com/2015/04/test-java-15.html
 redirect_from: "/2015/04/test-java-15.html"
 ---
 
-<div id='test-controller'> <div class='info'>  This test contains 10 questions based on <b>Java</b>.  <br />  Each question answered correctly awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for unattempted answers.</div>  <h3>Select Test Type</h3>  <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>  <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button> </div> <div class='hidden' id='test-container'>  <div id='instructions'>   <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>   <div class='test-timer-container'>    <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>   </div>  </div>  <div id='test-score'></div><div class='container-question'> <div class='question'>Which of these method is used to avoid polling in Java? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>wait()</td>    <td class='optionB'>notify()</td>   </tr>   <tr>    <td class='optionC'>notifyAll()</td>    <td class='optionD'>All of the mentioned</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'>class exception_handling {<br />        public static void main(String args[]) {<br />            try {<br />                int a, b;<br />                b = 0;<br />                a = 5 / b;<br />                System.out.print("A");<br />            }<br />            catch(ArithmeticException e) {<br />         System.out.print("B");         <br />            }<br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>A</td>    <td class='optionB'>B</td>   </tr>   <tr>    <td class='optionC'>Compilation Error </td>    <td class='optionD'>Runtime Error</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these access specifier must be used for class so that it can be inherited by another sub class? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>public</td>    <td class='optionB'>private</td>   </tr>   <tr>    <td class='optionC'>both a & b</td>    <td class='optionD'>None of the mentioned</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>what will be the output int i=10; System.out.println(i++);</div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>9</td>    <td class='optionB'>10</td>   </tr>   <tr>    <td class='optionC'>11</td>    <td class='optionD'>12</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'>i++ will first use the value and then increment it by one. </div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the output of this program? <pre class='brush:java'> class Output {<br />        public static void main(String args[]) <br />        {    <br />             boolean a = true;<br />             boolean b = false;<br />             boolean c = a ^ b;<br />             System.out.println(!b);<br />        } <br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>true</td>    <td class='optionB'>false</td>   </tr>   <tr>    <td class='optionC'>0</td>    <td class='optionD'>1</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>A</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the priority of the thread in output of this program? <pre class='brush:java'>  class multithreaded_programing {<br />        public static void main(String args[]) {<br />            Thread t = Thread.currentThread();<br />            t.setName("New Thread");<br />            System.out.println(t.getName());        <br />        }<br />    }</pre></div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>main </td>    <td class='optionB'>Thread</td>   </tr>   <tr>    <td class='optionC'>New Thread</td>    <td class='optionD'>Thread[New Thread,5,main]</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of the folowing stements are incorrect? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>Default constructor is called at the time of declaration of the object if a constructor has not been defined.</td>    <td class='optionB'>Constructor can be parameterized.</td>   </tr>   <tr>    <td class='optionC'>finalize() method is called when a object goes out of scope and is no longer needed.</td>    <td class='optionD'>finalize() method must be declared protected.</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these class is used to make a thread? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>String</td>    <td class='optionB'>System</td>   </tr>   <tr>    <td class='optionC'>Thread</td>    <td class='optionD'>Runnable</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>C</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>Which of these interface is not a part of Java?s collection framework? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>List</td>    <td class='optionB'>Set</td>   </tr>   <tr>    <td class='optionC'>SortedMap </td>    <td class='optionD'>SortedList</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>D</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='container-question'> <div class='question'>What is the value returned by unction compareTo() if the invoking string is less than the string compared? </div> <input name='gvnAnswer' type='hidden' /> <table cellspacing='1' style='width:100%;'>  <tbody>   <tr>    <td class='optionA'>zero</td>    <td class='optionB'>value less than zero</td>   </tr>   <tr>    <td class='optionC'>value greater than zero</td>    <td class='optionD'>None of the mentioned</td>   </tr>  </tbody> </table> <div class='handle hidden'>  <div class='view-solution'></div>  <div class='solution collapse'>   <div class='answer'>B</div>   <div class='explanation'></div>  </div> </div></div><br /><div class='test-finish'>Finish Test</div></div>
+<div id='test-controller'>
+    <div class='info'> This test contains 10 questions based on <b>Java</b>. <br/> Each question answered correctly
+        awards you 1 point and each incorrect answer has a penalty of -0.25 points, no points are deducted for
+        unattempted answers.
+    </div>
+    <h3>Select Test Type</h3>
+    <button class='timed-test' onclick='startTest("timed");'>Timed Test</button>
+    <button class='untimed-test' onclick='startTest("untimed");'>UnTimed Test</button>
+</div>
+<div class='hidden' id='test-container'>
+    <div id='instructions'>
+        <div><b>You Get +1 for each correct answer and -0.25 for each incorrect answer</b></div>
+        <div class='test-timer-container'>
+            <div class='hidden' id='test-timer'>Time Left - minutes :seconds</div>
+        </div>
+    </div>
+    <div id='test-score'></div>
+    <div class='container-question'>
+        <div class='question'>Which of these method is used to avoid polling in Java?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>wait()</td>
+                <td class='optionB'>notify()</td>
+            </tr>
+            <tr>
+                <td class='optionC'>notifyAll()</td>
+                <td class='optionD'>All of the mentioned</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'>class exception_handling {<br/>        public static void main(String args[]) {<br/>            try {<br/>                int a, b;<br/>                b = 0;<br/>                a = 5 / b;<br/>                System.out.print("A");<br/>            }<br/>            catch(ArithmeticException e) {<br/>         System.out.print("B");         <br/>            }<br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>A</td>
+                <td class='optionB'>B</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Compilation Error</td>
+                <td class='optionD'>Runtime Error</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these access specifier must be used for class so that it can be inherited by
+            another sub class?
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>public</td>
+                <td class='optionB'>private</td>
+            </tr>
+            <tr>
+                <td class='optionC'>both a & b</td>
+                <td class='optionD'>None of the mentioned</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>what will be the output int i=10; System.out.println(i++);</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>9</td>
+                <td class='optionB'>10</td>
+            </tr>
+            <tr>
+                <td class='optionC'>11</td>
+                <td class='optionD'>12</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'>i++ will first use the value and then increment it by one.</div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the output of this program?
+            <pre class='brush:java'> class Output {<br/>        public static void main(String args[]) <br/>        {    <br/>             boolean a = true;<br/>             boolean b = false;<br/>             boolean c = a ^ b;<br/>             System.out.println(!b);<br/>        } <br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>true</td>
+                <td class='optionB'>false</td>
+            </tr>
+            <tr>
+                <td class='optionC'>0</td>
+                <td class='optionD'>1</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>A</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the priority of the thread in output of this program?
+            <pre class='brush:java'>  class multithreaded_programing {<br/>        public static void main(String args[]) {<br/>            Thread t = Thread.currentThread();<br/>            t.setName("New Thread");<br/>            System.out.println(t.getName());        <br/>        }<br/>    }</pre>
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>main</td>
+                <td class='optionB'>Thread</td>
+            </tr>
+            <tr>
+                <td class='optionC'>New Thread</td>
+                <td class='optionD'>Thread[New Thread,5,main]</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of the folowing stements are incorrect?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>Default constructor is called at the time of declaration of the object if a
+                    constructor has not been defined.
+                </td>
+                <td class='optionB'>Constructor can be parameterized.</td>
+            </tr>
+            <tr>
+                <td class='optionC'>finalize() method is called when a object goes out of scope and is no longer
+                    needed.
+                </td>
+                <td class='optionD'>finalize() method must be declared protected.</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these class is used to make a thread?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>String</td>
+                <td class='optionB'>System</td>
+            </tr>
+            <tr>
+                <td class='optionC'>Thread</td>
+                <td class='optionD'>Runnable</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>C</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>Which of these interface is not a part of Java?s collection framework?</div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>List</td>
+                <td class='optionB'>Set</td>
+            </tr>
+            <tr>
+                <td class='optionC'>SortedMap</td>
+                <td class='optionD'>SortedList</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>D</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='container-question'>
+        <div class='question'>What is the value returned by unction compareTo() if the invoking string is less than the
+            string compared?
+        </div>
+        <input name='gvnAnswer' type='hidden'/>
+        <table cellspacing='1' style='width:100%;'>
+            <tbody>
+            <tr>
+                <td class='optionA'>zero</td>
+                <td class='optionB'>value less than zero</td>
+            </tr>
+            <tr>
+                <td class='optionC'>value greater than zero</td>
+                <td class='optionD'>None of the mentioned</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class='handle hidden'>
+            <div class='view-solution'></div>
+            <div class='solution collapse'>
+                <div class='answer'>B</div>
+                <div class='explanation'></div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class='test-finish'>Finish Test</div>
+</div>
