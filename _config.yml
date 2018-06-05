@@ -36,7 +36,7 @@ avatar: https://avatars1.githubusercontent.com/u/7701091?s=400&u=d045ff0955b144b
 collections: [sections]
 
 
-permalink: /:title/
+permalink: /:title
 include: ["_pages"]
 exclude: [ migrate.rb, dump.xml]
 # Exclude from processing.
