@@ -14,6 +14,12 @@ github_username:  ekirastogi
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+
 plugins:
   - jekyll-feed
   - jekyll-toc
@@ -29,6 +35,9 @@ google_analytics: UA-56017203-1
 avatar: https://avatars1.githubusercontent.com/u/7701091?s=400&u=d045ff0955b144b73c13f6fc00578380c90cea2e&v=4
 collections: [sections]
 
+
+permalink: /:title/
+include: ["_pages"]
 exclude: [ migrate.rb, dump.xml]
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
