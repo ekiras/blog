@@ -5,6 +5,9 @@ layout: default
 {%- include header.html scrolly_nav=_posts -%}
 <!-- Main -->
 <div id="main">
+		<!-- Ad -->
+	{%- include adsense_responsive.html -%}
+	
 	{%- if page.content != "" -%}
 		{%- include section.html title=page.title photo=page.cover-photo photo-alt=page.cover-photo-alt auto-header=page.auto-header content=page.content -%}
 	{%- endif -%}
