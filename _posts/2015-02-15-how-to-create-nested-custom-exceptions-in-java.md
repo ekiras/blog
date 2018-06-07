@@ -34,8 +34,77 @@ redirect_from: "/2015/02/how-to-create-nested-custom-exceptions-in-java.html"
     </ol>
     <div>Here Quiz Exception is the Parent of all the other Exceptions. QuizException can catch all the nested
         Exceptions so that we do not have to catch each of them separately. &nbsp;</div>
-    <br/><br/>
-    <pre class="brush:java">class QuizException extends Exception {<br/><br/> public QuizException(String message) {<br/>  super(message);<br/> }<br/><br/>}<br/><br/>class InvalidQuestionIdException extends QuizException {<br/><br/> public InvalidQuestionIdException() {<br/>  super("invalid question id provided");<br/> }<br/><br/>}<br/><br/>class InvalidAnswerException extends QuizException {<br/><br/> public InvalidAnswerException() {<br/>  super("invalid answer is provided");<br/> }<br/><br/>}<br/>class Question {<br/> public String getQuestion(Integer id) throws InvalidQuestionIdException{<br/>  switch (id) {<br/>  case 1:<br/>   return "This is question 1";<br/>  case 2:<br/>   return "This is question 2";<br/>  default:<br/>   throw new InvalidQuestionIdException();<br/>  }<br/> }<br/><br/>}<br/><br/><br/>class Answer{<br/> public String getAnswer(Integer ans)throws InvalidAnswerException{<br/>  switch(ans){<br/>  case 1:<br/>   return "right answer";<br/>  case 2:<br/>   return "wrong answer";<br/>  default:<br/>   throw new InvalidAnswerException();<br/>  }<br/>  }<br/> }<br/> <br/> <br/><br/><br/>public class Test {<br/> public static void main(String args[]) {<br/>  try {<br/>   System.out.println(new Question().getQuestion(1));<br/>   System.out.println(new Question().getQuestion(5));<br/>  } catch (QuizException e) {<br/>   e.printStackTrace();<br/>  }<br/>  try {<br/>   System.out.println(new Answer().getAnswer(1));<br/>   System.out.println(new Answer().getAnswer(3));<br/>  } catch (QuizException e) {<br/>   e.printStackTrace();<br/>  }<br/> }<br/><br/>}</pre>
+
+
+```java
+class QuizException extends Exception {
+
+ public QuizException(String message) {
+  super(message);
+ }
+
+}
+
+class InvalidQuestionIdException extends QuizException {
+
+ public InvalidQuestionIdException() {
+  super("invalid question id provided");
+ }
+
+}
+
+class InvalidAnswerException extends QuizException {
+
+ public InvalidAnswerException() {
+  super("invalid answer is provided");
+ }
+
+}
+class Question {
+ public String getQuestion(Integer id) throws InvalidQuestionIdException{
+  switch (id) {
+  case 1:
+   return "This is question 1";
+  case 2:
+   return "This is question 2";
+  default:
+   throw new InvalidQuestionIdException();
+  }
+ }
+}
+
+
+class Answer{
+ public String getAnswer(Integer ans)throws InvalidAnswerException{
+  switch(ans){
+  case 1:
+   return "right answer";
+  case 2:
+   return "wrong answer";
+  default:
+   throw new InvalidAnswerException();
+  }
+  }
+ }
+ 
+public class Test {
+ public static void main(String args[]) {
+  try {
+   System.out.println(new Question().getQuestion(1));
+   System.out.println(new Question().getQuestion(5));
+  } catch (QuizException e) {
+   e.printStackTrace();
+  }
+  try {
+   System.out.println(new Answer().getAnswer(1));
+   System.out.println(new Answer().getAnswer(3));
+  } catch (QuizException e) {
+   e.printStackTrace();
+  }
+ }
+
+}
+```
     Output of the above example is as follows<br/>
     <div class="output">This is question 1<br/>InvalidQuestionIdException: invalid question id provided<br/><span
             class="Apple-tab-span" style="white-space: pre;"> </span>at Question.getQuestion(Test.java:32)<br/><span
