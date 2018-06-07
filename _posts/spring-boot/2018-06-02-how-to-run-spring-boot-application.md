@@ -3,6 +3,8 @@ layout: post
 title: How to run Spring boot Application
 tags: Gradle Maven SpringBoot Spring
 author: Ekansh Rastogi
+sidebar: nav-spring-boot-setup
+categories: spring-boot setup
 ---
 
 ### How to run a Spring Boot Application using Maven/ Gradle

@@ -1,10 +1,17 @@
 ---
 layout: post
 title: Executor in Java Multithreading
+sidebar: nav-java-multithreading
 toc: true
+categories: java multi-threading
 ---
 * Table of Contents
 {:toc}
+## What is an Executor ?
+
+
+## Creating Simple Executors
+In this section we will create some basic executors.
 
 ### Simlpe Executor
 An Executor can be as simple as following
